@@ -1,0 +1,13 @@
+.list
+  -@messages.each do |m|
+    .row-fluid
+      .span12.post
+        %p= m.body
+        .date= distance_of_time_in_words_to_now m.created_at
+        .sharing
+          %a{ :href => "http://www.facebook.com/sharer.php?u=#{message_url(m)}", :target => "_blank" }
+            %img{ :src => "http://www.simplesharebuttons.com/images/somacro/facebook.png", :alt => "Facebook" }
+          %a{ :href => "https://plus.google.com/share?url=#{message_url(m)}", :target => "_blank" }
+            %img{ :src => "http://www.simplesharebuttons.com/images/somacro/google.png", :alt => "Google" }
+          %a{ :href => "mailto:?Subject=Hi&Body=I%20saw%20this%20and%20thought%20of%20you!%20 #{message_url(m)}" }
+            %img{ :src => "http://www.simplesharebuttons.com/images/somacro/email.png", :alt => "Email" }
