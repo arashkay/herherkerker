@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'aasm'
 gem 'mysql2'
 gem 'foreigner'
+gem 'capistrano'
 
 
 # Gems used only for assets and not required
@@ -34,4 +35,5 @@ end
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+# gem 'debugger'
+gem 'ruby-debug'
