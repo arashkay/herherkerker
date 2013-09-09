@@ -2,6 +2,7 @@
   background-image: none
 
 .loading
+  z-index: 1000
   display: none
   position: absolute
   top: 10px
@@ -18,31 +19,44 @@
   display: none
 
 body
-  background: #eee
+  background: url(/assets/background.png)
   .list, .main
-    padding-bottom: 30px
+    padding-bottom: 90px
     padding-top: 20px
     text-align: center
     width: 400px
     margin: auto
   .main
     width: 450px
+    padding-bottom: 10px
 
-hr
-  border-top-color: #aaa
+.logo
+  background: no-repeat
+  height: 20px
+  overflow: visible
+  position: relative
+  display: inline-block
+  img
+    width: 80%
+    margin-top: -30%
 
 .tools
+  background: url(/assets/bar.png)
   position: fixed
   bottom: 0
   left: 0
   right: 0
-  background: #257FC4
   padding: 10px
   text-align: center
+  z-index: 1000
   span
     color: #fff
-    font-size: 14px
+    font-size: 20px
     font-weight: bold
+  .btn
+    background: #097d1f
+    border: none
+    color: #fff
 
 .modal-body
   text-align: center
@@ -57,22 +71,29 @@ textarea
   border-shadow: #aaa 1px solid
   border-radius: 5px
   position: relative
-  margin: 10px 0 10px
+  margin: 10px 0 20px
   p
     padding: 25px 10px 0px
-    color: #555
+    color: #664f1a
   .date
     position: absolute
-    top: 5px
-    right: 10px
-    color: #257FC4
+    bottom: 5px
+    left: 10px
+    color: #977e47
   .sharing
-    height: 20px
-    img
-      width: 30px
+    height: 30px
+
 .main
   .post
-    .sharing
-      height: 25px
-      img
-        width: 40px
+    background: #8d836c
+    p
+      color: #f0e7d2
+    .date
+      color: #e6c57a
+
+.modal-footer
+  background: #E0D8C5
+  .btn-primary
+    background: #998E77
+.fn-submitted
+  display: none

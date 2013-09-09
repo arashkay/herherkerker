@@ -1,11 +1,16 @@
 Herherkerker::Application.routes.draw do
 
   root :to => 'messages#index'
+
   resources :messages do
     collection do
       get :list
     end
+    member do
+      post :approve
+    end
   end
+  get '/:id' => 'messages#show', :as => :joke
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,8 @@
+.list
+  -@messages.each do |m|
+    .row-fluid.fn-post
+      .span12.post
+        %p= m.body
+        .date= distance_of_time_in_words_to_now m.created_at
+        .sharing
+          %a.btn.btn-success{ :data => { :remote => approve_message_path(m) } } قبول
