@@ -5,4 +5,5 @@
         %p= m.body
         .date= distance_of_time_in_words_to_now m.created_at
         .sharing
-          %a.btn.btn-success{ :data => { :remote => approve_message_path(m) } } قبول
+          %a.btn.btn-success{ :data => { :remote => approve_message_path(m), :success => 'hhkk.approved' } } قبول
+          %a.btn.btn-danger{ :data => { :remote => reject_message_path(m), :success => 'hhkk.approved' } } حذف

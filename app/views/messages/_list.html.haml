@@ -1,13 +1,33 @@
 .list
-  -@messages.each do |m|
-    .row-fluid
-      .span12.post
-        %p= m.body
-        .date= distance_of_time_in_words_to_now m.created_at
-        .sharing
-          %a{ :href => "http://www.facebook.com/sharer.php?u=#{joke_url(m)}", :target => "_blank" }
-            %img{ :src => "/assets/fb.png", :alt => "Facebook" }
-          %a{ :href => "https://plus.google.com/share?url=#{joke_url(m)}", :target => "_blank" }
-            %img{ :src => "/assets/gp.png", :alt => "Google" }
-          %a{ :href => "mailto:?Subject=Hi&Body=I%20saw%20this%20and%20thought%20of%20you!%20 #{joke_url(m)}" }
-            %img{ :src => "/assets/share.png", :alt => "Email" }
+  .fn-list
+    .template
+      .row-fluid.fn-post{ :loop => true }
+        .span12.post
+          %p %#body%
+          .date %#post_date%
+          .sharing
+            %a{ :href => "http://www.facebook.com/sharer.php?u=http://herherkerker.com/%#id%", :target => "_blank" }
+              %img{ :src => "/assets/fb.png", :alt => "Facebook" }
+            %a{ :href => "https://plus.google.com/share?url=http://herherkerker.com/%#id%", :target => "_blank" }
+              %img{ :src => "/assets/gp.png", :alt => "Google" }
+            %a{ :href => "mailto:?Subject=Hi&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://herherkerker.com/%#id%" }
+              %img{ :src => "/assets/share.png", :alt => "Email" }
+    -@messages.each do |m|
+      .row-fluid
+        .span12.post
+          %p= m.body
+          .date= distance_of_time_in_words_to_now m.updated_at
+          .sharing
+            %a{ :href => "http://www.facebook.com/sharer.php?u=#{joke_url(m)}", :target => "_blank" }
+              %img{ :src => "/assets/fb.png", :alt => "Facebook" }
+            %a{ :href => "https://plus.google.com/share?url=#{joke_url(m)}", :target => "_blank" }
+              %img{ :src => "/assets/gp.png", :alt => "Google" }
+            %a{ :href => "mailto:?Subject=Hi&Body=I%20saw%20this%20and%20thought%20of%20you!%20 #{joke_url(m)}" }
+              %img{ :src => "/assets/share.png", :alt => "Email" }
+  .row-fluid.secret.fn-more
+    .span12.post.more
+      %p صبر کنید ... درحال گرفتن هرهرکرکر های قبلی!
+  .row-fluid.secret.fn-end
+    .span12.post.more
+      %p بابا رسیدی تهش! دیگه جوک نداریم!
+  

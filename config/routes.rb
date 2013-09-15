@@ -5,11 +5,14 @@ Herherkerker::Application.routes.draw do
   resources :messages do
     collection do
       get :list
+      post :more
     end
     member do
       post :approve
+      post :reject
     end
   end
+  get '/last' => 'messages#last'
   get '/:id' => 'messages#show', :as => :joke
 
   # The priority is based upon order of creation:

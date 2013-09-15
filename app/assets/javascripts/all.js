@@ -1,5 +1,6 @@
 //= require 'jquery.min'
 //= require 'jquery.ui.min'
+//= require 'jquery.template.min'
 //= require 'bootstrap.min'
 //= require 'core'
 //= require 'hhkk'
