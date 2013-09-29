@@ -73,11 +73,11 @@ $.extend(hhkk, {
     });
     if(!isnew) return;
     hhkk.likes.push(id);
-    $.cookie('likes', hhkk.likes);
+    $.cookie('likes', hhkk.likes, { expires: 1500 });
   },
   dislike: function(id){
     hhkk.likes.splice( hhkk.likes.indexOf( id ), 1 )
-    $.cookie('likes', hhkk.likes);
+    $.cookie('likes', hhkk.likes, { expires: 1500 });
   }
 });
 
