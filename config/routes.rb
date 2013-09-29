@@ -10,6 +10,8 @@ Herherkerker::Application.routes.draw do
     member do
       post :approve
       post :reject
+      post :like
+      post :dislike
     end
   end
   get '/last' => 'messages#last'

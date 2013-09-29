@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130905033020) do
+ActiveRecord::Schema.define(:version => 20130928235702) do
 
   create_table "messages", :force => true do |t|
     t.text     "body"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130905033020) do
     t.integer  "rate",        :default => 0
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "likes",       :default => 0
   end
 
 end

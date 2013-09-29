@@ -82,6 +82,21 @@ textarea
     color: #977e47
   .sharing
     height: 30px
+  .likes
+    position: absolute
+    right: 5px
+    top: 0px
+    font-size: 12px
+    color: #977e47
+    .fn-liked, .fn-disliked
+      cursor: pointer
+    .fn-liked
+      display: none
+    &.liked
+      .fn-liked
+        display: inline-block
+      .fn-disliked
+        display: none
 
 .main
   .post
@@ -108,7 +123,7 @@ textarea
     font-size: 14px
     font-weight: bold
 
-@media screen and (min-device-width: 300px)  and (max-device-width: 420px)
+@media screen and (min-device-width: 320px)  and (max-device-width: 480px)
   body
     .list, .main
       width: 95% !important

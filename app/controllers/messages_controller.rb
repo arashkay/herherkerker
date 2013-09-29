@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
   end
   
   def last
-    @message = Message.approved.last
+    @message = Message.approved.first
     render :text => "hhkk.show(#{{ :joke => @message.body }.to_json})"
   end
 
@@ -48,6 +48,16 @@ class MessagesController < ApplicationController
     @message = Message.find params[:id]
     @message.destroy
     render :json => @message
+  end
+
+  def like
+    Message.increment_counter :likes, params[:id]
+    render :json => true
+  end
+
+  def dislike
+    Message.decrement_counter :likes, params[:id]
+    render :json => false
   end
 
 end
