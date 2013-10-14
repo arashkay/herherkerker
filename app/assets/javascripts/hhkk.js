@@ -9,9 +9,6 @@ $.extend(hhkk, {
   likes: [],
   init: function(){
     $.cookie.json = true;
-    var likes = $.cookie('likes');
-    if(likes==null||likes=='') likes = [];
-    hhkk.likes = likes;
     hhkk.liking();
     $('.fn-send').click(hhkk.send)
     $(window).scroll(hhkk.more);
@@ -45,6 +42,9 @@ $.extend(hhkk, {
     hhkk.liking();
   },
   liking: function(){
+    var likes = $.cookie('likes');
+    if(likes==null||likes=='') likes = [];
+    hhkk.likes = likes;
     var posts = $('.fn-post');
     $.each(hhkk.likes, function(i,v){
       posts.filter('[data-dbid='+v+']').find('.fn-like').addClass('liked');
