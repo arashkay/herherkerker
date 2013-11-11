@@ -8,7 +8,9 @@ gem 'rails', '3.2.13'
 gem 'haml-rails'
 gem 'mysql2'
 gem 'foreigner'
-gem 'capistrano'
+gem 'capistrano', '2.15.5'
+gem "httparty", "~> 0.10.0"
+gem 'pushmeup'
 
 
 # Gems used only for assets and not required
@@ -35,4 +37,4 @@ end
 
 # To use debugger
 # gem 'debugger'
-gem 'ruby-debug'
+# gem 'ruby-debug'

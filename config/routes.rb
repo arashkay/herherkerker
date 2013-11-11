@@ -5,13 +5,21 @@ Herherkerker::Application.routes.draw do
   resources :messages do
     collection do
       get :list
+      post :today
       post :more
+      post :likes
     end
     member do
       post :approve
       post :reject
       post :like
       post :dislike
+    end
+  end
+
+  resources :devices, :only => [] do
+    collection do
+      post :register
     end
   end
   get '/last' => 'messages#last'
