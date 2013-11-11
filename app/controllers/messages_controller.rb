@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 
-  before_filter :authenticate_admin!, :only => [:list]
+  before_filter :authenticate_admin!, :only => [:list, :approve, :reject]
+  before_filter :detect_device!, :only => [:today]
 
   def index
     @messages = Message.approved.limit(10)
@@ -28,10 +29,22 @@ class MessagesController < ApplicationController
   def list
     @messages = Message.fresh.all
   end
+
+  def likes
+    @messages = Message.select( [ :id, :likes, :updated_at  ] ).where id: params[:ids]
+    render :json => @messages
+  end
   
   def last
     @message = Message.approved.first
     render :text => "hhkk.show(#{{ :joke => @message.body }.to_json})"
+  end
+
+  def today
+    @device.update_attribute :last_check, Time.now unless @device.blank?
+    limit = (params[:firstload] == 'true') ? 15 : 5
+    @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).order('id ASC').limit(limit).reverse!
+    render :json => @messages
   end
 
   def approve
