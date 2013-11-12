@@ -2,6 +2,7 @@ set :application, "HerHer KerKer"
 set :deploy_to,  "/var/www/herherkerker.com"
 server "106.186.120.146", :web, :app, :db, :primary => true
 set :user, "webmaster"
+ssh_options[:keys] = ['~/.ssh/ashmaclinode']
 set :use_sudo, false
 
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work

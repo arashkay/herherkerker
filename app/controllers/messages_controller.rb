@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   before_filter :authenticate_admin!, :only => [:list, :approve, :reject]
-  before_filter :detect_device!, :only => [:today]
+  before_filter :detect_device!, :only => [:today, :create]
 
   def index
     @messages = Message.approved.limit(10)
@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new params[:message]
+    @message.device_id = @device.id unless @device.blank?
     if @message.save
       render :json => @message
     else

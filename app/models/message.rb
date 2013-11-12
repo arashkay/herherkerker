@@ -12,7 +12,7 @@ class Message < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super( :only => [:id, :body, :likes],:methods => :post_date)
+    super( :only => [:id, :body, :likes, :device_id],:methods => :post_date)
   end
 
 end
