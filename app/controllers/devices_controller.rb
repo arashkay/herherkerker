@@ -4,7 +4,6 @@ class DevicesController < ApplicationController
 
   def register
     @device.regid = params[:device][:regid]
-    @device.last_check = Time.now
     render :json => @device.save
   end
 
