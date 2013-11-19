@@ -19,7 +19,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'therubyracer' , '~> 0.12.0'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -36,5 +36,7 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+group :development do
+  gem 'debugger'
 # gem 'ruby-debug'
+end
