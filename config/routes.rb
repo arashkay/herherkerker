@@ -17,7 +17,7 @@ Herherkerker::Application.routes.draw do
     end
   end
 
-  resources :devices, :only => [] do
+  resources :devices, :only => [:show] do
     collection do
       post :register
     end
