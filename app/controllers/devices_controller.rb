@@ -8,7 +8,7 @@ class DevicesController < ApplicationController
   end
 
   def show
-    render @device.likes
+    render json: { likes: (@device.nil? ? 0 : @device.likes) }
   end
 
 end

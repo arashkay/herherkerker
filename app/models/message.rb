@@ -1,4 +1,6 @@
 class Message < ActiveRecord::Base
+
+  belongs_to :device
   attr_accessible :body
 
   validates :body, :presence => true
