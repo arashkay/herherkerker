@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :detect_version!
+
 protected
   
   def authenticate_admin!
@@ -14,6 +16,10 @@ protected
     else
       @device = Device.find_or_create_by_did params[:device][:did]
     end
+  end
+
+  def detect_version!
+    @version = params[:api].to_i unless params[:api].blank?
   end
 
 end

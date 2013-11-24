@@ -45,7 +45,11 @@ class MessagesController < ApplicationController
     @device.update_attribute :last_check, Time.now unless @device.blank?
     limit = (params[:firstload] == 'true') ? 15 : 5
     @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).order('id ASC').limit(limit).reverse!
-    render :json => @messages
+    if @version == 1
+      render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
+    else
+      render :json => @messages
+    end
   end
 
   def approve
