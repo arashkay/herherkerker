@@ -11,16 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119004442) do
+ActiveRecord::Schema.define(:version => 20131126074239) do
 
   create_table "devices", :force => true do |t|
     t.string   "did"
     t.string   "regid"
     t.datetime "last_check"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.datetime "notified_at"
-    t.integer  "like_count",  :default => 0
+    t.integer  "like_count",     :default => 0
+    t.text     "badges"
+    t.integer  "messages_count", :default => 0
+    t.integer  "shares_count",   :default => 0
+    t.integer  "logins_count",   :default => 1
+    t.datetime "last_date"
   end
 
   add_index "devices", ["did"], :name => "index_devices_on_did"

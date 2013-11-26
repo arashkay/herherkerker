@@ -57,7 +57,12 @@ class MessagesController < ApplicationController
     @message.likes = params[:likes].to_i + rand(10)
     @message.is_approved = true
     if @message.save
-      Device.update_all( ["like_count = like_count + ?", @message.likes], {:id => @message.device_id} ) unless @message.device_id.blank?
+      unless @message.device_id.blank?
+        device = @message.device
+        device.increment :like_count, @message.likes
+        device.increment :messages_count
+        device.save
+      end
       render :json => @message
     else
       render :json => @message.errors

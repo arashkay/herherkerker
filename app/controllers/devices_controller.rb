@@ -8,7 +8,11 @@ class DevicesController < ApplicationController
   end
 
   def show
-    render json: { likes: (@device.nil? ? 0 : @device.likes) }
+    @device.shares_count = params[:shares] if params[:shares].to_i > @device.shares_count
+    @device.increment_login
+    @device.calculate_badges
+    @device.save
+    render json: { likes: (@device.nil? ? 0 : @device.like_count), badges: @device.badges }
   end
 
 end
