@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.swipe.min.js"></script>
+    <script type="text/javascript" src="js/jquery.template.min.js"></script>
+    <script type="text/javascript" src="js/notification.js"></script>
+    <script type="text/javascript" src="js/analytics.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/contacts.js"></script>
+    <title>هرهرکرکر</title>
+  </head>
+  <body class=''>
+    <div id='main'>
+      <div class='fn-blocker main-loader'>
+        <div class='icon'></div>
+      </div>
+      <div class='pages''>
+        <div class='page fn-upload fn-page'>
+          <div class='page-header'>
+            <i class='icon-remove-sign fn-close'></i>
+          </div>
+          <div class='page-content'>
+            <h2>چیز بامزه داری؟</h2>
+            <textarea class='joke fn-joke'></textarea>
+            <button class='btn fn-submit'>ارسال</button>
+            <p>
+             مطالب ارسالی بعد از تایید به صورت عمومی در می آید.
+              </br>
+              تنها مطالب فارسی به اشتراک درمی آیند.
+            </p>
+          </div>
+        </div>
+        <div class='page fn-about fn-page'>
+          <div class='page-header'>
+            <i class='icon-remove-sign fn-close'></i>
+          </div>
+          <div class='page-content'>
+            <h2>تیم ما</h2>
+            <p>
+              تیم همراه سازان ، تیم تخصصی توسعه  و ساخت برنامه های تلفن هوشمند و وب.
+            </p>
+            <h3>تماس با ما </h3>
+            <p><a data-href='http://www.herherkerker.com'>www.herherkerker.com</a></p>
+          </div>
+        </div>
+      </div>
+      <div class='header'>
+        <div class='actions'>
+          <i class='icon-th pull-left fn-options'></i>
+          <i class='icon-cloud-download pull-left fn-load-btn'></i>
+          <i class='icon-cloud-upload fn-upload-btn'></i>
+        </div>
+      </div>
+      <div class='menu fn-menu'>
+        <a data-href='http://kalagheh.com/apps'><i class='icon-android'></i><span>برنامه های دیگر</span></a>
+        <a class='fn-about-btn'><i class='icon-beaker'></i><span>درباره تیم ما</span></a>
+        <a class=''><i class='icon-cloud-down'></i><span>دریافت جوک هر ٦ ساعت!</span></a>
+      </div>
+      <div class='content'>
+        <div class='template'>
+          <div class='post ad fn-ad' loop='true'>
+            <p>%#body%</p>
+          </div>
+          <div class='post fn-post' loop='true' data-dbid='%#id%' fn='main.posts.liked'>
+            <p>%#body%</p>
+            <div class='actions'>
+              <i class='icon-envelope fn-sms'></i>
+              <div class='pull-left'>
+                <span class='counts'>%#likes%</span>
+                <i class='icon-heart-empty fn-like'></i>
+                <i class='icon-heart fn-dislike'></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='posts'>
+          <div class='post loader fn-loader'></div>
+          <div class='post early fn-early'>هر ٦ ساعت یکبار به روز رسانی صورت میگیرد.</div>
+          <div class='fn-posts'></div>
+        </div>
+        <div class='badges'>
+          <h2>مدال های شما</h2>
+          <div class='badge locked' data-badge='day5'>
+            <span class='image' style='background-image: url(img/badges/active1.png)' />
+            </span>
+            <span class='name'>٥ روز جوک بخونی</span>
+          </div>
+          <div class='badge locked' data-badge='shared10'>
+            <span class='image' style='background-image: url(img/badges/social1.png)' />
+            </span>
+            <span class='name'>به ١٠ نفر جوک بفرستی</span>
+          </div>
+          <div class='badge locked' data-badge='liked100'>
+            <span class='image' style='background-image: url(img/badges/likes1.png)' />
+            </span>
+            <span class='name'>جوکات ١٠٠ تا لایک بگیره</span>
+          </div>
+          <div class='badge locked' data-badge='sent25'>
+            <span class='image' style='background-image: url(img/badges/active2.png)' />
+            </span>
+            <span class='name'>٢٥ جوک قابل تایید بفرستی</span>
+          </div>
+          <div class='badge locked' data-badge='shared30'>
+            <span class='image' style='background-image: url(img/badges/social2.png)' />
+            </span>
+            <span class='name'>به ٣٠ نفر جوک بفرستی</span>
+          </div>
+          <div class='badge locked' data-badge='liked500'>
+            <span class='image' style='background-image: url(img/badges/likes2.png)' />
+            </span>
+            <span class='name'>جوکات ٥٠٠ تا لایک بگیره</span>
+          </div>
+          <div class='badge locked' data-badge='liked1200'>
+            <span class='image' style='background-image: url(img/badges/likes3.png)' />
+            </span>
+            <span class='name'>جوکات ١٢٠٠ تا لایک بگیره</span>
+          </div>
+          <div class='badge locked' data-badge='shared100'>
+            <span class='image' style='background-image: url(img/badges/social3.png)' />
+            </span>
+            <span class='name'>به ١٠٠ نفر جوک بفرستی</span>
+          </div>
+          <div class='badge locked' data-badge='sent50'>
+            <span class='image' style='background-image: url(img/badges/active3.png)' />
+            </span>
+            <span class='name'>٥٠ جوک قابل تایید بفرستی</span>
+          </div>
+        </div>
+      </div>
+      <div class='user fn-user'>
+        <i class='icon-bookmark'></i>
+        <b class='fn-points'>0</b>
+        <span> نفر را خنداندید</span>
+        <img class='icon' src='img/icon.png' />
+      </div>
+      <div class='popup-blocker fn-popup fn-contact-popup'>
+        <div class='popup'>
+          <div class='popup-header'>
+            <i class='icon-remove-sign fn-close'></i>
+          </div>
+          <div class='popup-content'>
+            <h2>اشتراک با</h2>
+            <input type='text' placeholder='نام دوستتان' class='fn-find-contact en'/>
+            <div class='template'>
+              <li class='fn-contact'>
+                <span class='arrow'>
+                  <i class='icon-chevron-left'></i>
+                </span>
+                <span class='row fn-text'>
+                </span>
+              </li>
+            </div>
+            <ul class='list fn-contacts'>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+      app.initialize();
+    </script>
+  </body>
+</html>
