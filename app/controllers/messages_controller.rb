@@ -46,7 +46,8 @@ class MessagesController < ApplicationController
     limit = (params[:firstload] == 'true') ? 15 : 5
     @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).order('id ASC').limit(limit).reverse!
     if @version == 1
-      render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
+      render :json => { jokes: @messages, extra: [ ] }
+      #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
     else
       render :json => @messages
     end
@@ -71,6 +72,11 @@ class MessagesController < ApplicationController
 
   def reject
     @message = Message.find params[:id]
+    device = @message.device
+    unless device.nil?
+      device.increment :like_count, (params[:likes].to_i + rand(20))
+      device.save
+    end
     @message.destroy
     render :json => @message
   end
