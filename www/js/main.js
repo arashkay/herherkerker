@@ -33,7 +33,7 @@ $.extend( main,{
     $('.fn-posts').on( 'click','[data-href]', main.open );
     if(!main.defaults.debug)
       main.database.init();
-    main.contacts.init();
+    //main.contacts.init();
     if(main.cache.val('badges')!=null)
       main.badges.mark(main.cache.val('badges').split(','));
     $.get(main.defaults.url+'/devices/show.json', { device: { did: main.cache.did }, shares: main.cache.val('shares') }, main.me);
@@ -50,6 +50,9 @@ $.extend( main,{
     setTimeout( function(){window.open(url, '_system');}, 600);
   },
   loading: {
+    popup: function(){
+      $('.fn-blocker').fadeIn().delay(4000).fadeOut();
+    },
     show: function(){
       $('.fn-blocker').fadeIn();
     },
@@ -165,7 +168,20 @@ $.extend( main,{
       main.drag.init(list);
       $('.fn-like', list).click( main.posts.like );
       $('.fn-dislike', list).click( main.posts.dislike );
-      $('.fn-sms', list).click( main.posts.share)
+      $('.fn-sms', list).click( main.posts.sms );
+    },
+    sms: function(e){
+      e.stopPropagation();
+      main.current = $(this).parents('.fn-post:first');
+      var url = "sms:?body=" + $('p', main.current).text() + "--هرهرکرکر app" ;
+      main.loading.popup();
+      analytics.action( 'Sharing', 'SMS', 'SMS a Post', 1);
+      main.current.addClass('smsed');
+      setTimeout( function(){window.open(url, '_system');}, 600);
+      if(main.cache.val('shares')==null)
+        main.cache.val('shares', 1);
+      else
+        main.cache.val('shares', parseInt(main.cache.val('shares'))+1);
     },
     share: function(){
       main.current = $(this).parents('.fn-post:first');
