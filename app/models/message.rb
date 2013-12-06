@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
 
   validates :body, :presence => true
   
-  default_scope order( 'updated_at DESC' )
+  default_scope order( 'id ASC' )
   scope :fresh, where( :is_approved => false )
   scope :approved, where( :is_approved => true )
 

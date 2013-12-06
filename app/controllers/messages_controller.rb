@@ -44,7 +44,7 @@ class MessagesController < ApplicationController
   def today
     @device.update_attribute :last_check, Time.now unless @device.blank?
     limit = (params[:firstload] == 'true') ? 15 : 5
-    @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).order('id ASC').limit(limit).reverse!
+    @messages = Message.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
     if @version == 1
       render :json => { jokes: @messages, extra: [ ] }
       #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
@@ -75,6 +75,7 @@ class MessagesController < ApplicationController
     device = @message.device
     unless device.nil?
       device.increment :like_count, (params[:likes].to_i + rand(20))
+      device.increment :messages_count
       device.save
     end
     @message.destroy

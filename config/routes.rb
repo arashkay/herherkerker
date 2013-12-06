@@ -23,6 +23,8 @@ Herherkerker::Application.routes.draw do
     end
   end
   get '/last' => 'messages#last'
+  get '/charts' => 'general#charts'
+
   get '/:id' => 'messages#show', :as => :joke
 
   # The priority is based upon order of creation:
