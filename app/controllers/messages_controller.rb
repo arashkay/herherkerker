@@ -4,17 +4,17 @@ class MessagesController < ApplicationController
   before_filter :detect_device!, :only => [:today, :create]
 
   def index
-    @messages = Message.approved.limit(10)
+    @messages = Message.approved.listing
   end
 
   def more
-    @messages = Message.approved.offset(10*params[:offset].to_i).limit(10)
+    @messages = Message.approved.offset(20*params[:offset].to_i).listing
     render :json => @messages
   end
 
   def show
     @message = Message.find params[:id]
-    @messages = Message.approved
+    @messages = Message.approved.listing.reverse
   end
 
   def create
@@ -43,8 +43,8 @@ class MessagesController < ApplicationController
 
   def today
     @device.update_attribute :last_check, Time.now unless @device.blank?
-    limit = (params[:firstload] == 'true') ? 15 : 5
-    @messages = Message.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
+    limit = (params[:firstload] == 'true') ? 15 : 10
+    @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
     if @version == 1
       render :json => { jokes: @messages, extra: [ ] }
       #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }

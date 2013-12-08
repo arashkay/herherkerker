@@ -5,7 +5,7 @@ Herherkerker::Application.routes.draw do
   resources :messages do
     collection do
       get :list
-      post :today
+      match :today
       post :more
       post :likes
     end

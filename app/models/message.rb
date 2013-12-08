@@ -5,9 +5,10 @@ class Message < ActiveRecord::Base
 
   validates :body, :presence => true
   
-  default_scope order( 'id ASC' )
+  default_scope order( 'id DESC' )
   scope :fresh, where( :is_approved => false )
   scope :approved, where( :is_approved => true )
+  scope :listing, limit(20)
 
   def post_date
     ActionController::Base.helpers.distance_of_time_in_words_to_now updated_at
