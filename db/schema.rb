@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126074239) do
+ActiveRecord::Schema.define(:version => 20131215032619) do
+
+  create_table "device_rewards", :force => true do |t|
+    t.integer  "reward_id",  :null => false
+    t.integer  "device_id",  :null => false
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "device_rewards", ["device_id"], :name => "device_rewards_device_id_fk"
+  add_index "device_rewards", ["reward_id"], :name => "device_rewards_reward_id_fk"
 
   create_table "devices", :force => true do |t|
     t.string   "did"
@@ -39,5 +50,43 @@ ActiveRecord::Schema.define(:version => 20131126074239) do
     t.integer  "likes",       :default => 0
     t.integer  "device_id"
   end
+
+  create_table "questions", :force => true do |t|
+    t.string   "title",                            :null => false
+    t.integer  "question_type",                    :null => false
+    t.text     "options"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "is_live",       :default => false
+  end
+
+  create_table "replies", :force => true do |t|
+    t.string   "value",       :null => false
+    t.integer  "question_id", :null => false
+    t.integer  "device_id",   :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "replies", ["device_id"], :name => "replies_device_id_fk"
+  add_index "replies", ["question_id"], :name => "replies_question_id_fk"
+
+  create_table "rewards", :force => true do |t|
+    t.text     "instruction",        :null => false
+    t.datetime "expires_at",         :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "state"
+  end
+
+  add_foreign_key "device_rewards", "devices", :name => "device_rewards_device_id_fk"
+  add_foreign_key "device_rewards", "rewards", :name => "device_rewards_reward_id_fk"
+
+  add_foreign_key "replies", "devices", :name => "replies_device_id_fk"
+  add_foreign_key "replies", "questions", :name => "replies_question_id_fk"
 
 end

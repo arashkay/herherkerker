@@ -22,8 +22,27 @@ Herherkerker::Application.routes.draw do
       post :register
     end
   end
+
+  resources :rewards do
+    member do
+      post :enable
+      post :disable
+      post :attach
+      post :unlock
+    end
+  end
+
+  resources :questions do
+    member do
+      post :enable
+      post :disable
+      post :reply
+    end
+  end
+
   get '/last' => 'messages#last'
   get '/charts' => 'general#charts'
+  get '/admin' => 'general#admin'
 
   get '/:id' => 'messages#show', :as => :joke
 

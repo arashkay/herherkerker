@@ -11,7 +11,8 @@ gem 'foreigner'
 gem 'capistrano', '2.15.5'
 gem "httparty", "~> 0.10.0"
 gem 'pushmeup'
-
+gem "paperclip", "~> 2.7"
+gem 'aasm'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -19,7 +20,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'execjs'
-  gem 'therubyracer' , '~> 0.12.0'
+  gem 'therubyracer' #, '~> 0.12.0'
   gem 'uglifier', '>= 1.0.3'
 end
 

@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
   end
 
   def list
-    @messages = Message.fresh.all
+    @messages = Message.unscoped.fresh.all
   end
 
   def likes
@@ -46,7 +46,8 @@ class MessagesController < ApplicationController
     limit = (params[:firstload] == 'true') ? 15 : 10
     @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
     if @version == 1
-      render :json => { jokes: @messages, extra: [ ] }
+      #render :json => { jokes: @messages, extra: [ ] }
+      render :json => { jokes: @messages, extra: [ ], rewards: @device.unlockable( params[:last_reward_id] ) }
       #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
     else
       render :json => @messages

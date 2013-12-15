@@ -66,7 +66,7 @@ core = {
         },
         done: function (e, data) {
           core.loader.hide();
-          var $this = $(data.fileInput);
+          var $this = $(e.target);
           eval($this.data('callback')).call($this, data.result);
         }
       });

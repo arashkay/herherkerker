@@ -4,6 +4,9 @@ class Device < ActiveRecord::Base
   
   attr_accessible :did, :regid, :last_check, :notified_at
   has_many :messages
+  has_many :replies
+  has_many :device_rewards
+  has_many :rewards, through: :device_rewards
 
   serialize :badges
   
@@ -72,6 +75,22 @@ class Device < ActiveRecord::Base
       [ Device::LEVELS[1] ]
     else
       []
+    end
+  end
+
+  def unlockable(reward_id)
+    reward_id = 0 if reward_id.blank?
+    last_taken = self.rewards.last
+    reward_id = last_taken.id if !last_taken.blank? && last_taken.id > reward_id
+    Reward.lives.where(['id > ?', reward_id]).limit(1)
+  end
+
+  def unanswered_question
+    answered_questions = Reply.where( device_id: self.id ).order('id DESC').select(:id).map(&:id)
+    if answered_questions.empty?
+      Question.lives.first
+    else
+      Question.lives.where(['id NOT IN (?)', answered_questions]).limit(1)
     end
   end
 

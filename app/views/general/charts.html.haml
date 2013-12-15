@@ -1,6 +1,5 @@
 - content_for :head do
   =javascript_include_tag "chart.min"
-  =javascript_include_tag "admin"
   :javascript
     $(function(){
       hhkk.charts.registrations( #{@registrations.to_json} );
