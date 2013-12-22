@@ -6,3 +6,6 @@ touch tmp/restart.txt
 rake db:migrate RAILS_ENV=production
 touch tmp/restart.txt
 
+PIDFILE=./tmp/pids/resque.pid BACKGROUND=yes QUEUE=* rake RAILS_ENV=production resque:work
+
+

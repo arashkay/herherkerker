@@ -9,7 +9,7 @@ class DevicesController < ApplicationController
 
   def geo
     @device.lat = params[:device][:lat]
-    @device.long = params[:device][:lng]
+    @device.lng = params[:device][:lng]
     Resque.enqueue DeviceLocation, @device.id
     render :json => @device.save
   end
