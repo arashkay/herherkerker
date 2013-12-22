@@ -2,7 +2,7 @@
 
 class Device < ActiveRecord::Base
   
-  attr_accessible :did, :regid, :last_check, :notified_at
+  attr_accessible :did, :regid, :last_check, :notified_at, :lat, :lng
   has_many :messages
   has_many :replies
   has_many :device_rewards
@@ -88,10 +88,20 @@ class Device < ActiveRecord::Base
   def unanswered_question
     answered_questions = Reply.where( device_id: self.id ).order('id DESC').select(:id).map(&:id)
     if answered_questions.empty?
-      Question.lives.first
+      Question.lives.limit(1)
     else
       Question.lives.where(['id NOT IN (?)', answered_questions]).limit(1)
     end
+  end
+
+  def locate
+    location = Geocoder.search [self.lat, self.lng]
+    self.city = location[0].city
+  end
+
+  def locate!
+    locate
+    save
   end
 
 private 

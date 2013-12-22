@@ -33,6 +33,8 @@ namespace :deploy do
     ##run "cd #{release_path};"
     #run "cd #{release_path}; bundle exec rake assets:precompile RAILS_ENV=production RAILS_GROUPS=assets"
     ##run "touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "cd #{release_path}/public && rm system -rf"
+    run "cd #{release_path}/public && ln -s #{shared_path}/system system"
   end
 end
 

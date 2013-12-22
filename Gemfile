@@ -13,6 +13,8 @@ gem "httparty", "~> 0.10.0"
 gem 'pushmeup'
 gem "paperclip", "~> 2.7"
 gem 'aasm'
+gem "resque", "~> 1.25.1"
+gem 'geocoder'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,7 +22,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'execjs'
-  gem 'therubyracer' #, '~> 0.12.0'
+  gem 'therubyracer' , '~> 0.12.0'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -38,6 +40,6 @@ end
 
 # To use debugger
 group :development do
-  gem 'debugger'
+#  gem 'debugger'
 # gem 'ruby-debug'
 end

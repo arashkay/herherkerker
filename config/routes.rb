@@ -20,6 +20,7 @@ Herherkerker::Application.routes.draw do
   resources :devices, :only => [:show] do
     collection do
       post :register
+      post :geo
     end
   end
 

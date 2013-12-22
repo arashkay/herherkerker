@@ -9,6 +9,10 @@ class Reward < ActiveRecord::Base
   def image_thumb
     self.image.url(:thumb)
   end
+  
+  def image_small
+    self.image.url(:small)
+  end
 
   scope :lives, where( state: :live)
 
@@ -35,10 +39,11 @@ class Reward < ActiveRecord::Base
   def collect(device)
     reward = device.device_rewards.new reward_id: self.id
     reward.save
+    reward
   end
 
   def as_json(options={})
-    super( methods: :image_thumb )
+    super( methods: [:image_thumb, :image_small] )
   end
 
 end

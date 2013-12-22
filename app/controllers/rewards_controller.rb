@@ -35,7 +35,12 @@ class RewardsController < ApplicationController
 
   def unlock
     @reward = Reward.find params[:id]
-    render json: @device.unanswered_question
+    question = @device.unanswered_question
+    if question.empty? 
+      render json: @reward.collect(@device)
+    else
+      render json: question
+    end
   end
   
 end
