@@ -21,6 +21,7 @@ Herherkerker::Application.routes.draw do
     collection do
       post :register
       post :geo
+      post :rewards
     end
   end
 
@@ -38,6 +39,12 @@ Herherkerker::Application.routes.draw do
       post :enable
       post :disable
       post :reply
+    end
+  end
+
+  resources :device_rewards, only: [:destroy] do
+    member do
+      post :use
     end
   end
 

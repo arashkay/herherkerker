@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   end
   
   def reply
-    if Reply.submit params[:id], @device, params[:reply][:value] 
+    if Reply.submit params[:id], @device, params[:replies] 
       @reward = Reward.find params[:reward][:id]
       render json: @reward.collect(@device)
     else

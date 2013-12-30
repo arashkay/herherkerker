@@ -26,4 +26,10 @@ class DeviceReward < ActiveRecord::Base
     end
   end
 
+  scope :availables, where( state: ['collected', 'used'] ).includes( :reward )
+
+  def as_json(options={})
+    super( include: { reward: { methods: [:image_thumb, :image_small, :qrcode] } } )
+  end
+
 end

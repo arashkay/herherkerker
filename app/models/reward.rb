@@ -14,6 +14,10 @@ class Reward < ActiveRecord::Base
     self.image.url(:small)
   end
 
+  def qrcode
+    self.image.url(:small)
+  end
+
   scope :lives, where( state: :live)
 
   include AASM
@@ -43,7 +47,7 @@ class Reward < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super( methods: [:image_thumb, :image_small] )
+    super( methods: [:image_thumb, :image_small, :qrcode] )
   end
 
 end

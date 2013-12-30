@@ -22,4 +22,8 @@ class DevicesController < ApplicationController
     render json: { likes: (@device.nil? ? 0 : @device.like_count), badges: @device.badges }
   end
 
+  def rewards
+    render json: @device.device_rewards.availables
+  end
+
 end

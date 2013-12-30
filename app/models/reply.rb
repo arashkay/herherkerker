@@ -4,10 +4,17 @@ class Reply < ActiveRecord::Base
   belongs_to :device
   belongs_to :question
 
-  def self.submit( question_id, device, value )
-    reply = device.replies.new( {value: value} )
-    reply.question = Question.find question_id
-    reply.save
+  def self.submit( question_id, device, values )
+    success = false
+    Reply.transaction do
+      values.each do |value|
+        reply = device.replies.new( {value: value} )
+        reply.question = Question.find question_id
+        reply.save
+      end
+      success = true
+    end
+    success
   end
 
 end

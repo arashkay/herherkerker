@@ -42,5 +42,5 @@ class RewardsController < ApplicationController
       render json: question
     end
   end
-  
+
 end
