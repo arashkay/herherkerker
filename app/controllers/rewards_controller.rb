@@ -12,6 +12,11 @@ class RewardsController < ApplicationController
     end
   end
 
+  def update
+    @reward = Reward.find params[:id]
+    render json: @reward.update_attributes( params[:reward] )
+  end
+
   def disable
     @reward = Reward.find params[:id]
     render json: @reward.pause!

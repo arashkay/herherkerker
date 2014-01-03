@@ -1,13 +1,12 @@
 !!! 5
-%html#page
+%html
   %head
-    %title HerHer KerKer
+    %title هرهرکرکر
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
-    =stylesheet_link_tag "admin", :media => "all"
+    =stylesheet_link_tag "mobile", :media => "all"
     /[if IE 7]
       =stylesheet_link_tag "font-awesome/css/font-awesome-ie7.min", :media => "all"
     =javascript_include_tag "all"
-    =javascript_include_tag "admin"
     =yield :head
     :javascript
       $(function(){
@@ -24,17 +23,14 @@
         ga('create', 'UA-11707985-9', 'herherkerker.com');
         ga('send', 'pageview');
 
-  %body.admin
-    .loading.fn-loading
-      لطفا صبر کنید ...
+  %body.mobile
     .navbar.navbar-inverse
       .navbar-inner
         %ul.nav
           %li
-            %a{ href: '/admin' } داشبورد
+            %a{ href: 'http://cafebazaar.ir/app/com.tectual.herherkerker/?l=fa' } دریافت هرهرکرکر
           %li
-            %a{ href: '/charts' } نمودارها
-          %li
-            %a{ href: list_messages_path } بررسی جوک
+            %a{ href: '#winner', :data => { :toggle => :modal } } آیا برنده شده اید
     .container
       =yield
+

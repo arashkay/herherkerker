@@ -14,6 +14,7 @@ class DeviceReward < ActiveRecord::Base
     state :used
     state :expired
     state :deleted
+    state :won
 
     event :use do
       transitions :from => [:collected], :to => :used
@@ -23,6 +24,9 @@ class DeviceReward < ActiveRecord::Base
     end
     event :remove do
       transitions :to => :deleted
+    end
+    event :win do
+      transitions :to => :won
     end
   end
 

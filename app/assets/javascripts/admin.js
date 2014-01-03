@@ -4,6 +4,7 @@ $.extend( hhkk, {
   admin: {
     init: function(){
       hhkk.questions.init();
+      hhkk.rewards.init();
     },
     reload: function(){
       location.href = location.href;
@@ -79,6 +80,13 @@ $.extend( hhkk, {
     }
   },
   rewards: {
+    init: function(){
+      $('.instruction span').click(hhkk.rewards.toggle);
+    },
+    toggle: function(){
+      var box = $(this).hide().parents('.instruction');
+      $('textarea', box).attr( 'name', 'reward[instruction]').show();
+    },
     saved: function(data){
       if(data.id)
         hhkk.admin.reload();
@@ -92,6 +100,9 @@ $.extend( hhkk, {
     },
     attached: function(data){
       $(this).parents('.fn-reward').find('img').attr('src', data.image_thumb);
+    },
+    changed: function(){
+      hhkk.admin.reload();
     }
   }
 });

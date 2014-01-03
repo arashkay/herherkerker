@@ -12,6 +12,14 @@
         .control-label تاریخ انقضا
         .controls
           %input{ type: :text, name: 'reward[expires_at]', placeholder: '21/01/2013' }
+      .control-group
+        .control-label تعداد کل
+        .controls
+          %input{ type: :text, name: 'reward[total]', value: 1000 }
+      .control-group
+        .control-label تعداد برنده ( درصورتی که قرعه کشی باشد )
+        .controls
+          %input{ type: :text, name: 'reward[total_winners]', value: 0 }
   .modal-footer
     %a.btn.btn-primary{ :data => { :remote => rewards_path, :success => 'hhkk.rewards.saved', :parent => '#new_reward' } } ذخیره
     %a.btn{ :href => '#', :data => { :dismiss => :modal } } انصراف
@@ -52,19 +60,30 @@
   - @rewards.each do |reward|
     .reward.fn-reward{ class: (reward.live? ? 'live' : '' ) }
       .date= reward.expires_at.strftime '%a %d %b %Y (%j)'
+      .info
+        %span کل
+        %input.span1{ type: :text, value: reward.total, name: 'reward[total]' }
+        %span , برنده 
+        %input.span1{ type: :text, value: reward.total_winners, name: 'reward[total_winners]' }
       .image
         %input{ type: 'file', name: 'file', data: { url: attach_reward_path(reward), uploader: true, callback: 'hhkk.rewards.attached' } }
         %img{ src: reward.image.url(:thumb) }
-      .instruction= reward.instruction
+      .instruction
+        %span= reward.instruction
+        %textarea= reward.instruction
       .actions
+        %a.btn.btn-primary.fn-change{ data: { remote: reward_path(reward), success: 'hhkk.rewards.changed', method: 'PUT', form: '.fn-reward' } } تغییر
         %a.btn.btn-primary.fn-enable{ data: { remote: enable_reward_path(reward), success: 'hhkk.rewards.enabled' } } زنده
         %a.btn.btn-warning.fn-disable{ data: { remote: disable_reward_path(reward), success: 'hhkk.rewards.disabled' } } خاموش
 %h2 سوالات
 %a.btn.btn-primary.fn-send{ :href => '#new_question', :data => { :toggle => :modal } } سوال جدید
 - @questions.each do |question|
   .row-fluid.question.fn-question{ class: (question.is_live ? 'live' : '' ) }
-    .span4= question.title
-    .span6= question.prety_type
-    .span2
-      %a.btn.btn-primary.fn-enable{ data: { remote: enable_question_path(question), success: 'hhkk.questions.enabled' } } زنده
-      %a.btn.btn-warning.fn-disable{ data: { remote: disable_question_path(question), success: 'hhkk.questions.disabled' } } خاموش
+    .row-fluid
+      .span4= question.title
+      .span6= question.prety_type
+      .span2
+        %a.btn.btn-primary.fn-enable{ data: { remote: enable_question_path(question), success: 'hhkk.questions.enabled' } } زنده
+        %a.btn.btn-warning.fn-disable{ data: { remote: disable_question_path(question), success: 'hhkk.questions.disabled' } } خاموش
+    .row-fluid
+      .span12= question.options

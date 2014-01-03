@@ -42,12 +42,16 @@ Herherkerker::Application.routes.draw do
     end
   end
 
-  resources :device_rewards, only: [:destroy] do
+  resources :device_rewards, only: [:destroy, :update] do
+    collection do
+      post :sync
+    end
     member do
       post :use
     end
   end
-
+  
+  get '/winners' => 'devices#winners'
   get '/last' => 'messages#last'
   get '/charts' => 'general#charts'
   get '/admin' => 'general#admin'

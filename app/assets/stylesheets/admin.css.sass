@@ -46,15 +46,24 @@ body.admin
     font-weight: bold
     direction: ltr
   .instruction
-    height: 50px
-    overflow: auto
+    span
+      display: block
+      height: 30px
+      overflow: auto
+    textarea
+      display: none
   .image
     margin: auto
     position: relative
     overflow: hidden
     width: 100px
     height: 100px
-  input
+  input[type=text]
+    width: 20px
+    background: rgba(255,255,255,0.3)
+    border: none
+    border-bottom: #fff 1px dashed
+  input[type=file]
     cursor: pointer
     direction: ltr
     font-size: 23px

@@ -26,4 +26,9 @@ class DevicesController < ApplicationController
     render json: @device.device_rewards.availables
   end
 
+  def winners
+    @won_rewards = DeviceReward.where( state: :won ).order( 'created_at DESC')
+    render layout: 'mobile'
+  end
+
 end

@@ -29,6 +29,7 @@ class MessagesController < ApplicationController
 
   def list
     @messages = Message.unscoped.fresh.all
+    render layout: 'admin'
   end
 
   def likes

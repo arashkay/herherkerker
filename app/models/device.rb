@@ -86,7 +86,7 @@ class Device < ActiveRecord::Base
   end
 
   def unanswered_question
-    answered_questions = Reply.where( device_id: self.id ).order('id DESC').select(:id).map(&:id)
+    answered_questions = Reply.where( device_id: self.id ).select(:question_id).map(&:question_id)
     if answered_questions.empty?
       Question.lives.limit(1)
     else
