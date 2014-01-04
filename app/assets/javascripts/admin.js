@@ -53,6 +53,48 @@ $.extend( hhkk, {
           scaleStartValue: 0,
           pointDotRadius: 5
         });
+    },
+    rewards: function(rewards, collections){
+      var dates = [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+      var date = new Date();
+      $.each(dates, function(i,v){
+        date.setDate(date.getDate() - v)
+        var dd = date.getDate();
+        var mm = date.getMonth()+1;
+        var yyyy = date.getFullYear();
+        if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} dates[i] = yyyy+'-'+mm+'-'+dd;
+      });
+      dates = dates.reverse();
+      var dataset = [];
+      var colors = [ "rgba(27,104,181,1)", "rgba(127,40,81,1)", "rgba(40,127,52,1)", "rgba(127,115,40,1)", "rgba(114,66,64,1)",
+                     "rgba(122,119,94,1)", "rgba(106,122,94,1)", "rgba(94,118,122,1)", "rgba(110,94,122,1)", "rgba(221,48,181,1)"];
+      $.each( collections, function(i, item){
+        var data = [];
+        $.each(dates, function(j, date){
+          var count = 0;
+          $.each( item, function(k, v){
+            if(v.date!=date) return true;
+            count = v.cnt;
+            return false;
+          });
+          data.push(count);
+        });
+        dataset.push({
+          fillColor : "rgba(0,0,0,0.0)",
+          strokeColor : colors[i],
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          data: data
+        });
+        var label = $('<div class="label"/>').css('background', colors[i]).append( $('<img/>').attr('src',rewards[i].image_thumb) )
+        $('.fn-reward-legend').append(label)
+      });
+      console.log(dataset)
+      new Chart($('#rewards')[0].getContext("2d"))
+        .Line({
+          labels: dates, 
+          datasets: dataset
+        });
     }
   },
   questions: {

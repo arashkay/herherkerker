@@ -5,8 +5,8 @@
         %p= m.body
         .date= distance_of_time_in_words_to_now m.created_at
         .sharing
+          %a.btn.btn-warning{ :data => { :remote => reject_message_path(m, :warning => 1), :success => 'hhkk.approved' } } اخطار
           %a.btn.btn-danger{ :data => { :remote => reject_message_path(m), :success => 'hhkk.approved' } } حذف
           %a.btn.btn-danger{ :data => { :remote => reject_message_path(m, :likes => 30), :success => 'hhkk.approved' } } 30+
           %a.btn.btn-success{ :data => { :remote => approve_message_path(m, :likes => 20), :success => 'hhkk.approved' } } 20+
           %a.btn.btn-success{ :data => { :remote => approve_message_path(m, :likes => 40), :success => 'hhkk.approved' } } 40+
-          %a.btn.btn-success{ :data => { :remote => approve_message_path(m, :likes => 60), :success => 'hhkk.approved' } } 60+

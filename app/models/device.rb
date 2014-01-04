@@ -16,7 +16,7 @@ class Device < ActiveRecord::Base
   before_create :set_dates
 
   def self.notify
-    condition = ['regid IS NOT NULL AND (last_check < ? AND notified_at < ?)', Time.now-7.hours, Time.now-NOTIFICATION_INTERVAL]
+    condition = ['regid IS NOT NULL AND (last_check < ? AND last_check > ? AND notified_at < ?)', Time.now-24.hours, Time.now-2.weeks, Time.now-NOTIFICATION_INTERVAL]
     begin
       destinations = Device.select(:regid).where( condition ).limit(999).map &:regid
       puts "device #{destinations.size}"
@@ -25,9 +25,17 @@ class Device < ActiveRecord::Base
       GCM.host = 'https://android.googleapis.com/gcm/send'
       GCM.format = :json
       GCM.key = 'AIzaSyDWiBvld-Iv9SLq4L0eWXCAHcyaDhkrND8'
-      data = { :message => 'جوک جدید داری!', :title => 'وقت جوکه', :msgcnt => "5" }
+      data = { :message => '١٠+ جوک جدید داری!', :title => 'وقت جوکه' }
       GCM.send_notification destinations, data
     end while !destinations.empty?
+  end
+
+  def warn!
+    GCM.host = 'https://android.googleapis.com/gcm/send'
+    GCM.format = :json
+    GCM.key = 'AIzaSyDWiBvld-Iv9SLq4L0eWXCAHcyaDhkrND8'
+    data = { :message => 'مطلب شما منتشر نشد.', :title => 'هرهرکرکر', :type => :badjoke }
+    GCM.send_notification self.regid, data
   end
   
   def increment_login

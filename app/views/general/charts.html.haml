@@ -3,6 +3,11 @@
   :javascript
     $(function(){
       hhkk.charts.registrations( #{@registrations.to_json} );
+      hhkk.charts.rewards( #{@rewards.to_json}, #{@collected.to_json} );
     });
-.main
+.center
+  %h3 Daily Registrations
   %canvas#registrations{ width: '600', height: '300' }
+  %h3 Daily Rewards
+  %canvas#rewards{ width: '600', height: '300' }
+  .legends.fn-reward-legend
