@@ -10,7 +10,7 @@ class DevicesController < ApplicationController
   def geo
     @device.lat = params[:device][:lat]
     @device.lng = params[:device][:lng]
-    Resque.enqueue DeviceLocation, @device.id
+    Resque.enqueue( DeviceLocation, @device.id) if @device.city.blank?
     render :json => @device.save
   end
 
@@ -18,6 +18,7 @@ class DevicesController < ApplicationController
     @device.shares_count = params[:shares] if params[:shares].to_i > @device.shares_count
     @device.increment_login
     @device.calculate_badges
+    @device.version = params[:version]
     @device.save
     render json: { likes: (@device.nil? ? 0 : @device.like_count), badges: @device.badges }
   end

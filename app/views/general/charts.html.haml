@@ -4,6 +4,7 @@
     $(function(){
       hhkk.charts.registrations( #{@registrations.to_json} );
       hhkk.charts.rewards( #{@rewards.to_json}, #{@collected.to_json} );
+      hhkk.charts.versions( #{@versions.to_json} );
     });
 .center
   %h3 Daily Registrations
@@ -11,3 +12,6 @@
   %h3 Daily Rewards
   %canvas#rewards{ width: '600', height: '300' }
   .legends.fn-reward-legend
+  %h3 Device Version
+  %canvas#versions{ width: '600', height: '300' }
+  .legends.fn-version-legend

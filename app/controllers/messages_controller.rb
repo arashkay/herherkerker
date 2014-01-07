@@ -43,10 +43,13 @@ class MessagesController < ApplicationController
   end
 
   def today
-    @device.update_attribute :last_check, Time.now unless @device.blank?
+    @device.update_attributes( { last_check: Time.now, last_joke: params[:top] } ) unless @device.blank?
     limit = (params[:firstload] == 'true') ? 15 : 10
     @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
     if @version == 1
+      if params[:version]!="1.0.8"
+        return render :json => { jokes: @messages, extra: [ { body: 'ﻩﺮﻫﺭکﺭکﺭ ﻭﺭژﻥ Golden Gift ﺂﻣﺍﺪﻫ ﺎﺴﺗ. ﺏﺭﺍی ﺩﺭیﺎﻔﺗ <a href="" onclick="navigator.app.loadUrl(\'http://kalagheh.com/apps\', { openExternal:true });">ﺍیﻦﺟﺍ ﺭﺍ</a> ﻒﺷﺍﺭ ﺪﻫیﺩ.<br/>ﺩﺭ ﺍیﻥ ﻦﺴﺨﻫ ﻉﻻﻮﻫ ﺏﺭ ﺝﻭک , ﺶﻣﺍ ﺝﻭﺍیﺯ ﺭﺍیگﺎﻧ ﻪﻣ ﺩﺭیﺎﻔﺗ ﻡیکﻥیﺩ.' } ] }
+      end 
       render :json => { jokes: @messages, extra: [ ], rewards: @device.unlockable( params[:last_reward_id].to_i ) }
       #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
     else
