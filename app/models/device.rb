@@ -2,7 +2,7 @@
 
 class Device < ActiveRecord::Base
   
-  attr_accessible :did, :regid, :last_check, :notified_at, :lat, :lng
+  attr_accessible :did, :regid, :last_check, :notified_at, :lat, :lng, :last_joke
   has_many :messages
   has_many :replies
   has_many :device_rewards

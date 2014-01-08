@@ -43,14 +43,19 @@ class MessagesController < ApplicationController
   end
 
   def today
+    @extras = []
+    @rewards = []
+    if @device.last_check < Time.now-7.hours
+      @rewards = @device.unlockable( params[:last_reward_id].to_i )
+      if params[:version]!="1.0.8"
+        @extras = [ { body: 'نسخه جدید هرهرکرکر را از کندو, پلازا یا  <a href="" onclick="navigator.app.loadUrl(\'http://kalagheh.com/apps\', { openExternal:true });" اینجا بگیرید></a>. این نسخه شامل گرافیک جدید, امکانات جدید و جوایز رایگان می باشد.' } ]
+      end
+    end
     @device.update_attributes( { last_check: Time.now, last_joke: params[:top] } ) unless @device.blank?
     limit = (params[:firstload] == 'true') ? 15 : 10
     @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).limit(limit).reverse!
     if @version == 1
-      if params[:version]!="1.0.8"
-        return render :json => { jokes: @messages, extra: [ { body: 'ﻩﺮﻫﺭکﺭکﺭ ﻭﺭژﻥ Golden Gift ﺂﻣﺍﺪﻫ ﺎﺴﺗ. ﺏﺭﺍی ﺩﺭیﺎﻔﺗ <a href="" onclick="navigator.app.loadUrl(\'http://kalagheh.com/apps\', { openExternal:true });">ﺍیﻦﺟﺍ ﺭﺍ</a> ﻒﺷﺍﺭ ﺪﻫیﺩ.<br/>ﺩﺭ ﺍیﻥ ﻦﺴﺨﻫ ﻉﻻﻮﻫ ﺏﺭ ﺝﻭک , ﺶﻣﺍ ﺝﻭﺍیﺯ ﺭﺍیگﺎﻧ ﻪﻣ ﺩﺭیﺎﻔﺗ ﻡیکﻥیﺩ.' } ] }
-      end 
-      render :json => { jokes: @messages, extra: [ ], rewards: @device.unlockable( params[:last_reward_id].to_i ) }
+      render :json => { jokes: @messages, extra: @extras, rewards: @rewards }
       #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
     else
       render :json => @messages

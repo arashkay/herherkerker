@@ -63,8 +63,8 @@ $.extend( hhkk, {
       var dataset = [];
       $.each(data,function(i, v){
         dataset.push({ value: v.cnt, color: colors[i] });
-        var label = $('<div class="label"/>').css('background', colors[i]).text( v.version )
-        $('.fn-version-legend').append(label)
+        var label = $('<div class="label"/>').css('background', colors[i]).text( v.version + '(' + v.cnt + ')'  );
+        $('.fn-version-legend').append(label);
       });
       new Chart($('#versions')[0].getContext("2d"))
         .Pie(dataset);
@@ -85,6 +85,7 @@ $.extend( hhkk, {
                      "rgba(122,119,94,1)", "rgba(106,122,94,1)", "rgba(94,118,122,1)", "rgba(110,94,122,1)", "rgba(221,48,181,1)"];
       $.each( collections, function(i, item){
         var data = [];
+        var total = 0;
         $.each(dates, function(j, date){
           var count = 0;
           $.each( item, function(k, v){
@@ -92,6 +93,7 @@ $.extend( hhkk, {
             count = v.cnt;
             return false;
           });
+          total += count;
           data.push(count);
         });
         dataset.push({
@@ -101,7 +103,7 @@ $.extend( hhkk, {
           pointStrokeColor : "#fff",
           data: data
         });
-        var label = $('<div class="label"/>').css('background', colors[i]).append( $('<img/>').attr('src',rewards[i].image_thumb) )
+        var label = $('<div class="label"/>').css('background', colors[i]).append( $('<img/>').attr('src',rewards[i].image_thumb) ).append( '<br/><span>'+total+'</span>')
         $('.fn-reward-legend').append(label)
       });
       new Chart($('#rewards')[0].getContext("2d"))
