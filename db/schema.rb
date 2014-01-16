@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107060156) do
+ActiveRecord::Schema.define(:version => 20140116070903) do
 
   create_table "device_rewards", :force => true do |t|
     t.integer  "reward_id",  :null => false
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20140107060156) do
     t.string   "version"
     t.integer  "last_joke"
     t.string   "email"
+    t.boolean  "gender"
+    t.string   "country"
+    t.string   "suburb"
   end
 
   add_index "devices", ["did"], :name => "index_devices_on_did"
@@ -77,6 +80,14 @@ ActiveRecord::Schema.define(:version => 20140107060156) do
 
   add_index "replies", ["device_id"], :name => "replies_device_id_fk"
   add_index "replies", ["question_id"], :name => "replies_question_id_fk"
+
+  create_table "reports", :force => true do |t|
+    t.string   "category"
+    t.string   "label"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "rewards", :force => true do |t|
     t.text     "instruction",                       :null => false

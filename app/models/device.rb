@@ -104,7 +104,10 @@ class Device < ActiveRecord::Base
 
   def locate
     location = Geocoder.search [self.lat, self.lng]
+    return if location.blank? || location[0].blank?
     self.city = location[0].city
+    self.country = location[0].country
+    self.suburb = location[0].neighborhood
   end
 
   def locate!

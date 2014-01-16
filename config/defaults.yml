@@ -1,0 +1,29 @@
+general:
+  mobile:
+    jokes_limit: 10
+    ads_interval: 5 #hours
+  report:
+    date: report_last_check_date
+    categories:
+      users:
+        total: users
+        daily: daily_users
+        inactive: inactive_users
+      sessions:
+        total: sessions
+        daily: daily_sessions
+development:
+  profiling:
+    questions:
+      name: 1
+      gender: 3
+      email: 
+      phone: 
+test:
+production:
+  profiling:
+    questions:
+      name: 1
+      gender: 3
+      email: 
+      phone: 
