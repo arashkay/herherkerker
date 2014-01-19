@@ -1,4 +1,5 @@
 .list
+  %h3 #{@total} جوک جدید موجود است
   -@messages.each do |m|
     .row-fluid.fn-post
       .span12.post
@@ -10,3 +11,4 @@
           %a.btn.btn-danger{ :data => { :remote => reject_message_path(m, :likes => 30), :success => 'hhkk.approved' } } 30+
           %a.btn.btn-success{ :data => { :remote => approve_message_path(m, :likes => 20), :success => 'hhkk.approved' } } 20+
           %a.btn.btn-success{ :data => { :remote => approve_message_path(m, :likes => 40), :success => 'hhkk.approved' } } 40+
+  %h4 برای دیدن و تایید بقیه جوکها صفحه  رفرش کنید!

@@ -28,7 +28,8 @@ class MessagesController < ApplicationController
   end
 
   def list
-    @messages = Message.unscoped.fresh.all
+    @total = Message.unscoped.fresh.count
+    @messages = Message.unscoped.fresh.limit(250)
     render layout: 'admin'
   end
 

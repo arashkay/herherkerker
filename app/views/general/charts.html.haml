@@ -3,15 +3,30 @@
   :javascript
     $(function(){
       hhkk.charts.registrations( #{@registrations.to_json} );
+      hhkk.charts.daily_users( #{@daily_users.to_json}, #{@inactive_users.to_json} );
       hhkk.charts.rewards( #{@rewards.to_json}, #{@collected.to_json} );
       hhkk.charts.versions( #{@versions.to_json} );
+      hhkk.charts.total_users( #{@total_users.to_json} );
     });
 .center
-  %h3 Daily Registrations
-  %canvas#registrations{ width: '600', height: '300' }
-  %h3 Daily Rewards
-  %canvas#rewards{ width: '600', height: '300' }
-  .legends.fn-reward-legend
-  %h3 Device Version
-  %canvas#versions{ width: '600', height: '300' }
-  .legends.fn-version-legend
+  .row-fluid
+    .span6
+      %h3 Daily Registrations
+      %canvas#registrations{ width: '300', height: '200' }
+    .span6
+      %h3 Daily Users
+      %canvas#dailyusers{ width: '300', height: '200' }
+  .row-fluid
+    .span6
+      %h3 Daily Rewards
+      %canvas#rewards{ width: '300', height: '200' }
+      .legends.fn-reward-legend
+    .span6
+      %h3 Device Version
+      %canvas#versions{ width: '300', height: '200' }
+      .legends.fn-version-legend
+  .row-fluid
+    .span6
+      %h3 Total Users
+      %canvas#totalusers{ width: '300', height: '200' }
+      .legends.fn-total-users-legend

@@ -10,7 +10,7 @@ namespace :report do
 
   desc "Generate report based on todays stats"
   task :all => :environment do
-    date #true
+    date true
     Rake::Task["report:users"].invoke
   end
 
