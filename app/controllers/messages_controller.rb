@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
   def today
     @extras = []
     @rewards = []
-    if true || @device.last_check < Time.now-HHKK::MOBILE::INTERVAL.hours
+    if @device.last_check < Time.now-HHKK::MOBILE::INTERVAL.hours
       @rewards = @device.unlockable( params[:last_reward_id].to_i )
       if params[:version]!="1.0.8"
         @extras = [ { body: 'نسخه جدید هرهرکرکر را از کندو, پلازا یا <a  href="" onclick="navigator.app.loadUrl(\'http://kalagheh.com/apps\', { openExternal:true });">  اینجا بگیرید</a> . این نسخه شامل گرافیک جدید, امکانات جدید و جوایز رایگان می باشد.' } ]
