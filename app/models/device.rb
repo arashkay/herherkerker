@@ -90,7 +90,7 @@ class Device < ActiveRecord::Base
     reward_id = 0 if reward_id.blank?
     last_taken = self.rewards.last
     reward_id = last_taken.id if !last_taken.blank? && last_taken.id > reward_id
-    Reward.lives.where(['id > ?', reward_id]).limit(1)
+    Reward.lives.where(['id > ?', reward_id]).order(:ordering).limit(1)
   end
 
   def unanswered_question

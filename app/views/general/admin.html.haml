@@ -72,9 +72,10 @@
         %span= reward.instruction
         %textarea= reward.instruction
       .actions
-        %a.btn.btn-primary.fn-change{ data: { remote: reward_path(reward), success: 'hhkk.rewards.changed', method: 'PUT', form: '.fn-reward' } } تغییر
+        %a.btn.btn-primary.fn-change{ data: { remote: reward_path(reward), success: 'hhkk.rewards.changed', method: 'PUT', parent: '.fn-reward' } } تغییر
         %a.btn.btn-primary.fn-enable{ data: { remote: enable_reward_path(reward), success: 'hhkk.rewards.enabled' } } زنده
         %a.btn.btn-warning.fn-disable{ data: { remote: disable_reward_path(reward), success: 'hhkk.rewards.disabled' } } خاموش
+        %a.btn.btn-success{ data: { remote: up_reward_path(reward), success: 'hhkk.rewards.changed' } } بالاتر
 %h2 سوالات
 %a.btn.btn-primary.fn-send{ :href => '#new_question', :data => { :toggle => :modal } } سوال جدید
 - @questions.each do |question|

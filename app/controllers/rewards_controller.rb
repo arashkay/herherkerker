@@ -48,4 +48,16 @@ class RewardsController < ApplicationController
     end
   end
 
+  def up
+    ordering = Reward.find(params[:id]).ordering
+    @rewards = Reward.where( ordering: [ordering, ordering-1] ).order('ordering DESC').limit(2)
+    ordering = @rewards[0].ordering
+    ordering = (ordering==@rewards[1].ordering ? ordering+1 : ordering)
+    @rewards[0].ordering = @rewards[1].ordering
+    @rewards[1].ordering = ordering
+    @rewards[0].save
+    @rewards[1].save
+    render json: true
+  end
+
 end

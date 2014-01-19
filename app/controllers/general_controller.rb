@@ -17,7 +17,7 @@ class GeneralController < ApplicationController
   end
 
   def admin
-    @rewards = Reward.all
+    @rewards = Reward.order(:ordering).all
     @questions = Question.all
   end
 

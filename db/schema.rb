@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140116070903) do
+ActiveRecord::Schema.define(:version => 20140119092532) do
 
   create_table "device_rewards", :force => true do |t|
     t.integer  "reward_id",  :null => false
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20140116070903) do
     t.integer  "total",              :default => 0
     t.integer  "collected",          :default => 0
     t.integer  "total_winners",      :default => 0
+    t.integer  "ordering",           :default => 0
   end
 
   add_foreign_key "device_rewards", "devices", :name => "device_rewards_device_id_fk"

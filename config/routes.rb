@@ -31,6 +31,7 @@ Herherkerker::Application.routes.draw do
       post :disable
       post :attach
       post :unlock
+      post :up
     end
   end
 

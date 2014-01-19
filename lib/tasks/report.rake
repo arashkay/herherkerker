@@ -17,7 +17,7 @@ namespace :report do
   desc "Generate user report based on todays stats"
   task :users => :environment do
     today = Device.where('Date(last_date) = Date(NOW())').count
-    Report.create({ category: HHKK::REPORT::USERS::DAILY, value: Device.where(['last_date > ?', date]).count })
+    Report.create({ category: HHKK::REPORT::USERS::DAILY, value: Device.where(['last_date > ?', date-1.day]).count })
     Device.group(:version).select(:version).map(&:version).each do |version|
       Report.create({ category: HHKK::REPORT::USERS::TOTAL, label: version, value: Device.where(version: version).count })
     end
