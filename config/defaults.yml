@@ -19,6 +19,8 @@ development:
       gender: 3
       email: 
       phone: 
+      likes: 2
+      age: 2
 test:
 production:
   profiling:
@@ -27,3 +29,5 @@ production:
       gender: 3
       email: 
       phone: 
+      likes: 4
+      age: 2

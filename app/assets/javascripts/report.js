@@ -68,7 +68,33 @@ $.extend( hhkk, {
       new Chart($('#versions')[0].getContext("2d"))
         .Pie(dataset);
     },
-    rewards: function(rewards, collections){
+    age: function(data, labels){
+      var no = [];
+      var colors = [ "rgba(27,104,181,1)", "rgba(127,40,81,1)", "rgba(40,127,52,1)", "rgba(127,115,40,1)", "rgba(114,66,64,1)",
+                     "rgba(122,119,94,1)", "rgba(106,122,94,1)", "rgba(94,118,122,1)", "rgba(110,94,122,1)", "rgba(221,48,181,1)"];
+      var dataset = [];
+      $.each(data,function(i, v){
+        dataset.push({ value: v.cnt, color: colors[i] });
+        var label = $('<div class="label"/>').css('background', colors[i]).text( labels[i] + '(' + v.cnt + ')'  );
+        $('.fn-age-legend').append(label);
+      });
+      new Chart($('#age')[0].getContext("2d"))
+        .Pie(dataset);
+    },
+    preferences: function(data, labels){
+      var no = [];
+      var colors = [ "rgba(27,104,181,1)", "rgba(127,40,81,1)", "rgba(40,127,52,1)", "rgba(127,115,40,1)", "rgba(114,66,64,1)",
+                     "rgba(122,119,94,1)", "rgba(106,122,94,1)", "rgba(94,118,122,1)", "rgba(110,94,122,1)", "rgba(221,48,181,1)"];
+      var dataset = [];
+      $.each(data,function(i, v){
+        dataset.push({ value: v.cnt, color: colors[i] });
+        var label = $('<div class="label"/>').css('background', colors[i]).text( labels[i] + '(' + v.cnt + ')'  );
+        $('.fn-preferences-legend').append(label);
+      });
+      new Chart($('#preferences')[0].getContext("2d"))
+        .Pie(dataset);
+    },
+    rewards: function(rewards, collections, total){
       var dates = [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
       var date = new Date();
       $.each(dates, function(i,v){
@@ -84,15 +110,13 @@ $.extend( hhkk, {
                      "rgba(122,119,94,1)", "rgba(106,122,94,1)", "rgba(94,118,122,1)", "rgba(110,94,122,1)", "rgba(221,48,181,1)"];
       $.each( collections, function(i, item){
         var data = [];
-        var total = 0;
         $.each(dates, function(j, date){
           var count = 0;
           $.each( item, function(k, v){
-            if(v.date!=date) return true;
+            if(v.date.substr(5)!=date) return true;
             count = v.cnt;
             return false;
           });
-          total += count;
           data.push(count);
         });
         dataset.push({
@@ -102,7 +126,8 @@ $.extend( hhkk, {
           pointStrokeColor : "#fff",
           data: data
         });
-        var label = $('<div class="label"/>').css('background', colors[i]).append( $('<img/>').attr('src',rewards[i].image_thumb) ).append( '<br/><span>'+total+'</span>')
+        var cnt = (total[i]==undefined)? 0 : total[i].cnt;
+        var label = $('<div class="label"/>').css('background', colors[i]).append( $('<img/>').attr('src',rewards[i].image_thumb) ).append( '<br/><span>'+cnt+'</span>')
         $('.fn-reward-legend').append(label)
       });
       new Chart($('#rewards')[0].getContext("2d"))

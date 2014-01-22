@@ -4,9 +4,11 @@
     $(function(){
       hhkk.charts.registrations( #{@registrations.to_json} );
       hhkk.charts.daily_users( #{@daily_users.to_json}, #{@inactive_users.to_json} );
-      hhkk.charts.rewards( #{@rewards.to_json}, #{@collected.to_json} );
+      hhkk.charts.rewards( #{@rewards.to_json}, #{@collected.to_json}, #{@total_rewards.to_json} );
       hhkk.charts.versions( #{@versions.to_json} );
       hhkk.charts.total_users( #{@total_users.to_json} );
+      hhkk.charts.preferences( #{@preferences.to_json}, #{@preferences_label} );
+      hhkk.charts.age( #{@age.to_json}, #{@age_label} );
     });
 .center
   .row-fluid
@@ -30,3 +32,12 @@
       %h3 Total Users
       %canvas#totalusers{ width: '300', height: '200' }
       .legends.fn-total-users-legend
+    .span6
+      %h3 Preferences
+      %canvas#preferences{ width: '300', height: '200' }
+      .legends.fn-preferences-legend
+  .row
+    .span6
+      %h3 AGE GROUPS
+      %canvas#age{ width: '300', height: '200' }
+      .legends.fn-age-legend

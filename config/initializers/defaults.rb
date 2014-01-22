@@ -42,6 +42,8 @@ module HHKK
     GENDER  = HHKK::CONFIGS['profiling']['questions']['gender']
     EMAIL   = HHKK::CONFIGS['profiling']['questions']['email']
     PHONE   = HHKK::CONFIGS['profiling']['questions']['phone']
+    LIKES   = HHKK::CONFIGS['profiling']['questions']['likes']
+    AGE   = HHKK::CONFIGS['profiling']['questions']['age']
   end
   
 end
