@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog"
+    >
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوایز / کوپن های هرهرکرکر رایگان و از طرف کسب وکارهای داخل ایران به کاربران داده میشود. اگر شما هم کسب و کار هستید و تمایل دارید کوپن یا جایزه دهید برای اطلاعات بیشتر از طریق دکمه زیر با ما تماس بگیرید."
+            style="@style/P"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H2"
+            android:text="دو دسته اصلی جوایز"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="&#8226; همگانی : این جوایز به محض قرار گرفتن در کیف پول قابل استفاده هستند."
+            style="@style/BulletList"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="&#8226; قرعه : این جوایز با اینکه در کیف پول شما رفته اما پس از قرعه کشی به یکنفر یا چندنفر خاص داده خواهند شد."
+            style="@style/BulletList"/>
+
+        <RelativeLayout
+            style="@style/RewardLine"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="لطفا برای اطلاعات بیشتر در مورد هر جایزه به توضیحات داخل آن جایزه مراجعه کنید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="کسب و کار هستید؟"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="هر هفته هزاران کاربرهرهرکرکر تمایل خود را به دریافت کوپن های تخفیف کسب و کارها ابراز میکنند. چرا اسم کسب و کار شما در لیست هرهرکرکر جلوی هزاران کاربر ما نباشد؟ جهت اطلاعات بیشتر با ما تماس بگیرید."
+            style="@style/P"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/order_reward"
+            style="@style/Primary"
+            android:text="@string/order"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="٨٠ درصد از کاربران هرهرکرکر را قشر ١٥ تا ٣٥ سال تشکیل میدهند و ما همواره درحال بررسی آمار گروهی در جهت ارتقا کیفیت جوایز و کوپن های تخفیف خود هستیم تا کاربران جوایز متناسب با سلایق خود را دریافت کنند."
+            style="@style/P"/>
+    </LinearLayout>
+</ScrollView>

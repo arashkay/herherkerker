@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tectual.herherkerker"
+    android:versionCode="19"
+    android:versionName="@string/app_version" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="com.tectual.herherkerker.HerherKerker" >
+        <activity
+            android:name="com.tectual.herherkerker.Splash"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.tectual.herherkerker.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:label="@string/app_name"
+            android:name=".ProfileActivity"
+            android:theme="@style/Dialog"/>
+
+        <meta-data android:name="AA_DB_NAME" android:value="Herherkerker.db" />
+        <meta-data android:name="AA_DB_VERSION" android:value="1" />
+
+        <service
+            android:name="com.octo.android.robospice.GsonGoogleHttpClientSpiceService"
+            android:exported="false" />
+    </application>
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+</manifest>

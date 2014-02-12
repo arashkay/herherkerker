@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/drawer_about_us"
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="@string/version"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/app_version"
+            style="@style/P"/>
+    </LinearLayout>
+</ScrollView>

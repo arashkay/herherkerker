@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="1dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        style="@style/JokeListItem">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/body"
+            style="@style/JokeBody"
+            android:layout_gravity="center_horizontal" />
+
+        <RelativeLayout
+            style="@style/ActionLine"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/JokeAction">
+
+            <TextView
+                android:id="@+id/like"
+                style="@style/ActionIcon"
+                android:text="&#xf004;"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/dislike"
+                style="@style/ActionIcon"
+                android:text="&#xf004;"
+                android:textColor="@color/blue"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likes"
+                style="@style/ActionIcon"/>
+
+            <LinearLayout
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/flag"
+                style="@style/ActionIconExtraMargin"
+                android:text="&#xf024;"/>
+
+            <TextView
+                android:id="@+id/sms"
+                style="@style/ActionIcon"
+                android:text="&#xf0e0;"
+                android:layout_alignParentRight="true"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

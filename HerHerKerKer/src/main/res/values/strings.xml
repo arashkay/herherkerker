@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_version">2.0.0</string>
+    <string name="api">1</string>
+    <string name="notification">80259899916</string>
+    <string name="analytic">UA-11707985-12</string>
+    <string name="server">http://www.herherkerker.com</string>
+    <string name="app_name">
+        هرهرکرکر
+    </string>
+
+    <string name="drawer_joke">
+            ارسال جوک
+    </string>
+    <string name="drawer_fans">
+            به هواداران بپیوندید
+    </string>
+    <string name="drawer_rewards">
+               جوایز و کوپن تخفیف
+    </string>
+    <string name="drawer_about">
+                درباره ما
+    </string>
+    <string name="drawer_about_us">
+        هرهرکرکر , نرم افزار رایگان اشتراک گذاری جوک می باشد که توسط تیم تکچوال استرالیا "Tectual pty ltd" با نمایندگی محدود در ایران  توسعه یافته است. تیم ما در حوزه سرگرمی های وب و موبایل و تجارت به سبک نوین تخصص داشته و فعالیت میکند.
+    </string>
+    <string name="version">
+        نسخه برنامه
+    </string>
+    <string name="exiting">
+برای خروج یکبار دیگر دکمه برگشت را فشار دهید
+    </string>
+
+    <string name="tab1">
+        جوکها
+    </string>
+    <string name="tab2">
+        کیف پول
+    </string>
+    <string name="tab3">
+        پاتوق
+    </string>
+    <string name="drawer_open">
+        منو اصلی باز شد
+    </string>
+    <string name="drawer_close">
+        منو اصلی بسته شد
+    </string>
+
+    <string name="down">
+        بکش پایین
+    </string>
+    <string name="refreshing">
+        درحال دریافت
+    </string>
+    <string name="release">
+        ول کن
+    </string>
+
+    <string name="splash">
+        جوک , پاتوق , کوپن
+    </string>
+
+    <string name="profile">
+        اطلاعات شما
+    </string>
+    <string name="fullname">
+        نام کامل
+    </string>
+    <string name="phone">
+        شماره همراه
+    </string>
+
+    <string name="submit">
+        ثبت
+    </string>
+    <string name="cancel">
+        انصراف
+    </string>
+    <string name="close">
+بستن
+    </string>
+    <string name="order">
+تقاضای درج کوپن
+    </string>
+    <string name="order_reward_email_title">
+        تقاضای اطلاعات درج کوپن
+    </string>
+    <string name="order_reward_email_text">
+لطفا نام خود , نام کسب و کارتان , شماره تماس , نوع کوپن اهدایی خود را برای ما از طریق این ایمیل ارسال کنید:
+    </string>
+
+    <!--INTENTS-->
+    <string name="sharing_via">
+        اشتراک گذاری از طریق
+    </string>
+    <string name="attach_profile_image">
+        انتخاب عکس صورت
+    </string>
+    <!--ERRORS-->
+    <string name="error_no_crop">
+دستگاه شما امکان تغییر سایز را ندارد. لطفا image resize نصب کنید.
+    </string>
+    <!--TEXT-->
+    <string name="profile_policy">
+تنها عکس شما به دیگر کاربران نمایش داده میشود و دیگر اطلاعات شما پنهان است و تنها جهت دادن جوایز و صحت حساب کاربری میباشد.
+    </string>
+
+    <string name="want">
+می خوام
+    </string>
+    <string name="reject">
+نمی خوام
+    </string>
+    <string name="question">
+        سوال
+    </string>
+</resources>

@@ -1,0 +1,102 @@
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" />
+
+    <LinearLayout android:id="@+id/drawer_menu"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:divider="@android:color/transparent"
+        android:background="#111"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
+            android:tag="joke">
+            <TextView
+                android:id="@+id/drawer_joke_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/drawer_joke"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_joke_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf0fe;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
+            android:tag="facebook">
+            <TextView
+                android:id="@+id/drawer_fans_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/drawer_fans"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_fans_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf082;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
+            android:tag="business">
+            <TextView
+                android:id="@+id/drawer_rewards_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/drawer_rewards"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_rewards_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf06b;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
+            android:tag="about">
+            <TextView
+                android:id="@+id/drawer_credits_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/drawer_about"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_credits_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf17b;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
