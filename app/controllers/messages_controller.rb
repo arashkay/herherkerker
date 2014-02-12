@@ -49,17 +49,15 @@ class MessagesController < ApplicationController
     if @device.last_check < Time.now-HHKK::MOBILE::INTERVAL.hours
       @rewards = @device.unlockable( params[:last_reward_id].to_i )
       if params[:version]!="1.0.8"
-        @extras = [ { body: 'نسخه جدید هرهرکرکر را از کندو, پلازا یا <a  href="" onclick="navigator.app.loadUrl(\'http://kalagheh.com/apps\', { openExternal:true });">  اینجا بگیرید</a> . این نسخه شامل گرافیک جدید, امکانات جدید و جوایز رایگان می باشد.' } ]
       end
     end
-    @device.update_attributes( { last_check: Time.now, last_joke: params[:top] } ) unless @device.blank?
-    @messages = Message.unscoped.approved.where( [ "id > ?", params[:top] ] ).limit(HHKK::MOBILE::LIMIT).reverse!
+    @messages = Message.unscoped.approved.where( [ "id > ?", @device.last_joke ] ).limit(HHKK::MOBILE::LIMIT).reverse!
     if @version == 1
       render :json => { jokes: @messages, extra: @extras, rewards: @rewards }
-      #render :json => { jokes: @messages, extra: [ { body: '<a href="http://www.google.com">click here</a>' } ] }
     else
       render :json => @messages
     end
+    @device.update_attributes( { last_check: Time.now, last_joke: @messages.first.id } ) unless @device.blank? || @messages.empty?
   end
 
   def approve
