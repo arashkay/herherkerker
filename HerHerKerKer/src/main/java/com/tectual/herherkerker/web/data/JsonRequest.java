@@ -34,10 +34,22 @@ public class JsonRequest {
         basicInfo(device, api, version);
     }
 
+
+    public JsonRequest(JsonDevice device, String api, String version, int last_reward_id){
+        this.last_reward_id = last_reward_id;
+        basicInfo(device, api, version);
+    }
+
     public JsonRequest(JsonDevice device, String api, String version, List<String> replies, JsonReward reward){
         basicInfo(device, api, version);
         this.replies = replies;
         this.reward = reward;
+    }
+
+    public JsonRequest(JsonDevice device, String api, String version, String joke){
+        basicInfo(device, api, version);
+        this.message = new JsonJoke();
+        this.message.body = joke;
     }
 
     private void basicInfo(JsonDevice device, String api, String version){

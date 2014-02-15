@@ -13,6 +13,8 @@ import com.tectual.herherkerker.web.data.JsonJokes;
 import com.tectual.herherkerker.web.data.JsonQuestions;
 import com.tectual.herherkerker.web.data.JsonRequest;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
 
 /**
@@ -37,7 +39,7 @@ public class UnlockableRequest  extends GoogleHttpClientSpiceRequest<JsonQuestio
         HttpContent data = new JsonHttpContent( new GsonFactory(), json );
         request.setRequestMethod("POST");
         request.setContent(data);
-        request.setParser( new GsonFactory().createJsonObjectParser() );
+        request.setParser(new GsonFactory().createJsonObjectParser());
         HttpResponse res = request.execute();
         return res.parseAs( getResultType() );
     }

@@ -11,25 +11,6 @@ import java.util.List;
  */
 public class JsonRewards extends ArrayList<JsonReward> {
 
-    public List<Reward> persist(){
-        List<Reward> rewards = new ArrayList<Reward>();
-
-        ActiveAndroid.beginTransaction();
-        try{
-            for (JsonReward element : this) {
-                Reward reward = element.toModel();
-                reward.save();
-                rewards.add(reward);
-            }
-            ActiveAndroid.setTransactionSuccessful();
-        }
-        finally {
-            ActiveAndroid.endTransaction();
-        }
-
-        return rewards;
-    }
-
     public List<Reward> toModel(){
         List<Reward> rewards = new ArrayList<Reward>();
         for (JsonReward element : this) {

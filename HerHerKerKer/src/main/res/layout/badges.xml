@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/active1"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_active1"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_active1"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/like1"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_liked1"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_likes1"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/social1"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_social1"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_social1"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+
+        <!--SECOND-->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/social2"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_social2"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_social2"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/like2"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_liked2"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_likes2"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/active2"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_active2"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_active2"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <!--THIRD-->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/social3"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_social3"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_social3"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/BadgeItem"
+            android:id="@+id/like3"
+            android:alpha="0.4">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/badge_liked3"
+                style="@style/BadgeText"/>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/badge_likes3"
+                style="@style/BadgeIcon"/>
+
+        </LinearLayout>
+
+        <View
+            style="@style/BadgeLine"/>
+
+    </LinearLayout>
+</ScrollView>

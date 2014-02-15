@@ -11,4 +11,5 @@ public class JsonQuestionOption {
 
     @Key
     public ArrayList<JsonAnswer> answers;
+
 }

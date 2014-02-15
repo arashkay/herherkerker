@@ -12,13 +12,23 @@ public class JsonDevice {
     @Key
     String regid;
     @Key
-    String lat;
+    double lat;
     @Key
-    String lng;
+    double lng;
 
     public JsonDevice(String did){
         this.did = did;
+    }
+
+    public JsonDevice(String did, String regid){
+        this.did = did;
         this.regid = regid;
+    }
+
+    public JsonDevice(String did, double lat, double lng){
+        this.did = did;
+        this.lat = lat;
+        this.lng = lng;
     }
 
 }

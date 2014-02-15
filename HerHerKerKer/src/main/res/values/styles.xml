@@ -105,6 +105,9 @@
     <style name="AnswerLine" parent="ActionLine">
         <item name="android:background">@color/blue</item>
     </style>
+    <style name="BadgeLine" parent="ActionLine">
+        <item name="android:background">@color/dark_gray</item>
+    </style>
 
     <style name="JokeAction">
         <item name="android:layout_marginLeft">10dp</item>
@@ -192,8 +195,11 @@
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="Reward">
+    <style name="RewardInline">
         <item name="android:background">@color/darker_gray</item>
+    </style>
+    <style name="Reward" parent="RewardInline">
+        <item name="android:layout_marginBottom">3px</item>
     </style>
 
     <style name="RewardImage">
@@ -206,6 +212,16 @@
         <item name="android:paddingLeft">5sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">3</item>
+    </style>
+
+
+    <style name="Expiry">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">5sp</item>
+        <item name="android:paddingLeft">5sp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <style name="answer">
@@ -228,6 +244,16 @@
     <style name="BulletList" parent="P">
         <item name="android:gravity">right</item>
         <item name="android:paddingRight">5sp</item>
+    </style>
+
+    <style name="BadgeItem">
+        <item name="android:gravity">right|center_vertical</item>
+    </style>
+    <style name="BadgeIcon">
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+    <style name="BadgeText">
+        <item name="android:textColor">@color/yellow</item>
     </style>
 
 </resources>

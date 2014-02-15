@@ -6,6 +6,9 @@ import com.activeandroid.annotation.Table;
 import com.google.api.client.util.DateTime;
 import com.tectual.herherkerker.web.data.JsonReward;
 
+import java.util.Date;
+import org.joda.time.Days;
+
 /**
  * Created by arash on 3/02/2014.
  */
@@ -18,7 +21,7 @@ public class Reward extends Model {
     @Column(name = "instruction")
     public String instruction;
     @Column(name = "expires_at")
-    public DateTime expires_at;
+    public long expires_at;
     @Column(name = "image")
     public String image;
     @Column(name = "state")
@@ -31,7 +34,7 @@ public class Reward extends Model {
     public Reward(){
         super();
     }
-    public Reward(Integer sid, String instruction, String image, String qr_code, String state, DateTime expires_at, Boolean is_changed) {
+    public Reward(Integer sid, String instruction, String image, String qr_code, String state, long expires_at, Boolean is_changed) {
         super();
         this.sid = sid;
         this.instruction = instruction;
@@ -55,8 +58,15 @@ public class Reward extends Model {
         return instruction;
     }
 
-    public DateTime getExpiresAt() {
+    public long getExpiresAt() {
         return expires_at;
+    }
+
+    public int getHumanExpiresAt() {
+        org.joda.time.DateTime now = new org.joda.time.DateTime();
+        org.joda.time.DateTime date = new org.joda.time.DateTime(expires_at);
+        int days =Days.daysBetween(now, date).getDays();
+        return days;
     }
 
     public String getImage() {

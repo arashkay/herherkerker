@@ -1,10 +1,15 @@
 package com.tectual.herherkerker.web;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
+import com.tectual.herherkerker.R;
+import com.tectual.herherkerker.events.UnlockedEvent;
 import com.tectual.herherkerker.web.data.JsonReward;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by arash on 9/02/2014.
@@ -20,9 +25,8 @@ public class ReplyRequestListener implements RequestListener<JsonReward> {
     }
 
     @Override
-    public void onRequestSuccess(final JsonReward jsonReward) {
-        //jsonReward.persist();
-        JsonReward js = jsonReward;
+    public void onRequestSuccess(JsonReward jsonReward) {
+        EventBus.getDefault().post(new UnlockedEvent());
         //new Jokes(activity, activity.getWindow().getDecorView().findViewById(R.id.jokesFragment));
     }
 }

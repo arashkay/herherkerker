@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -37,10 +38,12 @@ public class RewardUI {
         reject.setTag(position);
 
         ImageView image = (ImageView) v.findViewById(R.id.image);
+        LinearLayout arrow = (LinearLayout) v.findViewById(R.id.arrow);
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         image.getLayoutParams().height = width/2;
         image.getLayoutParams().width = width/2;
+        arrow.getLayoutParams().width = width/2;
 
         TextView instruction = (TextView) v.findViewById(R.id.instruction);
         Picasso.with(v.getContext()).load(reward.getImage()).into(image);
@@ -51,7 +54,16 @@ public class RewardUI {
             public void onClick(View v) {
                 int position = Integer.parseInt(v.getTag().toString());
                 Reward item = (Reward) adapter.getItem(position);
-                EventBus.getDefault().post(new UnlockableEvent(item));
+                EventBus.getDefault().post(new UnlockableEvent(item, true));
+            }
+        });
+
+        reject.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = Integer.parseInt(v.getTag().toString());
+                Reward item = (Reward) adapter.getItem(position);
+                EventBus.getDefault().post(new UnlockableEvent(item, false));
             }
         });
 

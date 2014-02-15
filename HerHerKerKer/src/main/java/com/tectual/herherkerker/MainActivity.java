@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -29,11 +33,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.octo.android.robospice.GsonGoogleHttpClientSpiceService;
+import com.octo.android.robospice.SpiceManager;
+import com.tectual.herherkerker.events.GeoEvent;
 import com.tectual.herherkerker.util.Analytic;
 import com.tectual.herherkerker.util.Core;
+import com.tectual.herherkerker.util.GlobalLocationListener;
 import com.tectual.herherkerker.util.SectionsPagerAdapter;
 
 import com.tectual.herherkerker.util.Storage;
+import com.tectual.herherkerker.web.GeoRequest;
+import com.tectual.herherkerker.web.JokeSpiceRequest;
+import com.tectual.herherkerker.web.VoidRequestListener;
+
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -49,18 +62,24 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private Typeface iconTypeFace;
     private Typeface faTypeFace;
     private boolean doubleBackToExitPressedOnce;
+    public LocationManager mlocManager;
+
+    public SpiceManager spiceManager = new SpiceManager(GsonGoogleHttpClientSpiceService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
+        spiceManager.start(this);
         iconTypeFace = Typeface.createFromAsset(getAssets(),"fontawesome.ttf");
         faTypeFace = Typeface.createFromAsset(getAssets(), "Arshia.ttf");
         header();
         drawer();
+        EventBus.getDefault().register(this);
         core = Core.getInstance(this);
         storage = Storage.getInstance(this);
         analytic = Analytic.getInstance(this);
+        startLocationMonitoring();
     }
 
     @Override
@@ -160,11 +179,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         title.setText(this.getTitle());
         actionBar.setCustomView(view);
 
+
         view.findViewById(R.id.avatar).setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
+                /* ===== NEXT VERSION
                 startActivity(new Intent(getBaseContext(), ProfileActivity.class));
+                */
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.badges, R.string.badges);
             }
         });
+
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 
@@ -199,10 +224,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         }
         ((TextView) mDrawerList.findViewById(R.id.drawer_joke_label)).setTypeface(faTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_joke_icon)).setTypeface(iconTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_winners_label)).setTypeface(faTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_winners_icon)).setTypeface(iconTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_fans_label)).setTypeface(faTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_fans_icon)).setTypeface(iconTypeFace);
-        ((TextView) mDrawerList.findViewById(R.id.drawer_rewards_label)).setTypeface(faTypeFace);
-        ((TextView) mDrawerList.findViewById(R.id.drawer_rewards_icon)).setTypeface(iconTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_business_label)).setTypeface(faTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_business_icon)).setTypeface(iconTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_whats_reward_label)).setTypeface(faTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_whats_reward_icon)).setTypeface(iconTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_credits_label)).setTypeface(faTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_credits_icon)).setTypeface(iconTypeFace);
 
@@ -218,7 +247,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        if(Build.VERSION.SDK_INT>=14)
+            actionBar.setHomeButtonEnabled(true);
         mDrawerToggle.syncState();
     }
 
@@ -228,16 +258,39 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public void onClick(View v) {
             String tag = v.getTag().toString();
             if (tag.equals("business")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, R.string.drawer_rewards);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, R.string.drawer_business);
+            } else if (tag.equals("whats_reward")) {
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.whats_reward, R.string.drawer_whats_reward);
             } else if (tag.equals("about")) {
                 PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.about_us, R.string.drawer_about);
             } else if (tag.equals("joke")) {
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.new_joke, R.string.drawer_joke);
             } else if (tag.equals("facebook")) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/herherkerkerapp")));
+            } else if (tag.equals("winners")) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.herherkerker.com/winners")));
             }
             mDrawerLayout.closeDrawer(mDrawerList);
         }
 
+    }
+    private void startLocationMonitoring(){
+        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if(!mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+            return;
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, GlobalLocationListener.CHANGE_CHECK_INTERVAL, GlobalLocationListener.CHANGE_DISTANCE,new GlobalLocationListener(this));
+
+        /* ==== NEXT VERSION NOT NEEDED AT THIS STAGE====
+        Location location = mlocManager
+                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (location != null) {
+            EventBus.getDefault().post(new GeoEvent(location.getLatitude(), location.getLongitude()));
+        }*/
+    }
+
+    public void onEvent(GeoEvent event){
+        GeoRequest request = new GeoRequest( Core.getInstance(this), event.lat, event.lng);
+        spiceManager.execute(request, new VoidRequestListener());
     }
 
 }

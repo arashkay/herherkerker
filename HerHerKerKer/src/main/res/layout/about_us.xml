@@ -9,6 +9,14 @@
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical">
+
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="@string/about_us"/>
+
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -26,5 +34,18 @@
             android:layout_width="fill_parent"
             android:text="@string/app_version"
             style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="@string/device_id"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:id="@+id/device_id"
+            style="@style/P"/>
+
     </LinearLayout>
 </ScrollView>

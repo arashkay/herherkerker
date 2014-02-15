@@ -37,13 +37,31 @@
 
         </RelativeLayout>
 
-        <EditText
-            android:layout_width="fill_parent"
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="@string/fullname"
-            android:id="@+id/fullname"
-            style="@style/Input"/>
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/last_name"
+                android:id="@+id/last_name"
+                android:layout_weight="1"
+                style="@style/Input"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/first_name"
+                android:id="@+id/first_name"
+                android:layout_weight="1"
+                style="@style/Input"/>
+
+        </LinearLayout>
 
         <EditText
             android:layout_width="fill_parent"

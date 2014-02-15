@@ -10,23 +10,53 @@
         هرهرکرکر
     </string>
 
+    <string name="joke">
+جوک یا چیز بامزه ...
+    </string>
     <string name="drawer_joke">
             ارسال جوک
+    </string>
+    <string name="joke_terms">
+        تنها مطالب فارسی متعارف با جامعه (خالی از توهین سیاسی, قومیتی, مذهبی) پس از تایید تیم هرهرکرکر بصورت عمومی در می آیند.
+    </string>
+    <string name="joke_is_posted">
+        جوک شما به سیستم ارسال شد.
     </string>
     <string name="drawer_fans">
             به هواداران بپیوندید
     </string>
-    <string name="drawer_rewards">
+    <string name="winners">
+لیست برندگان
+    </string>
+    <string name="winner">
+هورا... شما بردید!
+    </string>
+    <string name="contact">
+تماس بگیرید
+    </string>
+    <string name="badges">
+مدال های شما
+    </string>
+    <string name="drawer_whats_reward">
                جوایز و کوپن تخفیف
     </string>
+    <string name="drawer_business">
+کسب و کار هستید؟
+    </string>
     <string name="drawer_about">
-                درباره ما
+اطلاعات نسخه
     </string>
     <string name="drawer_about_us">
         هرهرکرکر , نرم افزار رایگان اشتراک گذاری جوک می باشد که توسط تیم تکچوال استرالیا "Tectual pty ltd" با نمایندگی محدود در ایران  توسعه یافته است. تیم ما در حوزه سرگرمی های وب و موبایل و تجارت به سبک نوین تخصص داشته و فعالیت میکند.
     </string>
+    <string name="about_us">
+                درباره ما
+    </string>
     <string name="version">
         نسخه برنامه
+    </string>
+    <string name="device_id">
+شماره دستگاه
     </string>
     <string name="exiting">
 برای خروج یکبار دیگر دکمه برگشت را فشار دهید
@@ -65,8 +95,11 @@
     <string name="profile">
         اطلاعات شما
     </string>
-    <string name="fullname">
-        نام کامل
+    <string name="first_name">
+نام
+    </string>
+    <string name="last_name">
+نام خانوادگی
     </string>
     <string name="phone">
         شماره همراه
@@ -89,6 +122,12 @@
     </string>
     <string name="order_reward_email_text">
 لطفا نام خود , نام کسب و کارتان , شماره تماس , نوع کوپن اهدایی خود را برای ما از طریق این ایمیل ارسال کنید:
+    </string>
+    <string name="won_email_title">
+درخواست ارسال جایزه
+    </string>
+    <string name="won_email_text">
+لطفا این شماره  %s  را به همراه نام و نام خانوادگی و شماره تماس خود از طریق این ایمیل برای ما ارسال کنید.
     </string>
 
     <!--INTENTS-->
@@ -113,7 +152,50 @@
     <string name="reject">
 نمی خوام
     </string>
+    <string name="use">
+استفاده
+    </string>
+    <string name="info">
+اطلاعات
+    </string>
+    <string name="delete">
+حذف
+    </string>
     <string name="question">
         سوال
+    </string>
+    <string name="duration">
+تا %d  روز
+    </string>
+    <string name="unlocked">
+        جایزه آزاد شد. برای استفاده به کیف پول بروید.
+    </string>
+    <string name="rejected">
+جایزه های بهتر در راه است...
+    </string>
+
+    <string name="badge_active1">
+٥ روز جوک بخونی
+    </string>
+    <string name="badge_active2">
+٢٥ جوک قابل تایید بفرستی
+    </string>
+    <string name="badge_liked1">
+جوکات ١٠٠ تا لایک بگیره
+    </string>
+    <string name="badge_liked2">
+جوکات ٥٠٠ تا لایک بگیره
+    </string>
+    <string name="badge_liked3">
+جوکات ١٢٠٠ تا لایک بگیره
+    </string>
+    <string name="badge_social1">
+به ١٠ نفر sms کنی
+    </string>
+    <string name="badge_social2">
+به ٣٠ نفر sms کنی
+    </string>
+    <string name="badge_social3">
+به ١٠٠ نفر sms کنی
     </string>
 </resources>

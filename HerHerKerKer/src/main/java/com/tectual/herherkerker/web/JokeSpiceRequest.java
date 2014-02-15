@@ -23,10 +23,10 @@ public class JokeSpiceRequest extends GoogleHttpClientSpiceRequest<JsonMixedList
     private String baseUrl;
     private JsonRequest json;
 
-    public JokeSpiceRequest( Core core ) {
+    public JokeSpiceRequest( Core core, int last_reward ) {
         super( JsonMixedList.class );
         JsonDevice device = new JsonDevice(core.device_id);
-        json = new JsonRequest(device, core.api, core.version );
+        json = new JsonRequest(device, core.api, core.version, last_reward );
         baseUrl = String.format( "http://herherkerker.com/messages/today" );
     }
 

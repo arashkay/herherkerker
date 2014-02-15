@@ -3,45 +3,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/QuestionDialog"
-    >
+    style="@style/QuestionDialog">
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:orientation="vertical">
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:text="جوایز / کوپن های هرهرکرکر رایگان و از طرف کسب وکارهای داخل ایران به کاربران داده میشود. اگر شما هم کسب و کار هستید و تمایل دارید کوپن یا جایزه دهید برای اطلاعات بیشتر از طریق دکمه زیر با ما تماس بگیرید."
-            style="@style/P"
-            />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            style="@style/H2"
-            android:text="دو دسته اصلی جوایز"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:text="&#8226; همگانی : این جوایز به محض قرار گرفتن در کیف پول قابل استفاده هستند."
-            style="@style/BulletList"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:text="&#8226; قرعه : این جوایز با اینکه در کیف پول شما رفته اما پس از قرعه کشی به یکنفر یا چندنفر خاص داده خواهند شد."
-            style="@style/BulletList"/>
-
-        <RelativeLayout
-            style="@style/RewardLine"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:text="لطفا برای اطلاعات بیشتر در مورد هر جایزه به توضیحات داخل آن جایزه مراجعه کنید."
-            style="@style/P"/>
 
         <TextView
             android:layout_height="wrap_content"
@@ -66,7 +32,14 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:text="٨٠ درصد از کاربران هرهرکرکر را قشر ١٥ تا ٣٥ سال تشکیل میدهند و ما همواره درحال بررسی آمار گروهی در جهت ارتقا کیفیت جوایز و کوپن های تخفیف خود هستیم تا کاربران جوایز متناسب با سلایق خود را دریافت کنند."
+            style="@style/H1"
+            android:text="مخاطب تخفیف شما کیست؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="روزانه هزاران کاربر جدید به +١٠٠,٠٠٠ کاربر فعلی هرهرکرکر افزوده میشود تا از محیطی دوستانه و جذاب لذت ببرند. البته مخاطب ما خاص و ٨٠ درصد آن در محدوده سنی ١٥ تا ٣٥ سال می باشد. و ما همواره در حال تحلیل و بررسی آمار گروهی در جهت ارتقا کیفیت جوایز و کوپن های تخفیف خود هستیم تا کاربران جوایز متناسب با سلایق خود را دریافت کنند."
             style="@style/P"/>
     </LinearLayout>
 </ScrollView>

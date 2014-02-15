@@ -16,9 +16,11 @@ public class Storage {
     private static final String SHARES_KEY = "shares";
     private static final String POINTS_KEY = "points";
     private static final String BADGES_KEY = "badges";
+    private static final String REWARDS_KEY = "last_reward";
     private static final String NOTIFICATION_KEY = "notification";
 
     public int shares;
+    public int reward;
     public int points;
     public Set<String> badges;
     public String notification;
@@ -66,6 +68,15 @@ public class Storage {
 
     public Set<String> badges(){
         return settings.getStringSet(BADGES_KEY, null);
+    }
+
+    public int rewards(int value){
+        reward = putInt(REWARDS_KEY, value);
+        return reward;
+    }
+
+    public int rewards(){
+        return settings.getInt(REWARDS_KEY, 0);
     }
 
     public String notification(String value){

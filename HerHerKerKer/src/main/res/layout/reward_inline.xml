@@ -9,9 +9,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Reward">
+        style="@style/RewardInline">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
 
@@ -21,7 +21,20 @@
                 android:id="@+id/image"
                 style="@style/RewardImage"/>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/arrow"
+                android:gravity="right">
+                <ImageView
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:src="@drawable/arrow"
+                    android:layout_marginTop="30dp"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_height="match_parent"

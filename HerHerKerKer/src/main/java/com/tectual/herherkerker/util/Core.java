@@ -22,7 +22,7 @@ public class Core {
     }
 
     private Core(Activity activity) {
-        device_id = "6"; //Secure.getString(activity.getContentResolver(), Secure.ANDROID_ID);
+        device_id = Secure.getString(activity.getContentResolver(), Secure.ANDROID_ID);
         api = activity.getString(R.string.api);
         version = activity.getString(R.string.app_version);
     }

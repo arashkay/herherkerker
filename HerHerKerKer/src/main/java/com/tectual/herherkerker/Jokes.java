@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.activeandroid.Model;
 import com.activeandroid.query.Select;
@@ -20,15 +21,19 @@ import com.octo.android.robospice.SpiceManager;
 import com.tectual.herherkerker.events.FlagEvent;
 import com.tectual.herherkerker.events.JokeEvent;
 import com.tectual.herherkerker.events.LikeEvent;
+import com.tectual.herherkerker.events.NewJokeEvent;
 import com.tectual.herherkerker.events.ReplyEvent;
 import com.tectual.herherkerker.events.UnlockableEvent;
+import com.tectual.herherkerker.events.UnlockedEvent;
 import com.tectual.herherkerker.models.Joke;
 import com.tectual.herherkerker.models.JokeAdapter;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.util.Core;
+import com.tectual.herherkerker.util.Storage;
 import com.tectual.herherkerker.web.JokeSpiceRequest;
 import com.tectual.herherkerker.web.LikeJokeRequest;
 import com.tectual.herherkerker.web.ListJokesRequestListener;
+import com.tectual.herherkerker.web.PostJokeRequest;
 import com.tectual.herherkerker.web.ReplyRequest;
 import com.tectual.herherkerker.web.ReplyRequestListener;
 import com.tectual.herherkerker.web.UnlockableRequest;
@@ -45,20 +50,20 @@ import java.util.List;
 public class Jokes implements
         OnRefreshListener {
 
-    private SpiceManager spiceManager = new SpiceManager(GsonGoogleHttpClientSpiceService.class);
-    private JokeSpiceRequest jokeRequest;
     private PullToRefreshLayout mPullToRefreshLayout;
-    private Activity activity;
+    private MainActivity activity;
     private View view;
+    private SpiceManager spiceManager;
     private List<Model> list;
     private List<Reward> rewards;
     private JokeAdapter adapter;
     private Reward current_reward;
 
-    public Jokes(Activity a, View v){
+    public Jokes(MainActivity a, View v){
         activity = a;
-        spiceManager.start(activity);
         view = v;
+        spiceManager = activity.spiceManager;
+        EventBus.getDefault().register(this);
         mPullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.jokesFragment);
         ActionBarPullToRefresh.from(activity)
                 .options(Options.create().scrollDistance(.50f).build())
@@ -67,15 +72,19 @@ public class Jokes implements
                 .setup(mPullToRefreshLayout);
         listJokes();
         HerherKerker app = ((HerherKerker) activity.getApplicationContext());
-        EventBus.getDefault().register(this);
+        //
         if(app.is_first_load(activity.getResources().getInteger(R.integer.joke_tab))){
             load();
         }
     }
 
     public void load(){
-        jokeRequest = new JokeSpiceRequest(Core.getInstance(activity));
+        int last_reward = Storage.getInstance(activity).rewards();
+        JokeSpiceRequest jokeRequest = new JokeSpiceRequest(Core.getInstance(activity), last_reward);
         spiceManager.execute(jokeRequest, new ListJokesRequestListener());
+        //test requests
+        //UnlockableRequest unlock = new UnlockableRequest(4, Core.getInstance(activity));
+        //spiceManager.execute(unlock, new UnlockableRequestListener(activity));
     }
 
     private void listJokes(){
@@ -94,24 +103,6 @@ public class Jokes implements
                     android.R.layout.simple_list_item_1, list);
             listview.setAdapter(adapter);
         }
-        /*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(300).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                //list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
-            }
-
-        });*/
     }
 
     @Override
@@ -139,16 +130,37 @@ public class Jokes implements
         //load();
     }
 
-
     public void onEvent(JokeEvent event){
         this.rewards = event.rewards;
         listJokes();
     }
 
+    public void onEvent(NewJokeEvent event){
+        Toast.makeText(activity.getApplicationContext(), R.string.joke_is_posted,
+                Toast.LENGTH_LONG).show();
+        PostJokeRequest request = new PostJokeRequest(Core.getInstance(activity), event.joke);
+        spiceManager.execute(request, new VoidRequestListener());
+    }
+
+    public void onEvent(UnlockedEvent event){
+        list.remove(2);
+        adapter.notifyDataSetChanged();
+        Toast.makeText(activity.getApplicationContext(), R.string.unlocked,
+                Toast.LENGTH_LONG).show();
+    }
+
     public void onEvent(UnlockableEvent event){
-        current_reward = event.reward;
-        UnlockableRequest request = new UnlockableRequest(event.reward.sid, Core.getInstance(activity));
-        spiceManager.execute(request, new UnlockableRequestListener(activity));
+        if(event.accepted){
+            current_reward = event.reward;
+            UnlockableRequest request = new UnlockableRequest(event.reward.sid, Core.getInstance(activity));
+            spiceManager.execute(request, new UnlockableRequestListener(activity));
+        }else{
+            list.remove(2);
+            adapter.notifyDataSetChanged();
+            Storage.getInstance(activity).rewards(event.reward.sid);
+            Toast.makeText(activity.getApplicationContext(), R.string.rejected,
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onEvent(ReplyEvent event){
@@ -156,4 +168,5 @@ public class Jokes implements
         ReplyRequest request = new ReplyRequest(event.question.id, Core.getInstance(activity), event.answer, reward);
         spiceManager.execute(request, new ReplyRequestListener());
     }
+
 }

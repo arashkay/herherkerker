@@ -11,7 +11,7 @@ public class JsonJoke {
     @Key
     private Integer id;
     @Key
-    private String body;
+    public String body;
     @Key
     private Integer likes;
 

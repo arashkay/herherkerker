@@ -8,9 +8,11 @@ import com.tectual.herherkerker.models.Reward;
 public class UnlockableEvent {
 
     public Reward reward;
+    public boolean accepted;
 
-    public UnlockableEvent(Reward reward){
+    public UnlockableEvent(Reward reward, boolean accepted){
         this.reward = reward;
+        this.accepted = accepted;
     }
 
 }

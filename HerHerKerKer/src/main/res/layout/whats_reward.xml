@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوایز و کوپن های هرهرکرکر رایگان و از طرف کسب وکارهای داخل ایران به کاربران داده میشود. اگر شما هم کسب و کار هستید و تمایل دارید کوپن یا جایزه دهید برای اطلاعات بیشتر به منو کسب و کار بروید."
+            style="@style/P"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H2"
+            android:text="دو دسته اصلی جوایز"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="&#8226; همگانی : این جوایز به محض قرار گرفتن در کیف پول قابل استفاده هستند."
+            style="@style/BulletList"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="&#8226; قرعه : این جوایز با اینکه در کیف پول شما رفته اما پس از قرعه کشی به یکنفر یا چندنفر خاص داده خواهند شد."
+            style="@style/BulletList"/>
+
+        <RelativeLayout
+            style="@style/RewardLine"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="لطفا برای اطلاعات بیشتر در مورد هر جایزه به توضیحات داخل آن جایزه مراجعه کنید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="کوپن مورد نظر شما نیست؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="اگر کوپنی از شهر یا کسب و کار مورد علاقه شما اینجا وجود ندارد , شما میتوانید به کسب و کارهای محبوب خود رفته و از آنها بخواهید تا به سیستم تخفیف کوپنی هرهرکرکر بپیوندند. ما به محض عضویت آنها در ظرف کمتر از ٢٤ ساعت کوپن تخفیف مورد علاقه تان را ارسال میکنیم."
+            style="@style/P"/>
+
+    </LinearLayout>
+</ScrollView>

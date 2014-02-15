@@ -6,13 +6,107 @@
     android:layout_height="match_parent"
     style="@style/Page">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
         android:layout_height="wrap_content"
-        android:text="Checkins Text"
-        android:id="@+id/textView" />
+        android:layout_width="wrap_content"
+        >
 
-    <ListView android:id="@+id/jokeslist"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/darker_gray"
+                android:padding="5dp"
+                android:layout_margin="2dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/H1"
+                    android:text="کجایید و چیکار میکنید؟"
+                    />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/P"
+                    android:text="سیستم checkin هرهرکرکر به زودی راه اندازی خواهد شد. از این طریق شما میتوانید به دیگران بگوید کجا هستید و سرگرم چه کاری هستید ..."
+                    />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/H1"
+                    android:text="نمونه checkin "
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:background="@color/darker_gray"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp">
+
+                <ImageView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/new_feature"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/darker_gray"
+                android:padding="5dp"
+                android:layout_margin="2dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/H1"
+                    android:text="ثبت اماکن"
+                    />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/P"
+                    android:text="پاتوق های خود را برای ما بفرستید تا برای checkin شما در برنامه قرار دهیم."
+                    />
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="نام مکان"
+                    android:singleLine="true"/>
+
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:hint="آدرس"
+                    android:singleLine="true"
+                    />
+
+                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="ثبت پاتوق"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

@@ -44,6 +44,25 @@
             android:layout_width="fill_parent"
             android:orientation="horizontal"
             style="@style/DrawerItem"
+            android:tag="winners">
+            <TextView
+                android:id="@+id/drawer_winners_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/winners"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_winners_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf0c0;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
             android:tag="facebook">
             <TextView
                 android:id="@+id/drawer_fans_label"
@@ -63,18 +82,37 @@
             android:layout_width="fill_parent"
             android:orientation="horizontal"
             style="@style/DrawerItem"
-            android:tag="business">
+            android:tag="whats_reward">
             <TextView
-                android:id="@+id/drawer_rewards_label"
+                android:id="@+id/drawer_whats_reward_label"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="@string/drawer_rewards"
+                android:text="@string/drawer_whats_reward"
                 style="@style/DrawerItemLabel"/>
             <TextView
-                android:id="@+id/drawer_rewards_icon"
+                android:id="@+id/drawer_whats_reward_icon"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="&#xf06b;"
+                style="@style/DrawerItemIcon" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            style="@style/DrawerItem"
+            android:tag="business">
+            <TextView
+                android:id="@+id/drawer_business_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/drawer_business"
+                style="@style/DrawerItemLabel"/>
+            <TextView
+                android:id="@+id/drawer_business_icon"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="&#xf0b1;"
                 style="@style/DrawerItemIcon" />
         </LinearLayout>
         <LinearLayout

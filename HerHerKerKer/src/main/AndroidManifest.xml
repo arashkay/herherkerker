@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tectual.herherkerker"
     android:versionCode="19"
-    android:versionName="@string/app_version" >
+    android:versionName="@string/app_version"
+    android:installLocation="preferExternal">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -50,5 +51,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 </manifest>

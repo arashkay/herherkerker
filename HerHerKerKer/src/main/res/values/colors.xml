@@ -3,11 +3,12 @@
     <color name="main_menu">#33000000</color>
     <color name="black_overlay">#66000000</color>
     <color name="white">#ffffff</color>
-    <color name="dark_gray">#444</color>
+    <color name="dark_gray">#ff444444</color>
     <color name="darker_gray">#222</color>
     <color name="yellow">#ffeccc34</color>
     <color name="background">#CECECE</color>
     <color name="light_gray">#CECECE</color>
     <color name="blue">#ff43a4fe</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
