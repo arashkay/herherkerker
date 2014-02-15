@@ -2,6 +2,9 @@ package com.tectual.herherkerker.web.data;
 
 import com.google.api.client.util.Key;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by arash on 10/02/2014.
  */

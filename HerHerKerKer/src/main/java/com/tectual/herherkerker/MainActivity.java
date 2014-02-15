@@ -35,16 +35,23 @@ import android.widget.Toast;
 
 import com.octo.android.robospice.GsonGoogleHttpClientSpiceService;
 import com.octo.android.robospice.SpiceManager;
+import com.tectual.herherkerker.events.AccountEvent;
 import com.tectual.herherkerker.events.GeoEvent;
+import com.tectual.herherkerker.events.SharedEvent;
 import com.tectual.herherkerker.util.Analytic;
 import com.tectual.herherkerker.util.Core;
 import com.tectual.herherkerker.util.GlobalLocationListener;
 import com.tectual.herherkerker.util.SectionsPagerAdapter;
 
 import com.tectual.herherkerker.util.Storage;
+import com.tectual.herherkerker.web.AccountRequest;
+import com.tectual.herherkerker.web.AccountRequestListener;
 import com.tectual.herherkerker.web.GeoRequest;
 import com.tectual.herherkerker.web.JokeSpiceRequest;
 import com.tectual.herherkerker.web.VoidRequestListener;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import de.greenrobot.event.EventBus;
 
@@ -73,13 +80,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         spiceManager.start(this);
         iconTypeFace = Typeface.createFromAsset(getAssets(),"fontawesome.ttf");
         faTypeFace = Typeface.createFromAsset(getAssets(), "Arshia.ttf");
-        header();
-        drawer();
         EventBus.getDefault().register(this);
         core = Core.getInstance(this);
         storage = Storage.getInstance(this);
-        analytic = Analytic.getInstance(this);
+        getAccount();
+        header();
+        drawer();
         startLocationMonitoring();
+        analytic = Analytic.getInstance(this);
     }
 
     @Override
@@ -186,7 +194,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 /* ===== NEXT VERSION
                 startActivity(new Intent(getBaseContext(), ProfileActivity.class));
                 */
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.badges, R.string.badges);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.badges, String.format(getString(R.string.badges), storage.points()));
             }
         });
 
@@ -258,13 +266,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public void onClick(View v) {
             String tag = v.getTag().toString();
             if (tag.equals("business")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, R.string.drawer_business);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, getString(R.string.drawer_business));
             } else if (tag.equals("whats_reward")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.whats_reward, R.string.drawer_whats_reward);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.whats_reward, getString(R.string.drawer_whats_reward));
             } else if (tag.equals("about")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.about_us, R.string.drawer_about);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.about_us, getString(R.string.drawer_about));
             } else if (tag.equals("joke")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.new_joke, R.string.drawer_joke);
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.new_joke, getString(R.string.drawer_joke));
             } else if (tag.equals("facebook")) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/herherkerkerapp")));
             } else if (tag.equals("winners")) {
@@ -286,6 +294,21 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         if (location != null) {
             EventBus.getDefault().post(new GeoEvent(location.getLatitude(), location.getLongitude()));
         }*/
+    }
+
+    public void getAccount(){
+        AccountRequest request = new AccountRequest( Core.getInstance(this), Storage.getInstance(this).shares() );
+        spiceManager.execute(request, new AccountRequestListener());
+    }
+
+    public void onEvent(AccountEvent event){
+        Set<String> badges = new HashSet<String>(event.jsonActivity.badges);
+        storage.badges(badges);
+        storage.points(event.jsonActivity.likes);
+    }
+
+    public void onEvent(SharedEvent event){
+        storage.incrementShares();
     }
 
     public void onEvent(GeoEvent event){

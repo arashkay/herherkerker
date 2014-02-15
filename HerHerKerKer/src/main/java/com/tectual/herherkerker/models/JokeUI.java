@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.events.LikeEvent;
+import com.tectual.herherkerker.events.SharedEvent;
 
 import de.greenrobot.event.EventBus;
 
@@ -55,6 +56,7 @@ public class JokeUI {
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body.getText());
                 v.getContext().startActivity(Intent.createChooser(sharingIntent, v.getContext().getResources().getString(R.string.sharing_via)));
+                EventBus.getDefault().post(new SharedEvent());
             }
         });
 

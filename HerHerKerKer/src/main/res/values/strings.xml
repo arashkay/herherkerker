@@ -35,7 +35,7 @@
 تماس بگیرید
     </string>
     <string name="badges">
-مدال های شما
+مدالها : %d نفر را خنداندید
     </string>
     <string name="drawer_whats_reward">
                جوایز و کوپن تخفیف
@@ -190,12 +190,12 @@
 جوکات ١٢٠٠ تا لایک بگیره
     </string>
     <string name="badge_social1">
-به ١٠ نفر sms کنی
+به ١٠ تا از دوستات بفرستی
     </string>
     <string name="badge_social2">
-به ٣٠ نفر sms کنی
+به ٣٠ تا از دوستات بفرستی
     </string>
     <string name="badge_social3">
-به ١٠٠ نفر sms کنی
+به ١٠٠ تا از دوستات بفرستی
     </string>
 </resources>

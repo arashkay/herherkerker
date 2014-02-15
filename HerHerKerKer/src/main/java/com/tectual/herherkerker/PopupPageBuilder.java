@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tectual.herherkerker.events.NewJokeEvent;
 import com.tectual.herherkerker.util.Core;
+import com.tectual.herherkerker.util.Storage;
 
+import java.util.Set;
 import java.util.zip.Inflater;
 
 import de.greenrobot.event.EventBus;
@@ -29,7 +32,7 @@ public class PopupPageBuilder extends AlertDialog.Builder  {
     private final AlertDialog dialog;
     private Context context;
 
-    public PopupPageBuilder(Context context, int layout, int title) {
+    public PopupPageBuilder(Context context, int layout, String title) {
         super(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layout, null);
@@ -49,6 +52,8 @@ public class PopupPageBuilder extends AlertDialog.Builder  {
             about(view);
         }else if(layout==R.layout.new_joke){
             new_joke(view);
+        }else if(layout==R.layout.badges){
+            badges(view);
         }
     }
 
@@ -86,5 +91,24 @@ public class PopupPageBuilder extends AlertDialog.Builder  {
         });
     }
 
+    private void badges(final View view){
+        Set<String> badges = Storage.getInstance((MainActivity) context).badges();
+        if(badges.contains("day5"))
+            ((LinearLayout) view.findViewById(R.id.active1)).setAlpha('1');
+        if(badges.contains("shared10"))
+            ((LinearLayout) view.findViewById(R.id.social1)).setAlpha('1');
+        if(badges.contains("liked100"))
+            ((LinearLayout) view.findViewById(R.id.like1)).setAlpha('1');
+        if(badges.contains("sent25"))
+            ((LinearLayout) view.findViewById(R.id.active2)).setAlpha('1');
+        if(badges.contains("shared30"))
+            ((LinearLayout) view.findViewById(R.id.social2)).setAlpha('1');
+        if(badges.contains("liked500"))
+            ((LinearLayout) view.findViewById(R.id.like2)).setAlpha('1');
+        if(badges.contains("liked1200"))
+            ((LinearLayout) view.findViewById(R.id.like3)).setAlpha('1');
+        if(badges.contains("shared100"))
+            ((LinearLayout) view.findViewById(R.id.social3)).setAlpha('1');
+    }
 
 }

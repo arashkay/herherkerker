@@ -47,6 +47,9 @@ public class Storage {
         shares = putInt(SHARES_KEY, value);
         return shares;
     }
+    public int incrementShares(){
+        return shares(shares()+1);
+    }
 
     public int shares(){
         return settings.getInt(SHARES_KEY, 0);
