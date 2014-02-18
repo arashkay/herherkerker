@@ -42,7 +42,12 @@ class RewardsController < ApplicationController
     @reward = Reward.find params[:id]
     question = @device.unanswered_question
     if question.empty? 
-      render json: @reward.collect(@device)
+      if params[:version]>="2.0.0"
+        @reward.collect(@device)
+        render json: []
+      else
+        render json: @reward.collect(@device)
+      end
     else
       render json: question
     end

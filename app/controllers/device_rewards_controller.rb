@@ -8,7 +8,11 @@ class DeviceRewardsController < ApplicationController
   end
 
   def sync
-    rewards = params[:rewards].map{ |i| i[1] }
+    if params[:version] >= '2.0.0'
+      rewards = params[:rewards]
+    else
+      rewards = params[:rewards].map{ |i| i[1] }
+    end
     @device.device_rewards.where( id: rewards.map{ |i| i[:id] } ).each do |reward|
       state = rewards.select{ |v| v[:id].to_i == reward.id }[0]
       case state[:state]

@@ -31,7 +31,11 @@ class QuestionsController < ApplicationController
       @reward = Reward.find params[:reward][:id]
       render json: @reward.collect(@device)
     else
-      render json: false
+      if params[:version]>="2.0.0"
+        render json: nil
+      else
+        render json: false
+      end
     end
   end
 

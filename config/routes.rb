@@ -35,6 +35,12 @@ Herherkerker::Application.routes.draw do
     end
   end
 
+  resources :venues do
+    collection do
+      match :suggest
+    end
+  end
+
   resources :questions do
     member do
       post :enable

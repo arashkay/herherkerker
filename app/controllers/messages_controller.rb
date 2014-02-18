@@ -51,6 +51,9 @@ class MessagesController < ApplicationController
       if params[:version]!="1.0.8"
       end
     end
+    if @device.id == 3596
+      @rewards = Reward.last
+    end
     @messages = Message.unscoped.approved.where( [ "id > ?", @device.last_joke ] ).limit(HHKK::MOBILE::LIMIT).reverse!
     if @version == 1
       render :json => { jokes: @messages, extra: @extras, rewards: @rewards }
