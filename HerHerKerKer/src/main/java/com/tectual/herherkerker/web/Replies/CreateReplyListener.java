@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Replies;
 
 import android.app.Activity;
 import android.widget.Toast;
@@ -14,9 +14,9 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by arash on 9/02/2014.
  */
-public class ReplyRequestListener implements RequestListener<JsonReward> {
+public class CreateReplyListener implements RequestListener<JsonReward> {
 
-    public ReplyRequestListener(){
+    public CreateReplyListener(){
     }
 
     @Override

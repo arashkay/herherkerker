@@ -3,18 +3,14 @@ package com.tectual.herherkerker.events;
 import com.tectual.herherkerker.models.Reward;
 
 /**
- * Created by arash on 13/02/2014.
+ * Created by arash on 16/02/2014.
  */
-public class RedeemEvent {
-
-
+public class UseEvent {
     public Reward reward;
-    public boolean is_won;
     public int position;
 
-    public RedeemEvent(Reward reward, int position, boolean is_won){
+    public UseEvent(Reward reward, int position){
         this.reward = reward;
-        this.is_won = is_won;
         this.position = position;
     }
 }

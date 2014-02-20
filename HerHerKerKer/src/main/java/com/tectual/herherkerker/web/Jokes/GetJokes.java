@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Jokes;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;
@@ -18,12 +18,12 @@ import java.io.IOException;
 /**
  * Created by arash on 27/01/2014.
  */
-public class JokeSpiceRequest extends GoogleHttpClientSpiceRequest<JsonMixedList> {
+public class GetJokes extends GoogleHttpClientSpiceRequest<JsonMixedList> {
 
     private String baseUrl;
     private JsonRequest json;
 
-    public JokeSpiceRequest( Core core, int last_reward ) {
+    public GetJokes(Core core, int last_reward) {
         super( JsonMixedList.class );
         JsonDevice device = new JsonDevice(core.device_id);
         json = new JsonRequest(device, core.api, core.version, last_reward );

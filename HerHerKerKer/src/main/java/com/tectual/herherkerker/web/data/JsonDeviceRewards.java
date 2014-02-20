@@ -28,6 +28,14 @@ public class JsonDeviceRewards  extends ArrayList<JsonDeviceReward>{
                 if(!ids.contains(reward.getSid())){
                     reward.save();
                     rewards.add(reward);
+                }else{
+                    if(element.state.equals(Reward.WON)){
+                        Reward item = new Select().from(Reward.class).where("sid = "+element.id).executeSingle();
+                        if(item!=null){
+                            item.state = element.state;
+                            item.save();
+                        }
+                    }
                 }
             }
             ActiveAndroid.setTransactionSuccessful();

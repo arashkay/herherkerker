@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     style="@style/P"
-                    android:text="سیستم checkin هرهرکرکر به زودی راه اندازی خواهد شد. از این طریق شما میتوانید به دیگران بگوید کجا هستید و سرگرم چه کاری هستید ..."
+                    android:text="سیستم checkin هرهرکرکر به زودی راه اندازی خواهد شد. از این طریق شما میتوانید به دیگران بگویید کجا هستید و سرگرم چه کاری هستید ..."
                     />
 
                 <TextView
@@ -87,12 +87,14 @@
                     />
 
                 <EditText
+                    android:id="@+id/venue_name"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:hint="نام مکان"
                     android:singleLine="true"/>
 
                 <EditText
+                    android:id="@+id/venue_address"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:hint="آدرس"
@@ -100,6 +102,7 @@
                     />
 
                 <Button
+                    android:id="@+id/submit_venue"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:text="ثبت پاتوق"

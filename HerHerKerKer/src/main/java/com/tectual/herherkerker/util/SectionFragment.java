@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tectual.herherkerker.Checkins;
 import com.tectual.herherkerker.MainActivity;
 import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.Jokes;
 import com.tectual.herherkerker.Wallet;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by arash on 25/01/2014.
@@ -18,6 +21,10 @@ import com.tectual.herherkerker.Wallet;
 public class SectionFragment extends Fragment {
 
     public static final String ARG_SECTION_NUMBER = "section_number";
+
+    private Wallet wallet;
+    private Jokes jokes;
+    private Checkins checkins;
 
     public SectionFragment() {
     }
@@ -30,6 +37,7 @@ public class SectionFragment extends Fragment {
         switch (getArguments().getInt(ARG_SECTION_NUMBER)){
             case 3:
                 view = inflater.inflate(R.layout.checkins, container, false);
+                new Checkins(activity, view);
                 break;
             case 2:
                 view = inflater.inflate(R.layout.wallet, container, false);
@@ -42,4 +50,13 @@ public class SectionFragment extends Fragment {
         }
         return view;
     }
+
+    /* IT IS BUGGY
+    @Override
+    public void onDestroy() {
+        jokes.Unregister();
+        wallet.Unregister();
+        super.onDestroy();
+    }*/
+
 }

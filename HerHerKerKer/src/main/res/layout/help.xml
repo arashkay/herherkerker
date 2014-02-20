@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="چگونه جوک جدید بگیرم؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="با کشیدن لیست جوک از بالا به پایین , سیستم شروع به گرفتن جوک جدید میکند. شما برای انجام این عملیات به اینترنت احتیاج دارید. "
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="دیگر جوک جدید نمیگیرم!"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="در صورتی که جوک جدیدی برای شما وجود نداشته باشد جوکی نمیگیرد و بهتر است روز بعد سر بزنید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text='چرا جوک من قبول نمیشه؟'
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="تنها جوک هایی که مورد اخلاقی نداشته باشند و سطح جذابیتشون بالای ١٠ سال باشه و مسلما بالای ١٨ سال نباشه قابل تایید هستند. لازم به ذکر نیست که توهین به مقدسات و قومیت ها بصورت اتوماتیک حذف خواهد شد. اما اگر جوک شما همه این هارا رعایت کرده و بازهم لیست نشده , به دلیل مشباهت با جوک های دیگران است (ما تمامی سعی خود را میکنیم تا جوکهای مشابه در سیستم کم باشد)!"
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="جوایز داخل کیف پولم را نمیبینم!"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوائز همگانی درصورت استفاده کردن یا منقضی شدن بصورت اتوماتیک حذف میشوند."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوائز قرعه در صورت برنده نشدن شما حذف میشوند. ' از طریق منو برندگان میتوانید برنده را مشاهده کنید' "
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="اگر تمایل دارید کیف پول خود را با سرور یکی (sync) کنید صفحه کیف پول را از بالا به پایین بکشید (این عمل احتیاج به اینترنت دارد). "
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="مدالها چیست؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="شما با فعالیت در سیستم مدالهایی دریافت میکنید. در ورژن های بعدی مدل های بیشتری معرفی خواهد شد و شما خواهید توانست لیست برترین ها را ببینید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="جوایز چیست؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوائز از طرف کسب و کار های ایرانی برای شما بصورت رایگان داده میشوند . برای اطلاعات از جوایز به منو جوایز مراجعه کنید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="چرا هرهرکرکر؟ چرا رایگان؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="ما با هدف بهتر کردن لحظات زندگی شما اولین نسخه هرهرکرکر را در پاییز ١٣٩٢ به بازار دادیم. نسخه ای که هر ٦ ساعت برای شما ١٠ جوک می آورد. ولی ازآن نسخه تا این نسخه دهها ویژگی با توجه به پیشنهادات شما اضافه و یا کم شده و همه این تغییرات همواره در راستای بهتر کردن لحظات زندگی شما بوده و هست. در زمستان ١٣٩٢ ما بخش جوائز ' کیف پول'  را افزودیم تا برای شما از کسب و کار های محبوبتان تخفیف بگیریم .کوپن هایی که همواره رایگان هستند , بدون احتیاج پرداخت پیش از مصرف (برخلاف دیگر تبلیغات کوپنی) و شما هر زمان که دوست داشتید از تخفیفی که رایگان در دستتان است استفاده میکنید. در این نسخه سیستم پاتوق را معرفی کردیم ویژگی که در بهار ١٣٩٣ بصورت کامل در دسترس شما خواهد بود. جایی که شما لحظات خوب خود را با دیگران به اشتراک بگذارید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="هدف تیم ما رقم زدن لحظات خوب و خوش در زندگی شماست. این نسخه هرهرکرکر تنها ١٠% از ایده های اجرا شده ماست و مسلما این ورژن آخر نیست , ما از تک تک ١٠٠,٠٠٠ کاربری که تا این تاریخ (اسفند ١٣٩٢) صبورانه شاهد رشد هرهرکرکر بوده اند تشکر میکنیم."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="شما چگونه میتوانید کمک کنید؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="شما با پیوستن به هواداران ما در فیس بوک یا ستاره دادن به برنامه 'از محلی که آن را دریافت کرده اید' می توانید پشتیبانی خود را نشان دهید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="چیزی خرابه؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="روش توسعه برنامه هرهرکرکر یک سیستم گسترشی است. کاربران اولیه هرهرکرکرتنها میتوانستند لیستی از جوک هر ٥ ساعت یکبار ببینند. اما امروز ما علاوه بر قسمت جوک, قسمت کیف پول داریم و بزودی پاتوق اضافه خواهد شد. طبیعتا توسعه چنین برنامه ای زمانگیر و با مشکلات همراه است. در صورتی که خطایی یا مشکلی در سیستم وجود دارد لطفا به ما از طریق دکمه زیر گزارش دهید."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="بازهم سوال دارید؟"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="ما سعی کردیم تمامی سوال های شما را اینجا پاسخ دهیم اما اگر هنوز سوالی بدون پاسخ مانده لطفا از طریق این دکمه با ما تماس بگیرید."
+            style="@style/P"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/help"
+            style="@style/Primary"
+            android:text="@string/contact"/>
+
+    </LinearLayout>
+</ScrollView>

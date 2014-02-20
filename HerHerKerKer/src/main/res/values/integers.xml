@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer name="splash_page">2000</integer>
+    <integer name="splash_page">1500</integer>
     <integer name="joke_tab">0</integer>
     <integer name="wallet_tab">1</integer>
     <integer name="checkin_tab">2</integer>

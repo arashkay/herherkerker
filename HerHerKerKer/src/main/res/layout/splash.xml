@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:layout_gravity="center"
-    android:gravity="center">
+    android:gravity="center|bottom"
+    android:paddingBottom="100dp">
 
     <ImageView
         android:layout_gravity="center"

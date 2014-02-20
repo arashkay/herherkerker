@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Rewards;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -19,11 +19,11 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by arash on 7/02/2014.
  */
-public class UnlockableRequestListener implements RequestListener<JsonQuestions> {
+public class UnlockRewardListener implements RequestListener<JsonQuestions> {
 
     private Activity activity;
 
-    public UnlockableRequestListener(Activity a){
+    public UnlockRewardListener(Activity a){
         activity = a;
     }
 

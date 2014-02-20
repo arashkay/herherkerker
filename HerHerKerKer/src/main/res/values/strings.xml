@@ -22,6 +22,9 @@
     <string name="joke_is_posted">
         جوک شما به سیستم ارسال شد.
     </string>
+    <string name="venue_is_posted">
+با تشکر . پاتوق شما "برای امکان checkin در ورژن بعدی" ثبت شد.
+    </string>
     <string name="drawer_fans">
             به هواداران بپیوندید
     </string>
@@ -45,6 +48,9 @@
     </string>
     <string name="drawer_about">
 اطلاعات نسخه
+    </string>
+    <string name="drawer_help">
+راهنما
     </string>
     <string name="drawer_about_us">
         هرهرکرکر , نرم افزار رایگان اشتراک گذاری جوک می باشد که توسط تیم تکچوال استرالیا "Tectual pty ltd" با نمایندگی محدود در ایران  توسعه یافته است. تیم ما در حوزه سرگرمی های وب و موبایل و تجارت به سبک نوین تخصص داشته و فعالیت میکند.
@@ -114,8 +120,23 @@
     <string name="close">
 بستن
     </string>
+    <string name="yes">
+بله
+    </string>
+    <string name="confirmation">
+مطمئن هستید؟
+    </string>
+    <string name="flag_confirmation">
+آیا این جوک باید حذف شود؟
+    </string>
+    <string name="reward_delete_confirmation">
+حذف شود؟ در صورت حذف جایزه قادر به استفاده آن نیستید!
+    </string>
     <string name="order">
 تقاضای درج کوپن
+    </string>
+    <string name="help_email_title">
+تماس با پشتیبانی هرهرکرکر
     </string>
     <string name="order_reward_email_title">
         تقاضای اطلاعات درج کوپن
@@ -152,11 +173,14 @@
     <string name="reject">
 نمی خوام
     </string>
-    <string name="use">
-استفاده
+    <string name="use_now">
+الان استفاده میکنم
     </string>
     <string name="info">
 اطلاعات
+    </string>
+    <string name="reward_info">
+اطلاعات جایزه
     </string>
     <string name="delete">
 حذف
@@ -165,13 +189,16 @@
         سوال
     </string>
     <string name="duration">
-تا %d  روز
+%d  روز
     </string>
     <string name="unlocked">
         جایزه آزاد شد. برای استفاده به کیف پول بروید.
     </string>
     <string name="rejected">
 جایزه های بهتر در راه است...
+    </string>
+    <string name="reward_warning">
+        دکمه زیر توسط پرسنل فروش درهنگام پرداخت باید فشار داده شود, درغیر اینصورت کوپن خود را از دست میدهید.
     </string>
 
     <string name="badge_active1">

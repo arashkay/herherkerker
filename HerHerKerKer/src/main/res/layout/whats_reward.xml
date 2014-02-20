@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="لطفا برای اطلاعات بیشتر در مورد هر جایزه به توضیحات داخل آن جایزه مراجعه کنید."
-            style="@style/P"/>
+            style="@style/Notes"/>
 
         <TextView
             android:layout_height="wrap_content"
@@ -53,6 +53,19 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="اگر کوپنی از شهر یا کسب و کار مورد علاقه شما اینجا وجود ندارد , شما میتوانید به کسب و کارهای محبوب خود رفته و از آنها بخواهید تا به سیستم تخفیف کوپنی هرهرکرکر بپیوندند. ما به محض عضویت آنها در ظرف کمتر از ٢٤ ساعت کوپن تخفیف مورد علاقه تان را ارسال میکنیم."
+            style="@style/P"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            style="@style/H1"
+            android:text="چطوری جایزه یا کوپن بگیرم!"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="جوایز بصورت اتوماتیک برای شما در لیست جوک ها ارسال میشود. شما تنها جوایزی که دوست دارید و احتمال استفاده آن را میدهید باید به کیف پول خود اضافه کنید. از این طریق سیستم سلایق شما را یاد گرفته و جوایز مرتبط تری به شما خواهد داد."
             style="@style/P"/>
 
     </LinearLayout>

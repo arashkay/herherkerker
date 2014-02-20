@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
@@ -24,12 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +37,9 @@ import com.tectual.herherkerker.util.GlobalLocationListener;
 import com.tectual.herherkerker.util.SectionsPagerAdapter;
 
 import com.tectual.herherkerker.util.Storage;
-import com.tectual.herherkerker.web.AccountRequest;
-import com.tectual.herherkerker.web.AccountRequestListener;
-import com.tectual.herherkerker.web.GeoRequest;
-import com.tectual.herherkerker.web.JokeSpiceRequest;
+import com.tectual.herherkerker.web.Devices.GetDevice;
+import com.tectual.herherkerker.web.Devices.GetDeviceListener;
+import com.tectual.herherkerker.web.Devices.UpdateGeo;
 import com.tectual.herherkerker.web.VoidRequestListener;
 
 import java.util.HashSet;
@@ -100,6 +92,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public void onStop() {
         analytic.stop();
         super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -194,7 +187,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                 /* ===== NEXT VERSION
                 startActivity(new Intent(getBaseContext(), ProfileActivity.class));
                 */
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.badges, String.format(getString(R.string.badges), storage.points()));
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.badges, String.format(getString(R.string.badges), storage.points()), null);
             }
         });
 
@@ -226,12 +219,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private void drawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (LinearLayout) findViewById(R.id.drawer_menu);
+        LinearLayout menu_list = (LinearLayout) findViewById(R.id.drawer_menu_list);
 
-        for (int i = 0; i < mDrawerList.getChildCount(); i++) {
-            ((LinearLayout) mDrawerList.getChildAt(i)).setOnClickListener(new DrawerItemClickListener());
+
+        for (int i = 0; i < menu_list.getChildCount(); i++) {
+            ((LinearLayout) menu_list.getChildAt(i)).setOnClickListener(new DrawerItemClickListener());
         }
         ((TextView) mDrawerList.findViewById(R.id.drawer_joke_label)).setTypeface(faTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_joke_icon)).setTypeface(iconTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_help_label)).setTypeface(faTypeFace);
+        ((TextView) mDrawerList.findViewById(R.id.drawer_help_icon)).setTypeface(iconTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_winners_label)).setTypeface(faTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_winners_icon)).setTypeface(iconTypeFace);
         ((TextView) mDrawerList.findViewById(R.id.drawer_fans_label)).setTypeface(faTypeFace);
@@ -266,17 +263,19 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public void onClick(View v) {
             String tag = v.getTag().toString();
             if (tag.equals("business")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, getString(R.string.drawer_business));
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.business, getString(R.string.drawer_business), null);
             } else if (tag.equals("whats_reward")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.whats_reward, getString(R.string.drawer_whats_reward));
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.whats_reward, getString(R.string.drawer_whats_reward), null);
             } else if (tag.equals("about")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.about_us, getString(R.string.drawer_about));
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.about_us, getString(R.string.drawer_about), null);
             } else if (tag.equals("joke")) {
-                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.new_joke, getString(R.string.drawer_joke));
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.new_joke, getString(R.string.drawer_joke), null);
             } else if (tag.equals("facebook")) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/herherkerkerapp")));
             } else if (tag.equals("winners")) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.herherkerker.com/winners")));
+            } else if (tag.equals("help")) {
+                PopupPageBuilder popupPage = new PopupPageBuilder(v.getContext(), R.layout.help, getString(R.string.drawer_help), null);
             }
             mDrawerLayout.closeDrawer(mDrawerList);
         }
@@ -297,8 +296,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     }
 
     public void getAccount(){
-        AccountRequest request = new AccountRequest( Core.getInstance(this), Storage.getInstance(this).shares() );
-        spiceManager.execute(request, new AccountRequestListener());
+        GetDevice request = new GetDevice( Core.getInstance(this), Storage.getInstance(this).shares() );
+        spiceManager.execute(request, new GetDeviceListener());
     }
 
     public void onEvent(AccountEvent event){
@@ -312,7 +311,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     }
 
     public void onEvent(GeoEvent event){
-        GeoRequest request = new GeoRequest( Core.getInstance(this), event.lat, event.lng);
+        UpdateGeo request = new UpdateGeo( Core.getInstance(this), event.lat, event.lng);
         spiceManager.execute(request, new VoidRequestListener());
     }
 

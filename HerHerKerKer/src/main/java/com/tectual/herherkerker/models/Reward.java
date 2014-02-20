@@ -16,6 +16,11 @@ import org.joda.time.Days;
 @Table(name = "rewards")
 public class Reward extends Model {
 
+    public static String DELETE = "deleted";
+    public static String WON = "won";
+    public static String USED = "used";
+    public static String DRAW = "draw";
+
     @Column(name = "sid", index = true)
     public Integer sid;
     @Column(name = "instruction")
@@ -47,6 +52,7 @@ public class Reward extends Model {
     public JsonReward toJSON(){
         JsonReward reward = new JsonReward();
         reward.id = sid;
+        reward.state = state;
         return reward;
     }
 

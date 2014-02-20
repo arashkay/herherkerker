@@ -35,6 +35,11 @@ public class JsonRequest {
     }
 
 
+    public JsonRequest(JsonDevice device, String api, String version, List<JsonReward> rewards){
+        this.rewards = rewards;
+        basicInfo(device, api, version);
+    }
+
     public JsonRequest(JsonDevice device, String api, String version, int last_reward_id){
         this.last_reward_id = last_reward_id;
         basicInfo(device, api, version);

@@ -7,6 +7,71 @@
     android:layout_height="match_parent"
     style="@style/Page">
 
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:id="@+id/wallet_intro">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/darker_gray"
+                android:padding="5dp"
+                android:layout_margin="2dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    style="@style/H1"
+                    android:text="کیف پول چیست؟"
+                    />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:text="جوایز و کوپن های هرهرکرکر رایگان و از طرف کسب وکارهای داخل ایران به کاربران داده میشود. اگر شما هم کسب و کار هستید و تمایل دارید کوپن یا جایزه دهید برای اطلاعات بیشتر به منو کسب و کار بروید."
+                    style="@style/P"
+                    />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    style="@style/H2"
+                    android:text="دو دسته اصلی جوایز"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:text="&#8226; همگانی : این جوایز به محض قرار گرفتن در کیف پول قابل استفاده هستند."
+                    style="@style/BulletList"/>
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:text="&#8226; قرعه : این جوایز با اینکه در کیف پول شما رفته اما پس از قرعه کشی به یکنفر یا چندنفر خاص داده خواهند شد."
+                    style="@style/BulletList"/>
+                <RelativeLayout
+                    style="@style/RewardLine"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    style="@style/H1"
+                    android:text="چطوری جایزه یا کوپن بگیرم!"
+                    />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:text="جوایز بصورت اتوماتیک برای شما در لیست جوک ها ارسال میشود. شما تنها جوایزی که دوست دارید و احتمال استفاده آن را میدهید باید به کیف پول خود اضافه کنید. از این طریق سیستم سلایق شما را یاد گرفته و جوایز مرتبط تری به شما خواهد داد."
+                    style="@style/P"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <ListView android:id="@+id/rewardslist"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

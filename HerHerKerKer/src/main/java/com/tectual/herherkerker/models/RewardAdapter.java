@@ -13,9 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.tectual.herherkerker.Confirmation;
 import com.tectual.herherkerker.R;
 
 import com.activeandroid.Model;
+import com.tectual.herherkerker.events.DeleteEvent;
 import com.tectual.herherkerker.events.RedeemEvent;
 
 import java.util.List;
@@ -79,7 +81,7 @@ public class RewardAdapter extends ArrayAdapter<Reward> {
                     public void onClick(View v) {
                         int position = Integer.parseInt(v.getTag().toString());
                         Reward item = (Reward) getItem(position);
-                        EventBus.getDefault().post(new RedeemEvent(item, true));
+                        EventBus.getDefault().post(new RedeemEvent(item, position, true));
                     }
                 });
             }else{
@@ -91,10 +93,18 @@ public class RewardAdapter extends ArrayAdapter<Reward> {
                     public void onClick(View v) {
                         int position = Integer.parseInt(v.getTag().toString());
                         Reward item = (Reward) getItem(position);
-                        EventBus.getDefault().post(new RedeemEvent(item, false));
+                        EventBus.getDefault().post(new RedeemEvent(item, position, false));
                     }
                 });
             }
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = Integer.parseInt(v.getTag().toString());
+                    Reward item = (Reward) getItem(position);
+                    new Confirmation(view.getContext(), item, position);
+                }
+            });
             expiry.setTypeface(faTypeFace);
 
         }

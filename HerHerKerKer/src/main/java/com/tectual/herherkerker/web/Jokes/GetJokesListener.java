@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Jokes;
 
 import android.app.Activity;
 
@@ -18,9 +18,9 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by arash on 28/01/2014.
  */
-public class ListJokesRequestListener implements RequestListener<JsonMixedList> {
+public class GetJokesListener implements RequestListener<JsonMixedList> {
 
-    public ListJokesRequestListener(){
+    public GetJokesListener(){
     }
 
     @Override

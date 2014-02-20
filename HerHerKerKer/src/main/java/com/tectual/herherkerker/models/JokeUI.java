@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tectual.herherkerker.Confirmation;
 import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.events.LikeEvent;
 import com.tectual.herherkerker.events.SharedEvent;
@@ -46,6 +47,15 @@ public class JokeUI {
         }else {
             dislike.setVisibility(View.GONE);
         }
+
+        flag.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = Integer.parseInt(v.getTag().toString());
+                Joke item = (Joke) adapter.getItem(position);
+                new Confirmation(v.getContext(), item, position);
+            }
+        });
 
         sms.setOnClickListener( new View.OnClickListener() {
             @Override

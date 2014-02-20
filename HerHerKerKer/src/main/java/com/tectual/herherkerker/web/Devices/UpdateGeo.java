@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Devices;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;
@@ -9,39 +9,34 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.octo.android.robospice.request.googlehttpclient.GoogleHttpClientSpiceRequest;
 import com.tectual.herherkerker.util.Core;
 import com.tectual.herherkerker.web.data.JsonDevice;
-import com.tectual.herherkerker.web.data.JsonJokes;
-import com.tectual.herherkerker.web.data.JsonQuestions;
 import com.tectual.herherkerker.web.data.JsonRequest;
-
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 
 /**
- * Created by arash on 7/02/2014.
+ * Created by arash on 15/02/2014.
  */
-public class UnlockableRequest  extends GoogleHttpClientSpiceRequest<JsonQuestions> {
+public class UpdateGeo extends GoogleHttpClientSpiceRequest<Object> {
 
     private String baseUrl;
     private JsonRequest json;
 
-    public UnlockableRequest( int id, Core core ) {
-        super( JsonQuestions.class );
-        JsonDevice device = new JsonDevice(core.device_id);
-        json = new JsonRequest(device, core.api, core.version);
-        baseUrl = String.format( "http://herherkerker.com/rewards/%d/unlock.json", id );
+    public UpdateGeo(Core core, double lat, double lng) {
+        super( Object.class );
+        JsonDevice device = new JsonDevice(core.device_id, lat, lng);
+        json = new JsonRequest(device, core.api, core.version );
+        baseUrl = String.format( "http://herherkerker.com/devices/geo.json" );
     }
 
     @Override
-    public JsonQuestions loadDataFromNetwork() throws IOException {
+    public Object loadDataFromNetwork() throws IOException {
         HttpRequest request = getHttpRequestFactory()
                 .buildGetRequest( new GenericUrl( baseUrl ) );
         HttpContent data = new JsonHttpContent( new GsonFactory(), json );
         request.setRequestMethod("POST");
         request.setContent(data);
-        request.setParser(new GsonFactory().createJsonObjectParser());
+        request.setParser( new GsonFactory().createJsonObjectParser() );
         HttpResponse res = request.execute();
-        return res.parseAs( getResultType() );
+        return null;
     }
-
 }

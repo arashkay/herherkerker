@@ -6,7 +6,6 @@ import uk.co.senab.actionbarpulltorefresh.library.Options;
 import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
-import android.app.Activity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 
 import com.activeandroid.Model;
 import com.activeandroid.query.Select;
-import com.google.api.client.util.DateTime;
-import com.octo.android.robospice.GsonGoogleHttpClientSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.tectual.herherkerker.events.FlagEvent;
 import com.tectual.herherkerker.events.JokeEvent;
@@ -30,18 +27,17 @@ import com.tectual.herherkerker.models.JokeAdapter;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.util.Core;
 import com.tectual.herherkerker.util.Storage;
-import com.tectual.herherkerker.web.JokeSpiceRequest;
-import com.tectual.herherkerker.web.LikeJokeRequest;
-import com.tectual.herherkerker.web.ListJokesRequestListener;
-import com.tectual.herherkerker.web.PostJokeRequest;
-import com.tectual.herherkerker.web.ReplyRequest;
-import com.tectual.herherkerker.web.ReplyRequestListener;
-import com.tectual.herherkerker.web.UnlockableRequest;
-import com.tectual.herherkerker.web.UnlockableRequestListener;
+import com.tectual.herherkerker.web.Jokes.CreateJoke;
+import com.tectual.herherkerker.web.Jokes.GetJokes;
+import com.tectual.herherkerker.web.Jokes.GetJokesListener;
+import com.tectual.herherkerker.web.Jokes.LikeJoke;
+import com.tectual.herherkerker.web.Replies.CreateReply;
+import com.tectual.herherkerker.web.Replies.CreateReplyListener;
+import com.tectual.herherkerker.web.Rewards.UnlockReward;
+import com.tectual.herherkerker.web.Rewards.UnlockRewardListener;
 import com.tectual.herherkerker.web.VoidRequestListener;
 import com.tectual.herherkerker.web.data.JsonReward;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,11 +76,8 @@ public class Jokes implements
 
     public void load(){
         int last_reward = Storage.getInstance(activity).rewards();
-        JokeSpiceRequest jokeRequest = new JokeSpiceRequest(Core.getInstance(activity), last_reward);
-        spiceManager.execute(jokeRequest, new ListJokesRequestListener());
-        //test requests
-        //UnlockableRequest unlock = new UnlockableRequest(4, Core.getInstance(activity));
-        //spiceManager.execute(unlock, new UnlockableRequestListener(activity));
+        GetJokes jokeRequest = new GetJokes(Core.getInstance(activity), last_reward);
+        spiceManager.execute(jokeRequest, new GetJokesListener());
     }
 
     private void listJokes(){
@@ -118,7 +111,7 @@ public class Jokes implements
         if(event.increased){
             event.view.setVisibility(View.GONE);
             dislike.setVisibility(View.VISIBLE);
-            LikeJokeRequest request = new LikeJokeRequest(event.joke.sid);
+            LikeJoke request = new LikeJoke(event.joke.sid);
             spiceManager.execute(request, new VoidRequestListener());
         }else{
             event.view.setVisibility(View.GONE);
@@ -127,7 +120,9 @@ public class Jokes implements
     }
 
     public void onEvent(FlagEvent event){
-        //load();
+        event.joke.delete();
+        list.remove(event.position);
+        adapter.notifyDataSetChanged();
     }
 
     public void onEvent(JokeEvent event){
@@ -138,7 +133,7 @@ public class Jokes implements
     public void onEvent(NewJokeEvent event){
         Toast.makeText(activity.getApplicationContext(), R.string.joke_is_posted,
                 Toast.LENGTH_LONG).show();
-        PostJokeRequest request = new PostJokeRequest(Core.getInstance(activity), event.joke);
+        CreateJoke request = new CreateJoke(Core.getInstance(activity), event.joke);
         spiceManager.execute(request, new VoidRequestListener());
     }
 
@@ -152,8 +147,8 @@ public class Jokes implements
     public void onEvent(UnlockableEvent event){
         if(event.accepted){
             current_reward = event.reward;
-            UnlockableRequest request = new UnlockableRequest(event.reward.sid, Core.getInstance(activity));
-            spiceManager.execute(request, new UnlockableRequestListener(activity));
+            UnlockReward request = new UnlockReward(event.reward.sid, Core.getInstance(activity));
+            spiceManager.execute(request, new UnlockRewardListener(activity));
         }else{
             list.remove(2);
             adapter.notifyDataSetChanged();
@@ -165,8 +160,12 @@ public class Jokes implements
 
     public void onEvent(ReplyEvent event){
         JsonReward reward = current_reward.toJSON();
-        ReplyRequest request = new ReplyRequest(event.question.id, Core.getInstance(activity), event.answer, reward);
-        spiceManager.execute(request, new ReplyRequestListener());
+        CreateReply request = new CreateReply(event.question.id, Core.getInstance(activity), event.answer, reward);
+        spiceManager.execute(request, new CreateReplyListener());
+    }
+
+    public void Unregister(){
+        EventBus.getDefault().unregister(this);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Jokes;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -12,11 +12,11 @@ import java.io.IOException;
 /**
  * Created by arash on 2/02/2014.
  */
-public class LikeJokeRequest extends GoogleHttpClientSpiceRequest<Object> {
+public class LikeJoke extends GoogleHttpClientSpiceRequest<Object> {
 
     private String baseUrl;
 
-    public LikeJokeRequest( int sid ) {
+    public LikeJoke(int sid) {
         super( Object.class );
         baseUrl = String.format( String.format("http://herherkerker.com/messages/%02d/like.json", sid) );
     }

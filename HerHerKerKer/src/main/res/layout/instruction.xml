@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/QuestionDialog">
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:cropToPadding="true"
+            android:id="@+id/qr_code"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/Notes"
+            android:gravity="center"
+            android:id="@+id/reward_warning"
+            android:text="@string/reward_warning"/>
+
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/use_now"
+            style="@style/Primary"
+            android:id="@+id/use"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/full_instruction"
+            style="@style/P"/>
+
+    </LinearLayout>
+</ScrollView>

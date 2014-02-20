@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/pager"
@@ -20,79 +19,105 @@
         android:background="#111"
         android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="joke">
-            <TextView
-                android:id="@+id/drawer_joke_label"
-                android:text="@string/drawer_joke"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_joke_icon"
-                android:text="&#xf0fe;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="winners">
-            <TextView
-                android:id="@+id/drawer_winners_label"
-                android:text="@string/winners"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_winners_icon"
-                android:text="&#xf0c0;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="facebook">
-            <TextView
-                android:id="@+id/drawer_fans_label"
-                android:text="@string/drawer_fans"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_fans_icon"
-                android:text="&#xf082;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="whats_reward">
-            <TextView
-                android:id="@+id/drawer_whats_reward_label"
-                android:text="@string/drawer_whats_reward"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_whats_reward_icon"
-                android:text="&#xf06b;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="business">
-            <TextView
-                android:id="@+id/drawer_business_label"
-                android:text="@string/drawer_business"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_business_icon"
-                android:text="&#xf0b1;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/DrawerItem"
-            android:tag="about">
-            <TextView
-                android:id="@+id/drawer_credits_label"
-                android:text="@string/drawer_about"
-                style="@style/DrawerItemLabel"/>
-            <TextView
-                android:id="@+id/drawer_credits_icon"
-                android:text="&#xf17b;"
-                style="@style/DrawerItemIcon" />
-        </LinearLayout>
+        <ScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_gravity="right">
 
+            <LinearLayout
+                android:id="@+id/drawer_menu_list"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="joke">
+                    <TextView
+                        android:id="@+id/drawer_joke_label"
+                        android:text="@string/drawer_joke"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_joke_icon"
+                        android:text="&#xf0fe;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="winners">
+                    <TextView
+                        android:id="@+id/drawer_winners_label"
+                        android:text="@string/winners"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_winners_icon"
+                        android:text="&#xf0c0;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="facebook">
+                    <TextView
+                        android:id="@+id/drawer_fans_label"
+                        android:text="@string/drawer_fans"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_fans_icon"
+                        android:text="&#xf082;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="whats_reward">
+                    <TextView
+                        android:id="@+id/drawer_whats_reward_label"
+                        android:text="@string/drawer_whats_reward"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_whats_reward_icon"
+                        android:text="&#xf06b;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="business">
+                    <TextView
+                        android:id="@+id/drawer_business_label"
+                        android:text="@string/drawer_business"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_business_icon"
+                        android:text="&#xf0b1;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="about">
+                    <TextView
+                        android:id="@+id/drawer_credits_label"
+                        android:text="@string/drawer_about"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_credits_icon"
+                        android:text="&#xf17b;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/DrawerItem"
+                    android:tag="help">
+                    <TextView
+                        android:id="@+id/drawer_help_label"
+                        android:text="@string/drawer_help"
+                        style="@style/DrawerItemLabel"/>
+                    <TextView
+                        android:id="@+id/drawer_help_icon"
+                        android:text="&#xf059;"
+                        style="@style/DrawerItemIcon" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,19 +1,18 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Devices;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 import com.tectual.herherkerker.events.AccountEvent;
 import com.tectual.herherkerker.web.data.JsonActivity;
-import com.tectual.herherkerker.web.data.JsonDevice;
 
 import de.greenrobot.event.EventBus;
 
 /**
  * Created by arash on 15/02/2014.
  */
-public class AccountRequestListener implements RequestListener<JsonActivity> {
+public class GetDeviceListener implements RequestListener<JsonActivity> {
 
-    public AccountRequestListener(){
+    public GetDeviceListener(){
     }
 
     @Override

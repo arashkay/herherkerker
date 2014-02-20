@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web;
+package com.tectual.herherkerker.web.Rewards;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -18,9 +18,9 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by arash on 13/02/2014.
  */
-public class RewardsRequestListener implements RequestListener<JsonDeviceRewards> {
+public class GetRewardsListener implements RequestListener<JsonDeviceRewards> {
 
-    public RewardsRequestListener(){
+    public GetRewardsListener(){
     }
 
     @Override

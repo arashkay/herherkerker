@@ -1,26 +1,29 @@
 package com.tectual.herherkerker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.activeandroid.query.Select;
 import com.octo.android.robospice.SpiceManager;
+import com.tectual.herherkerker.events.DeleteEvent;
 import com.tectual.herherkerker.events.RedeemEvent;
 import com.tectual.herherkerker.events.RewardsEvent;
+import com.tectual.herherkerker.events.UseEvent;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.models.RewardAdapter;
 import com.tectual.herherkerker.util.Core;
-import com.tectual.herherkerker.web.RewardsRequest;
-import com.tectual.herherkerker.web.RewardsRequestListener;
+import com.tectual.herherkerker.web.Rewards.GetRewards;
+import com.tectual.herherkerker.web.Rewards.GetRewardsListener;
+import com.tectual.herherkerker.web.Rewards.SyncRewards;
+import com.tectual.herherkerker.web.Rewards.SyncRewardsListener;
 
 import org.joda.time.DateTime;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -41,6 +44,7 @@ public class Wallet implements
     private View view;
     private SpiceManager spiceManager;
     private List<Reward> list;
+    public Reward current;
     private RewardAdapter adapter;
 
     public Wallet(MainActivity a, View v){
@@ -57,7 +61,10 @@ public class Wallet implements
         HerherKerker app = ((HerherKerker) activity.getApplicationContext());
         listRewards();
         if(app.is_first_load(activity.getResources().getInteger(R.integer.wallet_tab))){
-            //load();
+            load();
+            List<Reward> changed_rewards = new Select().from(Reward.class).where("is_changed=1").execute();
+            SyncRewards request = new SyncRewards(Core.getInstance(activity), changed_rewards);
+            spiceManager.execute(request, new SyncRewardsListener(changed_rewards));
         }
     }
 
@@ -70,6 +77,12 @@ public class Wallet implements
         list = new Select().from(Reward.class).where("(state IN ('collected', 'draw') AND expires_at > "+now+") OR (state = 'won' AND expires_at > "+past+")").orderBy("expires_at ASC").limit(50).execute();
 
         if(list!=null){
+            ScrollView intro = (ScrollView) view.findViewById(R.id.wallet_intro);
+            if(intro!=null){
+                ViewGroup container = (ViewGroup) intro.getParent();
+                container.removeView(intro);
+            }
+
             if(adapter!=null)
                 adapter.clear();
             adapter = new RewardAdapter(activity,
@@ -84,13 +97,35 @@ public class Wallet implements
     }
 
     public void load(){
-        RewardsRequest rewardsRequest = new RewardsRequest(Core.getInstance(activity));
-        spiceManager.execute(rewardsRequest, new RewardsRequestListener());
+        GetRewards rewardsRequest = new GetRewards(Core.getInstance(activity));
+        spiceManager.execute(rewardsRequest, new GetRewardsListener());
     }
-
 
     public void onEvent(RewardsEvent event){
         listRewards();
+    }
+
+    public void onEvent(DeleteEvent event){
+        Reward reward = event.reward;
+        reward.state = Reward.DELETE;
+        Vanished(reward, event.position);
+    }
+
+    public void onEvent(UseEvent event){
+        Reward reward = event.reward;
+        reward.state = Reward.USED;
+        Vanished(reward, event.position);
+    }
+
+    private void Vanished(Reward reward, int position){
+        reward.is_changed = true;
+        reward.save();
+        list.remove(position);
+        adapter.notifyDataSetChanged();
+        List<Reward> rewards = new ArrayList<Reward>();
+        rewards.add(reward);
+        SyncRewards request = new SyncRewards(Core.getInstance(activity), rewards);
+        spiceManager.execute(request, new SyncRewardsListener(rewards));
     }
 
     public void onEvent(RedeemEvent event){
@@ -102,7 +137,12 @@ public class Wallet implements
             intent.setData(data);
             view.getContext().startActivity(intent);
         }else {
-            listRewards();
+            current = event.reward;
+            new PopupPageBuilder(activity, R.layout.instruction, activity.getString(R.string.reward_info), event);
         }
+    }
+
+    public void Unregister(){
+        EventBus.getDefault().unregister(this);
     }
 }
