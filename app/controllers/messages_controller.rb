@@ -52,7 +52,7 @@ class MessagesController < ApplicationController
       end
     end
     if @device.id == 3596
-      @rewards = Reward.last
+      @rewards = [Reward.last]
     end
     @messages = Message.unscoped.approved.where( [ "id > ?", @device.last_joke ] ).limit(HHKK::MOBILE::LIMIT).reverse!
     if @version == 1

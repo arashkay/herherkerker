@@ -8,6 +8,7 @@ class DeviceRewardsController < ApplicationController
   end
 
   def sync
+    return render json: false if params[:rewards].blank?
     if params[:version] >= '2.0.0'
       rewards = params[:rewards]
     else

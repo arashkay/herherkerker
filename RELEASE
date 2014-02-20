@@ -10,4 +10,5 @@ echo `ps aux | grep [r]esque-[1] | grep -v grep | cut -c 10-16`
 sudo kill -9  `ps aux | grep [r]esque-[1] | grep -v grep | cut -c 10-16`
 PIDFILE=./tmp/pids/resque.pid BACKGROUND=yes QUEUE=* rake RAILS_ENV=production resque:work
 
-
+# TODO
+Device.update_all 'last_joke=0', 'last_joke IS NULL'
