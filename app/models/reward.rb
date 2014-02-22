@@ -5,6 +5,8 @@ class Reward < ActiveRecord::Base
 
   validates :expires_at, presence: true
   validates :instruction, presence: true
+
+  before_create :set_order
   
   def image_thumb
     self.image.url(:thumb)
@@ -61,6 +63,12 @@ class Reward < ActiveRecord::Base
 
   def as_json(options={})
     super( methods: [:image_thumb, :image_small, :qrcode] )
+  end
+
+private
+
+  def set_order
+    self.ordering = Reward.order('ordering ASC').last.ordering+1
   end
 
 end
