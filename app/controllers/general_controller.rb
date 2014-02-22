@@ -26,4 +26,8 @@ class GeneralController < ApplicationController
     @questions = Question.all
   end
 
+  def index
+    render layout: 'application'
+  end
+
 end

@@ -1,4 +1,10 @@
 general:
+  links:
+    direct: '/herherkerker.apk'
+    cando: http://cando.asr24.com/app.jsp?id=2262589
+    bazar: http://cafebazaar.ir/app/com.tectual.herherkerker/?l=en
+    myket: http://myket.ir/appdetail.aspx?id=com.tectual.herherkerker
+    plaza: http://www.plazza.ir/app/9684/
   mobile:
     jokes_limit: 10
     ads_interval: 5 #hours

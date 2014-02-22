@@ -1,6 +1,6 @@
 Herherkerker::Application.routes.draw do
 
-  root :to => 'messages#index'
+  root :to => 'general#index'
 
   resources :messages do
     collection do

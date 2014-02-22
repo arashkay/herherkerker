@@ -18,7 +18,7 @@ class DevicesController < ApplicationController
     @device.shares_count = params[:shares] if params[:shares].to_i > @device.shares_count
     @device.increment_login
     @device.calculate_badges
-    @device.version = params[:version]
+    @device.version = params[:version] || '2.0.0'
     @device.save
     render json: { likes: (@device.nil? ? 0 : @device.like_count), badges: @device.badges }
   end

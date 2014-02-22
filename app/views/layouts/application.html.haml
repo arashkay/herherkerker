@@ -24,23 +24,5 @@
         ga('send', 'pageview');
 
   %body
-    .loading.fn-loading
-      لطفا صبر کنید ...
-    #new_message.modal.hide.fade
-      .modal-header
-        %i.icon-remove-sign.close{ :type => :button, :data => { :dismiss => :modal, :aria => { :hidden => :true } } }
-        %h3 جوک
-      .modal-body
-        %textarea{ :name => 'message[body]' }
-        .alert.alert-success.fn-submitted جوک شما با موفقیت ثبت گردید... به محض تایید مدیریت قابل دسترسی عموم خواهد بود (مدت زمان تخمینی کمتر از ٢٤ ساعت)
-      .modal-footer
-        %a.btn.btn-primary{ :data => { :remote => messages_path, :success => 'hhkk.saved', :parent => '#new_message' } } ارسال
-        %a.btn{ :href => '#', :data => { :dismiss => :modal } } انصراف
-    .tools
-      .container
-        %span چیز بامزه داری بگی؟
-        %a.btn.btn-large.fn-send{ :href => '#new_message', :data => { :toggle => :modal } } ارسال کن
-        .logo
-          %img{ :src => '/assets/logo.png' }
     .container
       =yield
