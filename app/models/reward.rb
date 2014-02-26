@@ -48,6 +48,8 @@ class Reward < ActiveRecord::Base
 
   def collect(device)
     #uncomment it only if claimings for voucher after capped condition is low #return nil unless self.live?
+    new_reward = DeviceReward.where({ device_id: device.id, reward_id: self.id }).first
+    return new_reward unless new_reward.blank?
     self.collected += 1
     self.cap if self.collected >= self.total
     self.save
