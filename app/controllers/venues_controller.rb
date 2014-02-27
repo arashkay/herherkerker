@@ -19,4 +19,13 @@ class VenuesController < ApplicationController
     render json: @venue.save
   end
 
+  def checkin
+    @venue = Venue.find params[:id]
+    unless @venue.nil?
+      render json: @venue.checkin! @device, params[:action] 
+    else
+      render nil
+    end
+  end
+
 end

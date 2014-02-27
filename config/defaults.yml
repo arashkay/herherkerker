@@ -7,6 +7,27 @@ general:
     bazar: http://cafebazaar.ir/app/com.tectual.herherkerker/?l=en
     myket: http://myket.ir/appdetail.aspx?id=com.tectual.herherkerker
     plaza: http://www.plazza.ir/app/9684/
+  actions: 
+    read:
+      - { uname: magazine , text: مجله میخونم }
+      - { uname: book     , text: کتاب میخونم }
+      - { uname: newspaper, text: روزنامه میخونم }
+      - { uname: study    , text: درس میخونم }
+    watch:
+      - { uname: film     , text: فیلم میبینم }
+      - { uname: tv       , text: تلویزیون میبینم }
+      - { uname: music    , text: آهنگ گوش میدم }
+    eat:
+      - { uname: coffee   , text: قهوه میخورم }
+      - { uname: cake     , text: کیک میخورم }
+      - { uname: juice    , text: آب میوه میخورم }
+      - { uname: tea      , text: چایی میخورم }
+      - { uname: pizza    , text: پیتزا میخورم }
+      - { uname: sandwitch, text: ساندویچ میخورم }
+      - { uname: breakfast, text: صبحانه میخورم }
+      - { uname: lunch    , text: نهار میخورم }
+      - { uname: dinner   , text: شام میخورم }
+    etc:
   mobile:
     jokes_limit: 10
     ads_interval: 5 #hours

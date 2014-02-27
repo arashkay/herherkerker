@@ -11,6 +11,8 @@ module HHKK
   end
 
   CONFIGS = configs
+
+  ACTIONS = HHKK::CONFIGS['actions']
   
   module REPORT
     

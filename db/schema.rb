@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140212050106) do
+ActiveRecord::Schema.define(:version => 20140226052847) do
 
   create_table "device_rewards", :force => true do |t|
     t.integer  "reward_id",  :null => false
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20140212050106) do
 
   add_index "device_rewards", ["device_id"], :name => "device_rewards_device_id_fk"
   add_index "device_rewards", ["reward_id"], :name => "device_rewards_reward_id_fk"
+
+  create_table "device_venues", :force => true do |t|
+    t.integer  "device_id"
+    t.integer  "venue_id"
+    t.string   "action"
+    t.string   "uname"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "device_venues", ["device_id"], :name => "device_venues_device_id_fk"
+  add_index "device_venues", ["venue_id"], :name => "device_venues_venue_id_fk"
 
   create_table "devices", :force => true do |t|
     t.string   "did"
@@ -109,8 +121,23 @@ ActiveRecord::Schema.define(:version => 20140212050106) do
     t.integer  "ordering",           :default => 0
   end
 
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "state"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "likes"
+  end
+
   add_foreign_key "device_rewards", "devices", :name => "device_rewards_device_id_fk"
   add_foreign_key "device_rewards", "rewards", :name => "device_rewards_reward_id_fk"
+
+  add_foreign_key "device_venues", "devices", :name => "device_venues_device_id_fk"
+  add_foreign_key "device_venues", "venues", :name => "device_venues_venue_id_fk"
 
   add_foreign_key "replies", "devices", :name => "replies_device_id_fk"
   add_foreign_key "replies", "questions", :name => "replies_question_id_fk"

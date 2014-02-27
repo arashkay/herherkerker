@@ -16,7 +16,10 @@ class Venue < ActiveRecord::Base
       transitions :to => :rejected
     end
   end
-
-
+  
+  def checkin!(device, action)
+    action = HHKK::ACTIONS.values.flatten.compact.find { |i| i['uname'] == action }
+    UserVenue.create( { device_id: device.id, action: action['text'], uname: action['uname'] } )
+  end
 
 end
