@@ -1,6 +1,8 @@
 Herherkerker::Application.routes.draw do
 
-  devise_for :businesses, controllers: { sessions: "sessions" }
+  devise_for :businesses, controllers: { sessions: "sessions" } do
+    get '/business' => 'sessions#new'
+  end
 
   root to: 'general#index'
 
@@ -67,7 +69,7 @@ Herherkerker::Application.routes.draw do
   get '/charts' => 'admin#charts'
   get '/dashboard' => 'admin#dashboard'
 
-  namespace :business do
+  namespace :business, only:[] do
     get :dashboard
   end
 

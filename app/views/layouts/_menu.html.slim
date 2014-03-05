@@ -1,8 +1,7 @@
 -unless session[:admin]
   li class=(params[:action]=='login'? :active : '' )
-    a href=new_business_session_path
-      i.fa.fa-user.fa-lg
-      |  ورود اعضا
+    a href=business_path
+      |  کسب و کار
 -if session[:admin]
   li class=(params[:action]=='dashboard'? :active : '' )
     a href=dashboard_path
