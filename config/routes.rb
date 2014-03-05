@@ -1,6 +1,8 @@
 Herherkerker::Application.routes.draw do
 
-  root :to => 'general#index'
+  devise_for :businesses, controllers: { sessions: "sessions" }
+
+  root to: 'general#index'
 
   resources :messages do
     collection do
@@ -8,6 +10,7 @@ Herherkerker::Application.routes.draw do
       match :today
       post :more
       post :likes
+      post :bulk_reject
     end
     member do
       post :approve
@@ -60,8 +63,13 @@ Herherkerker::Application.routes.draw do
   
   get '/winners' => 'devices#winners'
   get '/last' => 'messages#last'
-  get '/charts' => 'general#charts'
-  get '/admin' => 'general#admin'
+
+  get '/charts' => 'admin#charts'
+  get '/dashboard' => 'admin#dashboard'
+
+  namespace :business do
+    get :dashboard
+  end
 
   get '/:id' => 'messages#show', :as => :joke
 

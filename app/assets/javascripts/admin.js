@@ -37,7 +37,17 @@ $.extend( hhkk, {
   },
   rewards: {
     init: function(){
-      $('.instruction span').click(hhkk.rewards.toggle);
+      $('.fn-reward .fn-change').click(hhkk.rewards.change);
+    },
+    change: function(){
+      var $this = $(this);
+      var item = $this.parents('.fn-reward');
+      var modal = $('#new_reward').modal('show');
+      $("[name='reward[instruction]']", modal).val($('[name=instruction]',item).val());
+      $("[name='reward[expires_at]']", modal).val(item.data('db-date'));
+      $("[name='reward[total]']", modal).val(item.data('db-total'));
+      $("[name='reward[total_winners]']", modal).val(item.data('db-winners'));
+      $(".fn-save", modal).data('remote', $this.data('url')).attr('data-method', 'PUT');
     },
     toggle: function(){
       var box = $(this).hide().parents('.instruction');

@@ -1,39 +1,54 @@
-//@import 'bootstrap3'
-@import 'rbootstrap', 'rbootstrap-responsive'
-@import 'font-awesome/css/font-awesome.min.css'
-@import 'main'
-
-body.admin
-  .modal-body
-    text-align: right
-
-.center
-  text-align: center
+$red: #D9534F
+$blue: #3FA4FF
+$light-blue: #E3F2F7
+$green: #15AF00
+$dark-green: #1E8E0C
+$light-green: #E1F2DE
 
 .legends
   font-size: 0
   .label
+    font-size: 14px
     display: inline-block
     padding: 5px
     margin: 2px
 
-.answer
-  background: #E0D8C5
-  border-radius: 3px
-  padding: 3px 10px
-  line-height: 26px
-  margin: 2px 0
-  &.button
-    background: #998E77
-    color: #fff
-    text-align: center
-    cursor: pointer
-  .icon
-    color: #993232
-    display: inline-block
-    margin-top: 4px
-    text-decoration: none
-    cursor: pointer
+.tab-pane
+  padding: 10px 0
+  .action-bar
+    padding: 10px 0
+    text-align: left
+    font-size: 12px
+    .btn
+      background: #333
+      color: #ddd
+      i
+        border-left: 1px solid #777
+        margin-left: 5px
+        padding-left: 5px
+        font-size: 14px
+      &:hover
+        background: #000
+        color: #fff
+
+.modal
+  .answer
+    background: $light-blue
+    border-radius: 3px
+    padding: 3px 10px
+    line-height: 26px
+    margin: 2px 0
+    &.button
+      background: $blue
+      color: #fff
+      text-align: center
+      cursor: pointer
+    .fa
+      color: $red
+      display: inline-block
+      margin-top: 4px
+      text-decoration: none
+      cursor: pointer
 .question, .reward
   background: #ccc
   padding: 5px 10px
@@ -48,31 +63,57 @@ body.admin
     .fn-enable
       display: none
       
-.reward
-  text-align: center
-  display: inline-block
-  width: 30%
-  .date
-    font-weight: bold
-    direction: ltr
-  .instruction
-    span
-      display: block
-      height: 30px
-      overflow: auto
-    textarea
+.list
+  margin: 0 20px
+  >.row
+    position: relative
+    padding: 5px 0
+    border-bottom: #777 1px dashed
+    border-right: transparent 8px solid
+    &:hover
+      border-right-color: #3FA4FF
+    .actions
       display: none
+    &:hover
+      .actions
+        display: inline-block
+        position: absolute
+        left: 10px
+        bottom: 10%
+    &.live
+      border-right-color: $green
+      background: $light-blue
+      &:hover
+        border-right-color: $dark-green
+.questions
+  >.row
+    padding: 10px 5px
+  .answer
+    border: #aaa 1px solid
+    border-radius: 5px
+    padding: 5px
+    margin: 1px 3px
+    display: inline-block
+    i
+      font-style: normal
+      border-left: #aaa 1px dashed
+      padding-left: 3px
+      margin-left: 3px
+      color: $blue
+.rewards
+  .date
+  .instruction
+    border-right: #aaa 1px solid
+    padding-right: 5px
   .image
     margin: auto
     position: relative
     overflow: hidden
-    width: 100px
-    height: 100px
-  input[type=text]
-    width: 20px
-    background: rgba(255,255,255,0.3)
-    border: none
-    border-bottom: #fff 1px dashed
+    width: 70px
+    height: 70px
+    img
+      width: 70px
+      height: 70px
   input[type=file]
     cursor: pointer
     direction: ltr

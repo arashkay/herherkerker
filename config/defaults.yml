@@ -1,5 +1,11 @@
 general:
-  version: 2.0.2
+  version: 2.0.4
+  admin:
+    password: 81afe43e6afb3a888387598593632e9aacae5fa5
+  filtering:
+    matches: "لر-لره-قزوین-قزوینیه-رشت-رشتیه-ترکه-اصفهانی-اصفهانیه-کیر-کیری-کونی-کسشر-کس شر-کس کش-کسکش-کس کشی-کسکشی-جاکش-جاکشی-اذان-آخوند-آخونده-ملا-رهبر-خمینی-خامنه ای-جنتی- آبادانیه"
+    minimum: 15
+    maximum: 300
   links:
     direct: '/system/herherkerker.apk'
     google: https://play.google.com/store/apps/details?id=com.tectual.herherkerker&hl=en

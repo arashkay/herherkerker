@@ -14,7 +14,8 @@ class RewardsController < ApplicationController
 
   def update
     @reward = Reward.find params[:id]
-    render json: @reward.update_attributes( params[:reward] )
+    @reward.update_attributes( params[:reward] )
+    render json: @reward
   end
 
   def disable

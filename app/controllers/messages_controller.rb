@@ -29,8 +29,11 @@ class MessagesController < ApplicationController
 
   def list
     @total = Message.unscoped.fresh.count
-    @messages = Message.unscoped.fresh.limit(250)
-    render layout: 'admin'
+    if params[:filter].blank?
+      @messages = Message.unscoped.fresh.limit(50)
+    else
+      @messages = Message.unscoped.fresh.bad_jokes
+    end
   end
 
   def likes
@@ -91,6 +94,11 @@ class MessagesController < ApplicationController
     end
     @message.destroy
     render :json => @message
+  end
+
+  def bulk_reject
+    Message.unscoped.fresh.bad_jokes.destroy_all
+    render json: true
   end
 
   def like

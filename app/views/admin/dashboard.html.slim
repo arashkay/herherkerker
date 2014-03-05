@@ -1,0 +1,121 @@
+= content_for :head
+  =stylesheet_link_tag "admin", :media => "all"
+  =javascript_include_tag "admin"
+#new_reward.modal.fade role="dialog" aria-labelledby="rewardModal" aria-hidden="true"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        i.fa.fa-times.close data-dismiss='modal' data-aria-hidden='true'
+        h4.modal-title ویرایش جایزه
+      .modal-body
+        form.form-horizontal role='form'
+          .form-group
+            label.control-label.col-sm-2 جایزه
+            .col-sm-10
+              textarea.form-control name='reward[instruction]'
+          .form-group
+            label.control-label.col-sm-2 تاریخ انقضا
+            .col-sm-3
+              input.form-control type='text' name='reward[expires_at]' placeholder='21/01/2013'
+          .form-group
+            label.control-label.col-sm-2 تعداد کل
+            .col-sm-3
+              input.form-control type='text' name='reward[total]' value=1000
+          .form-group
+            label.control-label.col-sm-2 تعداد برنده 
+            .col-sm-3
+              input.form-control type='text' name='reward[total_winners]' value=0
+              .help-block  درصورتی که قرعه کشی باشد 
+      .modal-footer
+        a.btn.btn-primary.fn-save data-remote=rewards_path data-url=rewards_path data-success='hhkk.rewards.saved' data-parent='#new_reward'  ذخیره
+        a.btn href='#' data-dismiss='modal' انصراف
+ 
+.template
+  .answer.fn-answer
+    .row
+      .col-xs-5
+        input.form-control name='answers[][title]' type='text' placeholder='جواب'
+      .col-xs-5
+        input.form-control name='answers[][value]' type='text' placeholder='مقدار'
+      .col-xs-2
+        a.fn-remove
+          i.fa.fa-times.fa-2x
+#new_question.modal.fade role="dialog" aria-labelledby="rewardModal" aria-hidden="true"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        i.fa.fa-times.close data-dismiss='modal' data-aria-hidden='true'
+        h4.modal-title ویرایش سوال
+      .modal-body
+        form.form-horizontal role='form'
+          .form-group
+            label.control-label.col-sm-2 سوال
+            .col-sm-10
+              input.form-control type='text' name='question[title]'
+          .form-group
+            label.control-label.col-sm-2  نوع
+            .col-sm-10
+              = select :question, :question_type, options_for_select( Question::TYPES )
+          .answers.fn-answers
+          .answer.button.fn-add-answer افزودن جواب
+      .modal-footer
+        a.btn.btn-primary data-remote=questions_path data-success='hhkk.questions.saved' data-parent='#new_question' ذخیره
+        a.btn href='#' data-dismiss='modal' انصراف
+
+h1 داشبورد مدیریت
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#rewards-tab" کوپن ها 
+  li
+    a data-toggle="tab" href="#questions-tab" سوالات 
+.tab-content
+  #rewards-tab.tab-pane.active
+    .action-bar
+      a.btn data-target='#new_reward' data-toggle='modal'
+        i.fa.fa-plus.fa-lg
+        |  افزودن کوپن
+    .list.rewards
+      - @rewards.each do |reward|
+        .row.fn-reward class=(reward.live? ? 'live' : '' ) data-db-date=reward.expires_at.strftime('%d/%m/%Y') data-db-total=reward.total data-db-winners=reward.total_winners
+          input name='instruction' type='hidden' value=reward.instruction
+          .col-sm-2
+            .image
+              input type='file' name='file' data-url=attach_reward_path(reward) data-uploader='true' data-callback='hhkk.rewards.attached'
+              img src=reward.image.url(:thumb)
+          .col-sm-3
+            .date= reward.expires_at.strftime '%a - %d/%m'
+            .date-to= distance_of_time_in_words_to_now reward.expires_at
+            .detail
+              span تا سقف #{reward.total} شرکت کننده و  #{reward.total_winners} برنده 
+          .col-sm-7
+            .instruction= reward.instruction
+          .actions
+            .btn-group
+              a.btn.btn-primary.fn-change data-url=reward_path(reward) تغییر
+              a.btn.btn-primary.fn-enable data-remote=enable_reward_path(reward) data-success='hhkk.rewards.enabled' زنده
+              a.btn.btn-warning.fn-disable data-remote=disable_reward_path(reward) data-success='hhkk.rewards.disabled' خاموش
+              a.btn.btn-success data-remote=up_reward_path(reward) data-success='hhkk.rewards.changed'  بالاتر
+  #questions-tab.tab-pane
+    .action-bar
+      a.btn.fn-send href='#new_question' data-toggle='modal'
+        i.fa.fa-plus.fa-lg
+        |   سوال جدید
+    .list.questions
+      - @questions.each do |question|
+        .row.fn-question class=(question.is_live ? 'live' : '' )
+          .row
+            .col-sm-2
+              .type نوع #{question.prety_type}
+            .col-sm-10
+              .title= question.title
+          .row
+            .col-sm-12
+              - if question.options[:answers]
+                - question.options[:answers].each do |answer|
+                  span.answer
+                    i= answer[:title]
+                    |  
+                    span= answer[:value]
+            .actions
+              a.btn.btn-primary.fn-enable data-remote=enable_question_path(question) data-success='hhkk.questions.enabled' زنده
+              a.btn.btn-warning.fn-disable data-remote=disable_question_path(question) data-success='hhkk.questions.disabled' خاموش

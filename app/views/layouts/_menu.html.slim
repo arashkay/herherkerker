@@ -1,0 +1,16 @@
+-unless session[:admin]
+  li class=(params[:action]=='login'? :active : '' )
+    a href=new_business_session_path ورود اعضا
+-if session[:admin]
+  li class=(params[:action]=='dashboard'? :active : '' )
+    a href=dashboard_path
+      i.fa.fa-dashboard
+      |   داشبورد
+  li class=(params[:action]=='charts'? :active : '' )
+    a href=charts_path
+      i.fa.fa-bar-chart-o
+      |   نمودارها
+  li class=(params[:action]=='list'? :active : '' )
+    a href=list_messages_path
+      i.fa.fa-filter
+      |  بررسی جوک

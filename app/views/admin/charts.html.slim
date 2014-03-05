@@ -1,0 +1,44 @@
+- content_for :head do
+  =stylesheet_link_tag "admin", :media => "all"
+  =javascript_include_tag "chart.min", 'admin', 'report'
+  javascript:
+    $(function(){
+      hhkk.charts.registrations( #{@registrations.to_json.html_safe} );
+      hhkk.charts.daily_users( #{@daily_users.to_json.html_safe}, #{@inactive_users.to_json.html_safe} );
+      hhkk.charts.rewards( #{@rewards.to_json.html_safe}, #{@collected.to_json.html_safe}, #{@total_rewards.to_json.html_safe} );
+      hhkk.charts.versions( #{@versions.to_json.html_safe} );
+      hhkk.charts.total_users( #{@total_users.to_json.html_safe} );
+      hhkk.charts.preferences( #{@preferences.to_json.html_safe}, #{@preferences_label.to_json.html_safe} );
+      hhkk.charts.age( #{@age.to_json.html_safe}, #{@age_label.to_json.html_safe} );
+    });
+.center
+  .row
+    .col-sm-6
+      h3 Daily Registrations
+      canvas#registrations width='400' height='250'
+    .col-sm-6
+      h3 Daily Users
+      canvas#dailyusers width='400' height='250'
+  .row
+    .col-sm-6
+      h3 Daily Rewards
+      canvas#rewards width='400' height='250'
+      .legends.fn-reward-legend
+    .col-sm-6
+      h3 Device Version
+      canvas#versions width='400' height='250'
+      .legends.fn-version-legend
+  .row
+    .col-sm-6
+      h3 Total Users
+      canvas#totalusers width='400' height='250'
+      .legends.fn-total-users-legend
+    .col-sm-6
+      h3 Preferences
+      canvas#preferences width='400' height='250'
+      .legends.fn-preferences-legend
+  .row
+    .col-sm-6
+      h3 AGE GROUPS
+      canvas#age width='400' height='250'
+      .legends.fn-age-legend

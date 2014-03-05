@@ -18,4 +18,9 @@ class Message < ActiveRecord::Base
     super( :only => [:id, :body, :likes, :device_id],:methods => :post_date)
   end
 
+  def self.bad_jokes(matches=HHKK::CONFIGS['filtering']['matches'], min=HHKK::CONFIGS['filtering']['minimum'], max=HHKK::CONFIGS['filtering']['maximum'])
+    query = matches.split('-').map{ |i| "body LIKE '% #{i.strip} %' OR body LIKE '#{i.strip} %' " }.join(' OR ')
+    fresh.where(["#{query} OR length(body) < ? OR length(body) > ?", min, max])
+  end
+
 end

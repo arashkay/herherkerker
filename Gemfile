@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'haml-rails'
 gem 'mysql2'
 gem 'foreigner'
 gem 'capistrano', '2.15.5'
@@ -15,6 +14,8 @@ gem "paperclip", "~> 2.7"
 gem 'aasm'
 gem "resque", "~> 1.25.1"
 gem 'geocoder'
+gem 'devise'
+gem 'slim'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -40,6 +41,6 @@ end
 
 # To use debugger
 group :development do
-#  gem 'debugger'
+  gem 'debugger'
 # gem 'ruby-debug'
 end

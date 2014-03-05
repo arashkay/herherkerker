@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
 protected
   
   def authenticate_admin!
-    redirect_to root_path if params[:arash].blank? && !session[:admin]
-    session[:admin] = true
+    redirect_to root_path unless session[:admin]
   end
 
   def detect_device!

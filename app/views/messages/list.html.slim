@@ -1,0 +1,57 @@
+= content_for :head
+  =stylesheet_link_tag "admin", :media => "all"
+  =javascript_include_tag "admin"
+h1 #{@total} جوک جدید موجود است
+
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#jokes-tab" بررسی جوک
+  li
+    a data-toggle="tab" href="#filter-tab" فیلترینگ
+.tab-content
+  #filter-tab.tab-pane
+    form.fn-filter role='form' action=list_messages_path
+      h4 فیلترینگ اتوماتیک
+      .form-group
+        label حذف عناوین زیر
+        textarea.form-control name='filter[matches]' = HHKK::CONFIGS['filtering']['matches']
+      .form-group
+        label حذف جوکهای کمتر از
+        .container-fluid
+          .row
+            input.form-control.col-xs-2 name='filter[minimum]' value=HHKK::CONFIGS['filtering']['minimum']
+            input.form-control.col-xs-2 name='filter[maximum]' value=HHKK::CONFIGS['filtering']['maximum']
+      .btn-group
+        button.btn.btn-warning بررسی موارد قابل حذف
+  #jokes-tab.tab-pane.active
+    - if params[:filter]
+      .alert.alert-danger.gap-top-margin
+        | #{@messages.count} جوک مشکل دار پیدا شد. 
+        a.btn.btn-danger data-remote=bulk_reject_messages_path data-success='hhkk.admin.reload' حذف
+    .list
+      -@messages.each do |m|
+        - found = []
+        - if params[:detect_duplication]
+          - parts = m.body.split(' ').select { |i| i.size> 4 && !i.include?('.') }.map{ |i| i.gsub("'", "") }
+          - query = parts.map{ |i| "body LIKE '% #{i.strip} %' " }.join(' OR ')
+          - items = Message.where( ["is_approved=1 AND id<>? AND (#{query})", m.id] )
+          - found = items.select { |i| words = i.body.split(' ').select { |i| i.size> 4 }; (words & parts).size>3 }
+        .row.fn-post
+          .col-xs-6
+            .date= distance_of_time_in_words_to_now m.created_at
+            p
+              = m.body
+            - found[0..3].each do |f|
+              .alert.alert-danger
+                = f.body
+          .col-xs-6
+            .btn-group
+              a.btn.btn-warning data-remote=reject_message_path(m, :warning => 1) data-success='hhkk.approved'  اخطار و حذف
+              a.btn.btn-danger data-remote=reject_message_path(m) data-success='hhkk.approved'  حذف
+              a.btn.btn-danger data-remote=reject_message_path(m, :likes => 30) data-success='hhkk.approved' حذف  20+
+              a.btn.btn-success data-remote=approve_message_path(m, :likes => 20) data-success='hhkk.approved' تایید جوک  20+
+      h4 دیدن بقیه جوک ها از طریق
+      .alert.alert-danger پیدا کردن تشابه در ورژن تست هست و بار زیادی روی سرور ها وارد میکند. لطفا در استفاده دقت کنید و مکرر فشار ندهید چون چند ثانیه انجام عمل طول میکشد. و ممکن است سرور را خراب کنه.
+      .btn-group
+        a.btn.btn-primary href=list_messages_path لیست کردن
+        a.btn.btn-warning href=list_messages_path(detect_duplication:true) لیست کردن + پیدا کردن تشابه
