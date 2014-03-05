@@ -4,17 +4,11 @@ class MessagesController < ApplicationController
   before_filter :detect_device!, :only => [:today, :create]
 
   def index
-    @messages = Message.approved.listing
-  end
-
-  def more
-    @messages = Message.approved.offset(20*params[:offset].to_i).listing
-    render :json => @messages
+    redirect_to '/'
   end
 
   def show
-    @message = Message.find params[:id]
-    @messages = Message.approved.listing.reverse
+    redirect_to '/'
   end
 
   def create
