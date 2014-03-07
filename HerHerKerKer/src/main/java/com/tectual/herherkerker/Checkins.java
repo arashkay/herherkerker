@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.octo.android.robospice.SpiceManager;
-import com.tectual.herherkerker.web.Venues.CreateVenue;
+import com.tectual.herherkerker.web.venues.CreateVenue;
 import com.tectual.herherkerker.web.VoidRequestListener;
 
 /**
@@ -18,7 +18,9 @@ public class Checkins {
     private View view;
     private SpiceManager spiceManager;
 
-    public Checkins(MainActivity a, View v){
+    public Checkins(){}
+
+    public void start(MainActivity a, View v){
         activity = a;
         view = v;
         spiceManager = activity.spiceManager;

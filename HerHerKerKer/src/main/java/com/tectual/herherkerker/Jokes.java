@@ -7,6 +7,9 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,14 +30,14 @@ import com.tectual.herherkerker.models.JokeAdapter;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.util.Core;
 import com.tectual.herherkerker.util.Storage;
-import com.tectual.herherkerker.web.Jokes.CreateJoke;
-import com.tectual.herherkerker.web.Jokes.GetJokes;
-import com.tectual.herherkerker.web.Jokes.GetJokesListener;
-import com.tectual.herherkerker.web.Jokes.LikeJoke;
-import com.tectual.herherkerker.web.Replies.CreateReply;
-import com.tectual.herherkerker.web.Replies.CreateReplyListener;
-import com.tectual.herherkerker.web.Rewards.UnlockReward;
-import com.tectual.herherkerker.web.Rewards.UnlockRewardListener;
+import com.tectual.herherkerker.web.jokes.CreateJoke;
+import com.tectual.herherkerker.web.jokes.GetJokes;
+import com.tectual.herherkerker.web.jokes.GetJokesListener;
+import com.tectual.herherkerker.web.jokes.LikeJoke;
+import com.tectual.herherkerker.web.replies.CreateReply;
+import com.tectual.herherkerker.web.replies.CreateReplyListener;
+import com.tectual.herherkerker.web.rewards.UnlockReward;
+import com.tectual.herherkerker.web.rewards.UnlockRewardListener;
 import com.tectual.herherkerker.web.VoidRequestListener;
 import com.tectual.herherkerker.web.data.JsonReward;
 
@@ -55,7 +58,9 @@ public class Jokes implements
     private JokeAdapter adapter;
     private Reward current_reward;
 
-    public Jokes(MainActivity a, View v){
+    public Jokes(){}
+
+    public void start(MainActivity a, View v){
         activity = a;
         view = v;
         spiceManager = activity.spiceManager;
@@ -70,7 +75,7 @@ public class Jokes implements
         HerherKerker app = ((HerherKerker) activity.getApplicationContext());
         //
         if(app.is_first_load(activity.getResources().getInteger(R.integer.joke_tab))){
-            load();
+            //load();
         }
     }
 
@@ -86,7 +91,12 @@ public class Jokes implements
         ListView listview = (ListView) view.findViewById(R.id.jokeslist);
         list = new Select().from(Joke.class).orderBy("id DESC").limit(50).execute();
 
-        if(list!=null){
+        if(list!=null&&!list.isEmpty()){
+            LinearLayout intro = (LinearLayout) view.findViewById(R.id.jokes_intro);
+            if(intro!=null){
+                ViewGroup container = (ViewGroup) intro.getParent();
+                container.removeView(intro);
+            }
             if(rewards!=null && !rewards.isEmpty()){
                 list.add(2, rewards.get(0));
             }
@@ -95,6 +105,9 @@ public class Jokes implements
             adapter = new JokeAdapter(activity,
                     android.R.layout.simple_list_item_1, list);
             listview.setAdapter(adapter);
+        }else{
+            ImageView hint = (ImageView) view.findViewById(R.id.pull_down_hint);
+            hint.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.blink ));
         }
     }
 
@@ -164,7 +177,7 @@ public class Jokes implements
         spiceManager.execute(request, new CreateReplyListener());
     }
 
-    public void Unregister(){
+    public void unregister(){
         EventBus.getDefault().unregister(this);
     }
 

@@ -5,8 +5,6 @@ import com.google.api.client.util.DateTime;
 import com.google.api.client.util.Key;
 import com.tectual.herherkerker.models.Reward;
 
-import java.util.Date;
-
 /**
  * Created by arash on 28/01/2014.
  */

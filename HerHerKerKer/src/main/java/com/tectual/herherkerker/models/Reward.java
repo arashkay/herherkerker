@@ -3,10 +3,8 @@ package com.tectual.herherkerker.models;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import com.google.api.client.util.DateTime;
 import com.tectual.herherkerker.web.data.JsonReward;
 
-import java.util.Date;
 import org.joda.time.Days;
 
 /**

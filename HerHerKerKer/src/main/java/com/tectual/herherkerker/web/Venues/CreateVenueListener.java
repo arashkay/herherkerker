@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Venues;
+package com.tectual.herherkerker.web.venues;
 
 /**
  * Created by arash on 18/02/2014.

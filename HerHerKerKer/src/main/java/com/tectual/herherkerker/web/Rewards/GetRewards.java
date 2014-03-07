@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Rewards;
+package com.tectual.herherkerker.web.rewards;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;

@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Venues;
+package com.tectual.herherkerker.web.venues;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;

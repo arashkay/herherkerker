@@ -1,11 +1,7 @@
-package com.tectual.herherkerker.web.Replies;
-
-import android.app.Activity;
-import android.widget.Toast;
+package com.tectual.herherkerker.web.replies;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.events.UnlockedEvent;
 import com.tectual.herherkerker.web.data.JsonReward;
 

@@ -7,6 +7,28 @@
     android:layout_height="match_parent"
     style="@style/Page">
 
+    <LinearLayout
+        android:id="@+id/jokes_intro"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/down"
+            android:id="@+id/pull_down_hint"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/down"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            style="@style/H2"/>
+
+    </LinearLayout>
+
     <ListView android:id="@+id/jokeslist"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

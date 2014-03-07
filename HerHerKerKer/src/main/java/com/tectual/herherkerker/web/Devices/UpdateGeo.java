@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Devices;
+package com.tectual.herherkerker.web.devices;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;

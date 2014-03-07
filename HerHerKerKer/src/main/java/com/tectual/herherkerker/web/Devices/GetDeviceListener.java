@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Devices;
+package com.tectual.herherkerker.web.devices;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;

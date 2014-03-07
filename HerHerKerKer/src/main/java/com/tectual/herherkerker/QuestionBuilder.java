@@ -2,8 +2,6 @@ package com.tectual.herherkerker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tectual.herherkerker.events.ReplyEvent;
-import com.tectual.herherkerker.models.JokeAdapter;
 import com.tectual.herherkerker.models.QuestionAdapter;
 import com.tectual.herherkerker.web.data.JsonQuestion;
 import com.tectual.herherkerker.web.data.JsonQuestions;

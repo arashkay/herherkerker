@@ -1,6 +1,5 @@
 package com.tectual.herherkerker.web.data;
 
-import com.activeandroid.ActiveAndroid;
 import com.tectual.herherkerker.models.Reward;
 
 import java.util.ArrayList;

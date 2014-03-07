@@ -1,6 +1,4 @@
-package com.tectual.herherkerker.web.Rewards;
-
-import android.support.v7.appcompat.R;
+package com.tectual.herherkerker.web.rewards;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;

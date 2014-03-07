@@ -1,15 +1,10 @@
-package com.tectual.herherkerker.web.Rewards;
+package com.tectual.herherkerker.web.rewards;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.tectual.herherkerker.events.JokeEvent;
 import com.tectual.herherkerker.events.RewardsEvent;
-import com.tectual.herherkerker.models.Joke;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.web.data.JsonDeviceRewards;
-import com.tectual.herherkerker.web.data.JsonMixedList;
-import com.tectual.herherkerker.web.data.JsonQuestions;
-import com.tectual.herherkerker.web.data.JsonRewards;
 
 import java.util.List;
 

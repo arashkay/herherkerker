@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Devices;
+package com.tectual.herherkerker.web.devices;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpRequest;
@@ -19,7 +19,7 @@ public class GetDevice extends GoogleHttpClientSpiceRequest<JsonActivity> {
 
     public GetDevice(Core core, int shares) {
         super( JsonActivity.class );
-        baseUrl = String.format( "http://herherkerker.com/devices/show.json?device[did]="+core.device_id+"&shares="+shares );
+        baseUrl = String.format( "http://herherkerker.com/devices/show.json?api="+core.api+"&version="+core.version+"&device[did]="+core.device_id+"&shares="+shares );
     }
 
     @Override

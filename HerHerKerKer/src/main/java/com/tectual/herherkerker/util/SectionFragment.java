@@ -26,7 +26,10 @@ public class SectionFragment extends Fragment {
     private Jokes jokes;
     private Checkins checkins;
 
-    public SectionFragment() {
+    public SectionFragment(Wallet wallet, Jokes jokes, Checkins checkins) {
+        this.wallet = wallet;
+        this.jokes = jokes;
+        this.checkins = checkins;
     }
 
     @Override
@@ -37,26 +40,18 @@ public class SectionFragment extends Fragment {
         switch (getArguments().getInt(ARG_SECTION_NUMBER)){
             case 3:
                 view = inflater.inflate(R.layout.checkins, container, false);
-                new Checkins(activity, view);
+                checkins.start(activity, view);
                 break;
             case 2:
                 view = inflater.inflate(R.layout.wallet, container, false);
-                new Wallet(activity, view);
+                wallet.start(activity, view);
                 break;
             default:
                 view = inflater.inflate(R.layout.jokes, container, false);
-                new Jokes(activity, view);
+                jokes.start(activity, view);
                 break;
         }
         return view;
     }
-
-    /* IT IS BUGGY
-    @Override
-    public void onDestroy() {
-        jokes.Unregister();
-        wallet.Unregister();
-        super.onDestroy();
-    }*/
 
 }

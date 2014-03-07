@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Replies;
+package com.tectual.herherkerker.web.replies;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;
@@ -13,8 +13,6 @@ import com.tectual.herherkerker.web.data.JsonRequest;
 import com.tectual.herherkerker.web.data.JsonReward;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**

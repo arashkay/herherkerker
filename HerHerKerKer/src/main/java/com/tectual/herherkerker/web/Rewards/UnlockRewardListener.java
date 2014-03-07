@@ -1,17 +1,11 @@
-package com.tectual.herherkerker.web.Rewards;
+package com.tectual.herherkerker.web.rewards;
 
 import android.app.Activity;
-import android.content.DialogInterface;
-import android.widget.Toast;
 
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-import com.tectual.herherkerker.Jokes;
 import com.tectual.herherkerker.QuestionBuilder;
-import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.events.UnlockedEvent;
-import com.tectual.herherkerker.web.data.JsonJokes;
-import com.tectual.herherkerker.web.data.JsonQuestion;
 import com.tectual.herherkerker.web.data.JsonQuestions;
 
 import de.greenrobot.event.EventBus;

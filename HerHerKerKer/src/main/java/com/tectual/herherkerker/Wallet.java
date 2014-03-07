@@ -16,10 +16,10 @@ import com.tectual.herherkerker.events.UseEvent;
 import com.tectual.herherkerker.models.Reward;
 import com.tectual.herherkerker.models.RewardAdapter;
 import com.tectual.herherkerker.util.Core;
-import com.tectual.herherkerker.web.Rewards.GetRewards;
-import com.tectual.herherkerker.web.Rewards.GetRewardsListener;
-import com.tectual.herherkerker.web.Rewards.SyncRewards;
-import com.tectual.herherkerker.web.Rewards.SyncRewardsListener;
+import com.tectual.herherkerker.web.rewards.GetRewards;
+import com.tectual.herherkerker.web.rewards.GetRewardsListener;
+import com.tectual.herherkerker.web.rewards.SyncRewards;
+import com.tectual.herherkerker.web.rewards.SyncRewardsListener;
 
 import org.joda.time.DateTime;
 
@@ -47,7 +47,9 @@ public class Wallet implements
     public Reward current;
     private RewardAdapter adapter;
 
-    public Wallet(MainActivity a, View v){
+    public Wallet(){}
+
+    public void start(MainActivity a, View v){
         activity = a;
         view = v;
         spiceManager = activity.spiceManager;
@@ -76,7 +78,7 @@ public class Wallet implements
         String past = String.valueOf(DateTime.now().minusDays(10).getMillis());
         list = new Select().from(Reward.class).where("(state IN ('collected', 'draw') AND expires_at > "+now+") OR (state = 'won' AND expires_at > "+past+")").orderBy("expires_at ASC").limit(50).execute();
 
-        if(list!=null){
+        if(list!=null&&!list.isEmpty()){
             ScrollView intro = (ScrollView) view.findViewById(R.id.wallet_intro);
             if(intro!=null){
                 ViewGroup container = (ViewGroup) intro.getParent();
@@ -142,7 +144,7 @@ public class Wallet implements
         }
     }
 
-    public void Unregister(){
+    public void unregister(){
         EventBus.getDefault().unregister(this);
     }
 }

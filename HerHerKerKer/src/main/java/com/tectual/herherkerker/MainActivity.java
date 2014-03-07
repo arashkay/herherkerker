@@ -37,9 +37,9 @@ import com.tectual.herherkerker.util.GlobalLocationListener;
 import com.tectual.herherkerker.util.SectionsPagerAdapter;
 
 import com.tectual.herherkerker.util.Storage;
-import com.tectual.herherkerker.web.Devices.GetDevice;
-import com.tectual.herherkerker.web.Devices.GetDeviceListener;
-import com.tectual.herherkerker.web.Devices.UpdateGeo;
+import com.tectual.herherkerker.web.devices.GetDevice;
+import com.tectual.herherkerker.web.devices.GetDeviceListener;
+import com.tectual.herherkerker.web.devices.UpdateGeo;
 import com.tectual.herherkerker.web.VoidRequestListener;
 
 import java.util.HashSet;
@@ -91,6 +91,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     @Override
     public void onStop() {
         analytic.stop();
+        mSectionsPagerAdapter.jokes.unregister();
+        mSectionsPagerAdapter.wallet.unregister();
         super.onStop();
         EventBus.getDefault().unregister(this);
     }

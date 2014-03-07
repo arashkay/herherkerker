@@ -3,8 +3,6 @@ package com.tectual.herherkerker.web.data;
 import com.google.api.client.util.Key;
 import com.tectual.herherkerker.models.Reward;
 
-import java.util.Date;
-
 /**
  * Created by arash on 13/02/2014.
  */

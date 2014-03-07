@@ -1,4 +1,4 @@
-package com.tectual.herherkerker.web.Rewards;
+package com.tectual.herherkerker.web.rewards;
 
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpContent;
@@ -9,11 +9,8 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.octo.android.robospice.request.googlehttpclient.GoogleHttpClientSpiceRequest;
 import com.tectual.herherkerker.util.Core;
 import com.tectual.herherkerker.web.data.JsonDevice;
-import com.tectual.herherkerker.web.data.JsonJokes;
 import com.tectual.herherkerker.web.data.JsonQuestions;
 import com.tectual.herherkerker.web.data.JsonRequest;
-
-import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 

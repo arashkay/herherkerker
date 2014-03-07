@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.tectual.herherkerker.R;
 import com.tectual.herherkerker.web.data.JsonAnswer;

@@ -1,14 +1,10 @@
 package com.tectual.herherkerker.web.data;
 
 import com.activeandroid.ActiveAndroid;
-import com.activeandroid.query.Select;
 import com.tectual.herherkerker.models.Joke;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by arash on 27/01/2014.
