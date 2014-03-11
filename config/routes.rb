@@ -24,6 +24,7 @@ Herherkerker::Application.routes.draw do
 
   resources :devices, :only => [:show] do
     collection do
+      put  :me, action: :update
       post :register
       post :geo
       post :rewards
@@ -43,6 +44,12 @@ Herherkerker::Application.routes.draw do
   resources :venues do
     collection do
       match :suggest
+      get :actions
+      get :checkins
+    end
+    member do
+      post :checkin
+      post :attach
     end
   end
 

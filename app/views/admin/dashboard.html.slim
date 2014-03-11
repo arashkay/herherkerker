@@ -29,6 +29,35 @@
       .modal-footer
         a.btn.btn-primary.fn-save data-remote=rewards_path data-url=rewards_path data-success='hhkk.rewards.saved' data-parent='#new_reward'  ذخیره
         a.btn href='#' data-dismiss='modal' انصراف
+
+#new_venue.modal.fade role="dialog" aria-labelledby="venueModal" aria-hidden="true"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        i.fa.fa-times.close data-dismiss='modal' data-aria-hidden='true'
+        h4.modal-title ویرایش مکان
+      .modal-body
+        form.form-horizontal role='form'
+          .form-group
+            label.control-label.col-sm-2 نام
+            .col-sm-4
+              input.form-control name='venue[name]'
+            label.control-label.col-sm-2 تلفن
+            .col-sm-4
+              input.form-control name='venue[phone]'
+          .form-group
+            label.control-label.col-sm-2 موقعیت
+            .col-sm-3
+              input.form-control type='text' name='venue[latitude]' placeholder='latitude'
+            .col-sm-3
+              input.form-control type='text' name='venue[longitude]' placeholder='longitude'
+          .form-group
+            label.control-label.col-sm-2 آدرس
+            .col-sm-10
+              textarea.form-control name='venue[address]'
+      .modal-footer
+        a.btn.btn-primary.fn-save data-remote=venues_path data-url=venues_path data-success='hhkk.venues.saved' data-parent='#new_venue'  ذخیره
+        a.btn href='#' data-dismiss='modal' انصراف
  
 .template
   .answer.fn-answer
@@ -65,11 +94,36 @@
 h1 داشبورد مدیریت
 ul.nav.nav-tabs
   li.active
+    a data-toggle="tab" href="#venues-tab" پاتوق ها
+  li
     a data-toggle="tab" href="#rewards-tab" کوپن ها 
   li
     a data-toggle="tab" href="#questions-tab" سوالات 
 .tab-content
-  #rewards-tab.tab-pane.active
+  #venues-tab.tab-pane.active
+    .action-bar
+      a.btn data-target='#new_venue' data-toggle='modal'
+        i.fa.fa-plus.fa-lg
+        |  افزودن پاتوق
+    .list.venues
+      - @venues.each do |venue|
+        .row.fn-venue class=(venue.approved? ? 'live' : '' ) data-db-latitude=venue.latitude data-db-longitude=venue.longitude data-db-phone=venue.phone
+          input name='name' type='hidden' value=venue.name
+          input name='address' type='hidden' value=venue.address
+          .col-sm-2
+            .image
+              input type='file' name='file' data-url=attach_venue_path(venue) data-uploader='true' data-callback='hhkk.venues.attached'
+              img src=venue.image.url(:thumb)
+          .col-sm-4
+            .name= venue.name
+            .geo= "#{venue.latitude} , #{venue.longitude}"
+          .col-sm-6
+            .phone= venue.phone
+            .address= venue.address
+          .actions
+            .btn-group
+              a.btn.btn-primary.fn-change data-url=venue_path(venue) تغییر
+  #rewards-tab.tab-pane
     .action-bar
       a.btn data-target='#new_reward' data-toggle='modal'
         i.fa.fa-plus.fa-lg

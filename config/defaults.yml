@@ -34,9 +34,12 @@ general:
       - { uname: lunch    , text: نهار میخورم }
       - { uname: dinner   , text: شام میخورم }
     etc:
+      - { uname: work     , text: کار میکنم }
+      - { uname: nap      , text: چرت میزنم }
   mobile:
     jokes_limit: 10
     ads_interval: 5 #hours
+    venue_distance: 1 #km
   report:
     date: report_last_check_date
     categories:

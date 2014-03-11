@@ -32,10 +32,11 @@ ul.nav.nav-tabs
       -@messages.each do |m|
         - found = []
         - if params[:detect_duplication]
-          - parts = m.body.split(' ').select { |i| i.size> 4 && !i.include?('.') }.map{ |i| i.gsub("'", "") }
-          - query = parts.map{ |i| "body LIKE '% #{i.strip} %' " }.join(' OR ')
-          - items = Message.where( ["is_approved=1 AND id<>? AND (#{query})", m.id] )
-          - found = items.select { |i| words = i.body.split(' ').select { |i| i.size> 4 }; (words & parts).size>3 }
+          - parts = m.body.split(' ').select { |i| i.size> 4 && !i.include?('.') }.map{ |i| i.gsub(/'/, "") }
+          - unless parts.empty?
+            - query = parts.map{ |i| "body LIKE '% #{i.strip} %' " }.join(' OR ')
+            - items = Message.where( ["is_approved=1 AND id<>? AND (#{query})", m.id] )
+            - found = items.select { |i| words = i.body.split(' ').select { |i| i.size> 4 }; (words & parts).size>3 }
         .row.fn-post
           .col-xs-6
             .date= distance_of_time_in_words_to_now m.created_at

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228013149) do
+ActiveRecord::Schema.define(:version => 20140308231023) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20140228013149) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "devices", ["did"], :name => "index_devices_on_did"
@@ -149,9 +151,14 @@ ActiveRecord::Schema.define(:version => 20140228013149) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "likes"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "likes",              :default => 0
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "checkins",           :default => 0
   end
 
   add_foreign_key "device_rewards", "devices", :name => "device_rewards_device_id_fk"

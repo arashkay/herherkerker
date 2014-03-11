@@ -14,6 +14,14 @@ class DevicesController < ApplicationController
     render :json => @device.save
   end
 
+  def update
+    @device.first_name = params[:device][:first_name] unless params[:device][:first_name].blank?
+    @device.last_name  = params[:device][:last_name]  unless params[:device][:last_name].blank?
+    @device.phone      = params[:device][:phone]      unless params[:device][:phone].blank?
+    @device.gender     = (params[:device][:gender].to_i==1) unless params[:device][:gender].blank?
+    render json: @device.save
+  end
+
   def show
     @device.shares_count = params[:shares] if params[:shares].to_i > @device.shares_count
     @device.increment_login

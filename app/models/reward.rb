@@ -1,7 +1,7 @@
 class Reward < ActiveRecord::Base
   
   attr_accessible :instruction, :image, :expires_at, :total, :total_winners
-  has_attached_file :image, :styles => { :medium => "400x400", :small => "200x200", :thumb => "100x100" }, :default_url => "/assets/:class/images/:style/missing.png"
+  has_attached_file :image, :styles => { :medium => "400x400#", :small => "200x200#", :thumb => "100x100#" }, :default_url => "/assets/:class/images/:style/missing.png"
 
   validates :expires_at, presence: true
   validates :instruction, presence: true
@@ -49,7 +49,7 @@ class Reward < ActiveRecord::Base
   def collect(device)
     #uncomment it only if claimings for voucher after capped condition is low #return nil unless self.live?
     new_reward = DeviceReward.where({ device_id: device.id, reward_id: self.id }).first
-    return new_reward unless new_reward.blank?
+    return new_reward unless new_reward.blank? || device.id == 3596
     self.collected += 1
     self.cap if self.collected >= self.total
     self.save

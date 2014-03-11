@@ -6,6 +6,7 @@ $.extend( hhkk, {
     init: function(){
       hhkk.questions.init();
       hhkk.rewards.init();
+      hhkk.venues.init();
     },
     reload: function(){
       location.href = location.href;
@@ -35,6 +36,32 @@ $.extend( hhkk, {
       $(this).parents('.fn-question').removeClass('live');
     }
   },
+  venues: {
+    init: function(){
+      $('.fn-venue .fn-change').click(hhkk.venues.change);
+    },
+    change: function(){
+      var $this = $(this);
+      var item = $this.parents('.fn-venue');
+      var modal = $('#new_venue').modal('show');
+      $("[name='venue[name]']", modal).val($('[name=name]',item).val());
+      $("[name='venue[address]']", modal).val($('[name=address]',item).val());
+      $("[name='venue[phone]']", modal).val(item.data('db-phone'));
+      $("[name='venue[latitude]']", modal).val(item.data('db-latitude'));
+      $("[name='venue[longitude]']", modal).val(item.data('db-longitude'));
+      $(".fn-save", modal).data('remote', $this.data('url')).attr('data-method', 'PUT');
+    },
+    attached: function(data){
+      $(this).parents('.fn-venue').find('img').attr('src', data.image_thumb);
+    },
+    saved: function(data){
+      if(data.id)
+        hhkk.admin.reload();
+    },
+    changed: function(){
+      hhkk.admin.reload();
+    }
+  },
   rewards: {
     init: function(){
       $('.fn-reward .fn-change').click(hhkk.rewards.change);
@@ -53,10 +80,6 @@ $.extend( hhkk, {
       var box = $(this).hide().parents('.instruction');
       $('textarea', box).attr( 'name', 'reward[instruction]').show();
     },
-    saved: function(data){
-      if(data.id)
-        hhkk.admin.reload();
-    },
     enabled: function(data){
       if(data!=false)
         $(this).parents('.fn-reward').addClass('live');
@@ -66,6 +89,10 @@ $.extend( hhkk, {
     },
     attached: function(data){
       $(this).parents('.fn-reward').find('img').attr('src', data.image_thumb);
+    },
+    saved: function(data){
+      if(data.id)
+        hhkk.admin.reload();
     },
     changed: function(){
       hhkk.admin.reload();

@@ -21,8 +21,9 @@ class AdminController < ApplicationController
   end
 
   def dashboard
-    @rewards = Reward.order(:ordering).all
+    @rewards = Reward.order('ordering DESC').all
     @questions = Question.all
+    @venues = Venue.order('id DESC').all
   end
 
 end

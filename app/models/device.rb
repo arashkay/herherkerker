@@ -2,7 +2,8 @@
 
 class Device < ActiveRecord::Base
   
-  attr_accessible :did, :regid, :last_check, :notified_at, :lat, :lng, :last_joke
+  attr_accessible :did, :regid, :last_check, :notified_at, :lat, :lng, :last_joke, :image
+  has_attached_file :image, :styles => { :medium => "400x400#", :small => "200x200#", :thumb => "100x100#" }, :default_url => "/assets/:class/images/:style/missing.png"
   has_many :messages
   has_many :replies
   has_many :device_rewards
@@ -12,6 +13,14 @@ class Device < ActiveRecord::Base
   
   NOTIFICATION_INTERVAL = 12.hours
   LEVELS = [ 'day5', 'shared10', 'liked100', 'sent25', 'shared30', 'liked500', 'liked1200', 'shared100', 'sent50' ]
+
+  def image_thumb
+    self.image.url(:thumb)
+  end
+
+  def nickname
+    name.split(' ')[0]
+  end
 
   before_create :set_dates
 
