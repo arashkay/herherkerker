@@ -1,0 +1,23 @@
+.row
+  .col-sm-8
+    h3 فرم ویرایش جایزه
+    = form_for @reward, url: ( @reward.new_record? ? panel_rewards_path : panel_reward_path(@reward) ), html: { multipart: true, class: 'form' } do |form|
+      = render '/layouts/errors', model: @reward
+      .form-group
+        label توضیحات جایزه
+        = form.text_area :instruction, rows: 3, class: 'form-control', placeholder: 'توضیحات باید شامل نوع تخفیف , آدرس کسب و کار و شماره تماس باشد. (همچنین ذکر ویژگی های مخصوص کسب و کار (مانند دنج , محیطی گرم و دوستانه , پرسنل خوش رو و ...) شمارا از دیگران متمایز میکند.)'
+      .form-group
+        label تاریخ انقضا
+        = form.text_field :expires_at, class: 'form-control', placeholder: 'تاریخ میلادی می باشد 21/11/2014'
+      .form-group
+        label گرافیک کوپن 
+        .help-block گرافیک کوپن باید jpg  و در سایز ٤٠٠ x  ٤٠٠ باشد.
+        a.btn.btn-file.btn-success
+          = form.file_field :image, class: 'form-control'
+          |   پیوست گرافیک
+          i.fa.fa-picture-o.fa-lg.gap
+      .form-group
+        = form.submit 'ثبت جایزه'
+        a.btn href=panel_dashboard_path انصراف
+  .col-sm-4
+    

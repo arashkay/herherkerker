@@ -1,6 +1,6 @@
 class Venue < ActiveRecord::Base
   
-  attr_accessible :address, :latitude, :longitude, :name, :phone, :state, :image
+  attr_accessible :address, :latitude, :longitude, :name, :phone, :state, :image, :checkins_count
   has_attached_file :image, :styles => { :medium => "600x200#", :small => "300x100#", :thumb => "120x40#" }, :default_url => "/assets/:class/images/:style/missing.png"
   ACTIONS = HHKK::ACTIONS
   reverse_geocoded_by :latitude, :longitude

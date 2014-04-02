@@ -1,42 +1,9 @@
 class VenuesController < ApplicationController
   
   before_filter :detect_device!
-  before_filter :authenticate_admin!, except: [:suggest]
 
   def suggest
     @venue = Venue.new params[:venue]
-    render json: @venue.save
-  end
-
-  def create
-    @venue = Venue.new params[:venue]
-    @venue.approve
-    @venue.save
-    render json: @venue
-  end
-
-  def update
-    @venue = Venue.find params[:id]
-    @venue.update_attributes( params[:venue] )
-    render json: @venue
-  end
-
-  def attach
-    @venue = Venue.find params[:id]
-    @venue.image = params[:file]
-    @venue.save
-    render json: @venue
-  end
-
-  def approve
-    @venue = Venue.find params[:id]
-    @venue.approve
-    render json: @venue.save
-  end
-
-  def reject
-    @venue = Venue.find params[:id]
-    @venue.rejected
     render json: @venue.save
   end
 

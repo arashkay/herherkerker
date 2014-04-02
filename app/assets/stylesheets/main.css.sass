@@ -1,3 +1,4 @@
+
 .loading
   z-index: 1000
   display: none
@@ -11,11 +12,13 @@
   background: #fff
   text-align: center
   padding: 10px
- 
+
 .template, .secret
   display: none
 .center
   text-align: center
+.left
+  text-align: left
 .gap-top
   padding-top: 10px
 .gap-top-margin
@@ -26,10 +29,24 @@
   color: #48A4FB
 
 body
+  padding-bottom: 50px
   *
     font-family: 'Beiroot', tahoma
   >.main
     padding-top: 58px
+  p, p *
+    font-family: 'BYekan'
+
+h1
+  font-size: 22px
+h2
+  font-size: 20px
+h3
+  font-size: 18px
+h4
+  font-size: 16px
+h5
+  font-size: 16px
 
 .menu
   background: #fff
@@ -54,9 +71,186 @@ body
   background: #42A4FD
   &:hover
     background: #4587C1
+.btn-file
+  overflow: hidden
+  position: relative
+  input
+    cursor: pointer
+    direction: ltr 
+    font-size: 23px
+    margin: 0
+    opacity: 0
+    position: absolute
+    right: 0
+    top: 0
+    transform: translate(-200px, 100px) scale(9)
+    -ms-transform: translate(-200px, 100px) scale(9)
+    -webkit-transform: translate(-200px, 100px) scale(9)
+    -o-transform: translate(-200px, 100px) scale(9)
+    -moz-transform: translate(-200px, 100px) scale(9)
+
+.framed
+  border: #fff 6px solid
+  box-shadow: 0 0 2px #aaa
 
 .contact
   font-size: 1.3em
   li
     padding: 5px 0
+
+.alert-default
+  background: #eee
+.fa.gap
+  padding-right: 5px
+.steps
+  .step
+    background: #efefef
+    margin-bottom: 2px
+    padding: 10px
+    border-radius: 4px
+    .title
+      padding-right: 5px
+      font-size: 16px
+    label b
+      border-radius: 25px
+      width: 22px
+      height: 22px
+      display: inline-block
+      text-align: center
+      background: #fff
+      .fa
+        color: #666
+        padding-top: 3px
+        font-size: 16px
+    p
+      color: #111
+    &.active
+      background: #0FB3FF
+      .title
+        color: #fff
+      label b
+        .fa
+          color: #0FB3FF
+    &.success
+      background: #35B239
+      .title
+        color: #fff
+      label b
+        .fa
+          color: #35B239
+
+.errors
+  h2
+    font-size: 14px
+    margin: 0 0 3px
+
+.box
+  border-radius: 4px
+  position: relative
+  margin-bottom: 20px
+  &.tip
+    padding: 20px 5px
+  .icon
+    position: absolute
+    font-size: 60px
+    line-height: 60px
+    bottom: 0
+    left: 0
+    width: 80px
+    text-align: center
+    padding-left: 3%
+    padding-bottom: 1%
+    opacity: 0.3
+    color: #000
+  .text-icon
+    color: #3598DB
+    display: inline-block
+    width: 25px
+    text-align: center
+    margin-left: 3px
+  .content
+    position: relative
+    *
+      font-family: 'BYekan'
+    .wrap
+      padding: 10px
+    .point
+      font-size: 30px
+    .label
+      padding: 0
+      font-size: 20px
+    .extension
+      border-radius: 0 0 4px 4px
+      background: #222
+      color: #eee
+      .point
+        color: #3598DB
+        dipslay: block
+      .label
+        dipslay: block
+      .fa-question-circle
+        color: #F2DB76
+      > .arrow
+        border: 20px transparent solid
+        border-top-color: #fff
+        width: 0
+        position: relative
+        margin-right: 50%
+        left: 10px
+      .popover-content
+        color: #222
+        font-family: 'BYekan'
+        text-align: right
+        font-size: 12px
+        font-weight: normal
+        line-height: 16px
+  &.bordered
+    box-shadow: 0 0 1px #bbb
+    &:hover
+      box-shadow: 0 0 2px #888
+  .shortcut
+    position: absolute
+    top: 10px
+    left: 5px
+    display: none
+    .btn
+      background: #333
+      color: #fff
+      &:hover
+        color: #ddd
+  &:hover
+    .shortcut
+      display: block
+  &.blue
+    background: #3598DB
+    .content
+      color: #fff
+  &.green
+    background: #1ABC9C
+    .content
+      color: #fff
+  &.red
+    background: #E84C3D
+    .content
+      color: #fff
+  &.purple
+    background: #9A59B5
+    .content
+      color: #fff
+
+.venue-image
+  position: relative
+  img
+    position: relative
+    width: 100%
+  h3
+    position: absolute
+    top: 6px
+    right: 6px
+    left: 6px
+    padding: 10px
+    margin: 0
+    color: #F9F61B
+    background: rgba(0,0,0,0.4)
+
 @media screen and (min-device-width: 320px)  and (max-device-width: 480px)

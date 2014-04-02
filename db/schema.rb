@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140308231023) do
+ActiveRecord::Schema.define(:version => 20140319093249) do
 
   create_table "businesses", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(:version => 20140308231023) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "contact_name"
+    t.string   "contact_mobile"
+    t.integer  "credit",                 :default => 0
   end
 
   add_index "businesses", ["email"], :name => "index_businesses_on_email", :unique => true
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20140308231023) do
     t.datetime "image_updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
   end
 
   add_index "devices", ["did"], :name => "index_devices_on_did"
@@ -142,7 +146,10 @@ ActiveRecord::Schema.define(:version => 20140308231023) do
     t.integer  "collected",          :default => 0
     t.integer  "total_winners",      :default => 0
     t.integer  "ordering",           :default => 0
+    t.integer  "business_id"
   end
+
+  add_index "rewards", ["business_id"], :name => "rewards_business_id_fk"
 
   create_table "venues", :force => true do |t|
     t.string   "name"
@@ -158,7 +165,8 @@ ActiveRecord::Schema.define(:version => 20140308231023) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "checkins",           :default => 0
+    t.integer  "checkins_count",     :default => 0
+    t.integer  "business_id"
   end
 
   add_foreign_key "device_rewards", "devices", :name => "device_rewards_device_id_fk"
@@ -169,5 +177,7 @@ ActiveRecord::Schema.define(:version => 20140308231023) do
 
   add_foreign_key "replies", "devices", :name => "replies_device_id_fk"
   add_foreign_key "replies", "questions", :name => "replies_question_id_fk"
+
+  add_foreign_key "rewards", "businesses", :name => "rewards_business_id_fk"
 
 end

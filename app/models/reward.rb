@@ -1,6 +1,6 @@
 class Reward < ActiveRecord::Base
   
-  attr_accessible :instruction, :image, :expires_at, :total, :total_winners
+  attr_accessible :instruction, :image, :expires_at, :total, :total_winners, :business_id
   has_attached_file :image, :styles => { :medium => "400x400#", :small => "200x200#", :thumb => "100x100#" }, :default_url => "/assets/:class/images/:style/missing.png"
 
   validates :expires_at, presence: true

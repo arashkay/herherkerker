@@ -96,9 +96,12 @@ class MessagesController < ApplicationController
   end
 
   def like
-    @message = Message.find  params[:id]
-    @message.increment! :likes
-    Device.increment_counter( :like_count, @message.device_id ) unless @message.device_id.blank?
+    begin
+      params[:id] = params[:id].tr!('۰۱١۲۳۴۵۶۷۸۹','01123456789') if params[:id].to_i == 0
+      @message = Message.find  params[:id]
+      @message.increment! :likes
+      Device.increment_counter( :like_count, @message.device_id ) unless @message.device_id.blank?
+    end
     render :json => true
   end
 

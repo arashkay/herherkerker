@@ -20,14 +20,14 @@
           .form-group
             label.control-label.col-sm-2 تعداد کل
             .col-sm-3
-              input.form-control type='text' name='reward[total]' value=1000
+              input.form-control type='text' name='reward[total]' value=10000
           .form-group
             label.control-label.col-sm-2 تعداد برنده 
             .col-sm-3
               input.form-control type='text' name='reward[total_winners]' value=0
               .help-block  درصورتی که قرعه کشی باشد 
       .modal-footer
-        a.btn.btn-primary.fn-save data-remote=rewards_path data-url=rewards_path data-success='hhkk.rewards.saved' data-parent='#new_reward'  ذخیره
+        a.btn.btn-primary.fn-save data-remote=panel_rewards_path(format: :json) data-url=panel_rewards_path(format: :json) data-success='hhkk.rewards.saved' data-parent='#new_reward'  ذخیره
         a.btn href='#' data-dismiss='modal' انصراف
 
 #new_venue.modal.fade role="dialog" aria-labelledby="venueModal" aria-hidden="true"
@@ -134,7 +134,7 @@ ul.nav.nav-tabs
           input name='instruction' type='hidden' value=reward.instruction
           .col-sm-2
             .image
-              input type='file' name='file' data-url=attach_reward_path(reward) data-uploader='true' data-callback='hhkk.rewards.attached'
+              input type='file' name='file' data-url=attach_panel_reward_path(reward) data-uploader='true' data-callback='hhkk.rewards.attached'
               img src=reward.image.url(:thumb)
           .col-sm-3
             .date= reward.expires_at.strftime '%a - %d/%m'
@@ -145,10 +145,10 @@ ul.nav.nav-tabs
             .instruction= reward.instruction
           .actions
             .btn-group
-              a.btn.btn-primary.fn-change data-url=reward_path(reward) تغییر
-              a.btn.btn-primary.fn-enable data-remote=enable_reward_path(reward) data-success='hhkk.rewards.enabled' زنده
-              a.btn.btn-warning.fn-disable data-remote=disable_reward_path(reward) data-success='hhkk.rewards.disabled' خاموش
-              a.btn.btn-success data-remote=up_reward_path(reward) data-success='hhkk.rewards.changed'  بالاتر
+              a.btn.btn-primary.fn-change data-url=panel_reward_path(reward, format: :json) تغییر
+              a.btn.btn-primary.fn-enable data-remote=enable_panel_reward_path(reward) data-success='hhkk.rewards.enabled' زنده
+              a.btn.btn-warning.fn-disable data-remote=disable_panel_reward_path(reward) data-success='hhkk.rewards.disabled' خاموش
+              a.btn.btn-success data-remote=up_panel_reward_path(reward) data-success='hhkk.rewards.changed'  بالاتر
   #questions-tab.tab-pane
     .action-bar
       a.btn.fn-send href='#new_question' data-toggle='modal'

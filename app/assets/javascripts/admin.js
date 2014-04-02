@@ -1,7 +1,6 @@
 $(function(){
 
 $.extend( hhkk, { 
-  more: $.noop,
   admin: {
     init: function(){
       hhkk.questions.init();

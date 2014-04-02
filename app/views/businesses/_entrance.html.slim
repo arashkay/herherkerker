@@ -1,0 +1,109 @@
+h1.center مدیریت تبلیغات سوشیال
+.row
+  .col-sm-4.center
+    h3 تصمیم گیری بهتر
+    img src='/assets/icons/charts.png'
+    p.gap-top شما در تصمیم گیری برروی خدمات و محصولات خود از چه روشی استفاده میکنید: شیر یا خط ؟ ویا تحلیل نیازمندی ها و تصمیم گیری با توجه به نیاز مشتری می باشد؟
+    p.alert.alert-success ما به شما کمک میکنیم تا با شناخت مخاطبین خود تصمیم گیری بهتری داشته باشید. 
+  .col-sm-4.center
+    h3 جذب مخاطب بیشتر
+    img src='/assets/icons/connection.png'
+    p.gap-top حدود ٦٠% جمعیت ایران را قشر ١٥ تا ٤٠ سال تشکیل میدهد. این افراد در خرید های روزانه خود از یکدیگر نظر پرسی و پیروی میکنند. شما از چه کانالی با این قشر ارتباط برقرار میکنید؟
+    p.alert.alert-success ما در زندگی روزمره آنها هستیم ومیتوانیم پیام شما را به آنها برسانیم.
+  .col-sm-4.center
+    h3 تشویق مشتریان ثابت
+    img src='/assets/icons/reward.png'
+    p.gap-top شما چگونه از مشتریان ثابت خود قدردانی میکنید؟ شما چگونه مشتریان جدید را به امتحان کردن سرویس یا محصول کسب و کارتان تشویق میکنید؟ 
+    p.alert.alert-success ما به شما کمک میکنیم هرروز به مشتریان وفادارتان اضافه شود.
+h2.center ورود کسب و کار
+.row.gap-top-extra
+  .col-sm-6
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-horizontal', role: 'form'}) do |f|
+      .form-group
+        h4.center ورود اعضای فعلی
+      .form-group
+        = f.label :email, 'آدرس ایمیل', class: 'col-sm-3 control-label'
+        .col-sm-9
+          = f.email_field :email, placeholder: 'آدرس ایمیل', autofocus: false, class: 'form-control'
+          p.help-block آدرس ایمیلی که با آن در سیستم عضو شدید.
+      .form-group
+        = f.label :password, 'رمز عبور', class: 'col-sm-3 control-label'
+        .col-sm-9
+          = f.password_field :password, placeholder: 'رمز عبور', class: 'form-control'
+      - if devise_mapping.rememberable?
+        .form-group
+          .col-sm-offset-3.col-sm-9
+            label
+              = f.check_box :remember_me
+              | بخاطر بسپار
+        .form-group
+          .col-sm-offset-3.col-sm-9
+            = f.submit 'ورود به سیستم', class: 'btn btn-primary'
+            |  | مشکل دارید؟ با ما تماس بگیرید.
+  .col-sm-5.col-sm-offset-1
+    h4.center ثبت نام اعضای جدید
+    p شماهم میتوانید همانند کسب و کارهای عضو ما پیام خود را به ١٠٠,٠٠٠+ مخاطب ما برسانید.
+    -if signup && !resource.errors.empty?
+      .alert.alert-danger.errors
+        = devise_error_messages!
+    .steps data-step='true'
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { class: 'form', role: 'form' }) do |f|
+        .step.active
+          label
+            b
+              i.fa.fa-check
+            span.title   آیا اطلاعات کسب و کار خود را آماده دارید؟
+          .body
+            .form-group
+              = f.text_field :name, class: 'form-control', placeholder: 'نام تجاری'
+            .form-group
+              = f.text_field :phone, class: 'form-control', placeholder: 'شماره تماس خط ثابت'
+            .form-group
+              = f.text_field :address, class: 'form-control', placeholder: 'آدرس'
+            .form-group
+              a.btn.btn-primary.next بعدی
+        .step
+          label
+            b
+              i.fa.fa-check
+            span.title  آیا شما مدیر یا نماینده کسب و کار هستید؟
+          .body.secret
+            p برای ثبت نام شما باید یا مدیر کسب و کار مربوطه باشید یا به عنوان نماینده از مدیریت اجازه داشته باشید.
+            .form-group
+              = f.text_field :contact_name, class: 'form-control', placeholder: 'نام کامل مدیر یا نمایند'
+            .form-group
+              = f.text_field :contact_mobile, class: 'form-control', placeholder: 'شماره موبایل'
+            .form-group
+              a.btn.btn-primary.next بعدی
+        .step
+          label 
+            b
+              i.fa.fa-check
+            span.title اطلاعات حساب کاربری
+          .body.secret
+            p لطفا آدرس ایمیل فعلی خود و یک رمز عبور فراموش نشدنی وارد کنید. رمز عبور باید حداقل ٨ حرف یا عدد باشد.
+            .form-group
+              = f.email_field :email, class: 'form-control', placeholder: 'آدرس ایمیل'
+            .form-group
+              = f.password_field :password, class: 'form-control', placeholder: 'رمز عبور'
+            .form-group
+              = f.password_field :password_confirmation, class: 'form-control', placeholder: 'تکرار رمز عبور'
+            .form-group
+              a.btn.btn-primary.next بعدی
+        .step
+          label 
+            b
+              i.fa.fa-check
+            span.title شروع به کار
+          .body.secret
+            .form-group
+              | تایید میکنم اطلاعات وارد شده معتبر است و 
+              = f.submit 'ثبت نام', class: 'btn btn-success'
+
+    p.alert.alert-warning 
+      | آیا مشکلی دارید؟ با ما تماس بگیرید 
+      i.fa.fa-envelope.bold
+      |  ads@tectual.com.au 
+      i.fa.fa-phone.bold
+      |  ٣٢ ٥٩ ٢٠ ٨٨
+

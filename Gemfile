@@ -16,6 +16,9 @@ gem "resque", "~> 1.25.1"
 gem 'geocoder'
 gem 'devise'
 gem 'slim'
+gem 'yajl-ruby', require: 'yajl'
+gem 'rabl'
+gem 'jalalidate'
 
 # Gems used only for assets and not required
 # in production environments by default.

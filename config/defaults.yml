@@ -37,7 +37,7 @@ general:
       - { uname: work     , text: کار میکنم }
       - { uname: nap      , text: چرت میزنم }
   mobile:
-    jokes_limit: 10
+    jokes_limit: 20
     ads_interval: 5 #hours
     venue_distance: 1 #km
   report:
@@ -50,6 +50,8 @@ general:
       sessions:
         total: sessions
         daily: daily_sessions
+      rewards:
+        impressions: reward_impressions
 development:
   profiling:
     questions:

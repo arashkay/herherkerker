@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
     if session[:admin]
       dashboard_path
     else
-      business_dashboard_path
+      panel_dashboard_path
     end 
   end
 

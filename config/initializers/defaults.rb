@@ -32,6 +32,12 @@ module HHKK
       TOTAL    = categories['sessions']['total']
       DAILY    = categories['sessions']['daily']
     end
+
+    module REWARDS
+      categories =  HHKK::CONFIGS['report']['categories']
+
+      IMPRESSIONS    = categories['rewards']['impressions']
+    end
   end
 
   module MOBILE
@@ -50,3 +56,8 @@ module HHKK
   
 end
 
+# JSON
+Rabl.configure do |config|
+  config.include_json_root = false
+  config.include_child_root = false
+end

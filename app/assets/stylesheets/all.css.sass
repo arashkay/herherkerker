@@ -1,4 +1,4 @@
-@import 'bootstrap.min', 'bootstrap-rtl.min'
+@import 'bootstrap.min', 'bootstrap-rtl.min', 'icheck/blue'
 @import 'font-awesome.min.css'
 @import 'main'
 
@@ -17,5 +17,16 @@
   font-weight: normal
   font-style: normal
 
-.fa.close
+@font-face
+  font-family: 'BYekan'
+  src: url('/assets/BYekan.eot')
+  src: url('/assets/BYekan.otf') format('opentype') 
+  src: url('/assets/BYekan.woff') format('woff'), url('/assets/BYekan.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+.fa.close, body .fa, body .content * .fa
   font-family: 'FontAwesome'
+
+.icheckbox_square-blue
+  margin-left: 3px

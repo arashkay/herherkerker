@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
 
 protected
   
+  def admin_signed_in?
+    !session[:admin].nil?
+  end
+   
   def authenticate_admin!
     redirect_to root_path unless session[:admin]
+  end
+
+  def authenticate_admin_or_business!
+    redirect_to root_path unless session[:admin] || business_signed_in?
   end
 
   def detect_device!

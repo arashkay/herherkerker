@@ -6,10 +6,10 @@ fa:
       delimiter: '٬'
     currency:
       format:
-        unit: 'ریال'
+        unit: 'تومان'
         format: '%n %u'
-        separator: '٫'
-        delimiter: '٬'
+        separator: '.'
+        delimiter: ','
         precision: 0
     percentage:
       format:
@@ -184,16 +184,17 @@ fa:
         record_invalid: "رکورد نامعتبر است %{errors}"
     models:
       user: 'کاربر'
+      business: 'کسب و کار'
     attributes:
-      password: 'رمز عبور'
-      login: 'شناسه کاربری'
-      name: 'نام'
-      email: 'ایمیل'
-      password_confirmation: 'تکرار رمز عبور'
-      user:
+      reward:
+        expires_at: تاریخ انقضا
+        instruction: توضیحات کوپن
+      business:
         password: 'رمز عبور'
         login: 'شناسه کاربری'
-        name: 'نام'
+        name: 'نام کسب و کار'
         email: 'ایمیل'
         current_password: 'رمز عبور کنونی'
         password_confirmation: 'تکرار رمز عبور'
+        phone: شماره تلفن
+        address: آدرس

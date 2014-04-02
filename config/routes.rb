@@ -31,17 +31,13 @@ Herherkerker::Application.routes.draw do
     end
   end
 
-  resources :rewards do
+  resources :rewards, only: [] do
     member do
-      post :enable
-      post :disable
-      post :attach
       post :unlock
-      post :up
     end
   end
 
-  resources :venues do
+  resources :venues, only: [:index] do
     collection do
       match :suggest
       get :actions
@@ -49,7 +45,6 @@ Herherkerker::Application.routes.draw do
     end
     member do
       post :checkin
-      post :attach
     end
   end
 
@@ -76,8 +71,25 @@ Herherkerker::Application.routes.draw do
   get '/charts' => 'admin#charts'
   get '/dashboard' => 'admin#dashboard'
 
-  namespace :business, only:[] do
-    get :dashboard
+  namespace :panel do
+    get "dashboard", controller: :businesses, action: :dashboard
+    resources :businesses, only:[] do
+    end
+    resources :rewards do
+      member do
+        post :enable
+        post :disable
+        post :attach
+        post :up
+      end
+    end
+    resources :venues do
+      member do
+        post :attach
+        post :approve
+        post :reject
+      end
+    end
   end
 
   get '/:id' => 'messages#show', :as => :joke

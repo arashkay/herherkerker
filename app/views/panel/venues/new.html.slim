@@ -1,0 +1,25 @@
+.row
+  .col-sm-8
+    h3 فرم ویرایش پاتوق
+    = form_for @venue, url: ( @venue.new_record? ? panel_venues_path : panel_venue_path(@venue) ), html: { multipart: true, class: 'form' } do |form|
+      = render '/layouts/errors', model: @venue
+      .form-group
+        label نام کسب و کار
+        = form.text_field :name, class: 'form-control', placeholder: 'نام'
+      .form-group
+        label تلفن
+        = form.text_field :phone, class: 'form-control', placeholder: 'تلفن'
+      .form-group
+        label آدرس
+        = form.text_field :address, class: 'form-control', placeholder: 'آدرس'
+      .form-group
+        label عکس کسب و کار
+        .help-block عکس کسب و کار باید jpg  و در سایز ٦٠٠ x  ٢٠٠ باشد. (٦٠٠ = پهنا , ٢٠٠ ارتفاع)
+        a.btn.btn-file.btn-success
+          = form.file_field :image, class: 'form-control'
+          |   پیوست گرافیک
+          i.fa.fa-picture-o.fa-lg.gap
+      .form-group
+        = form.submit 'ثبت جایزه'
+        a.btn href=panel_dashboard_path انصراف
+  .col-sm-4

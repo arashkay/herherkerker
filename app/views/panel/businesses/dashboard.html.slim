@@ -1,0 +1,129 @@
+.row
+  .col-sm-9
+    .alert.alert-default
+      h3 کمک یار راه اندازی
+      .tab-content
+        #suggest_coupon.tab-pane.active
+          p 
+            b شما هیچ کوپن فعالی ندارید!
+          p
+            |  برای مثال اگر شما دیروز کوپن خود را گذاشته بودید , #{@total_users} نفر آن را دیده بودند و یا اگر ماه قبل گذاشته بودید  #{@total_monthly_users} نفر تا به امروز دیده بودند.
+          p
+            a.btn.btn-success href=new_panel_reward_path
+              | ساخت کوپن
+              i.fa.fa-magic.fa-lg.gap
+          .left
+            a.btn.btn-sm.btn-default data-toggle="tab" href='#suggest_checkin'
+              | بعدی 
+              i.fa.fa-angle-left.gap
+        #suggest_checkin.tab-pane
+          p 
+            b شما هنوز کسب و کار خود را لیست نکرده اید!
+          p
+            |  ماه گذشته #{@total_checkins}  مشتری در کسب و کار های لیست شده چک این کردند و #{@total_views}  نفرآن کسب و کار ها را دیدند.
+          p
+            a.btn.btn-success  href=new_panel_venue_path
+              | ثبت کسب و کار
+              i.fa.fa-magic.fa-lg.gap
+          .left
+            a.btn.btn-sm.btn-default data-toggle="tab" href='#suggest_coupon'
+              | بعدی 
+              i.fa.fa-angle-left.gap
+    -unless @reward.nil?
+      .box.bordered
+        .content
+          .wrap
+            .row
+              .col-sm-2
+                img.framed src=@reward.image(:thumb)
+              .col-sm-10
+                h3 کوپن شما
+                h5
+                  i.text-icon.fa.fa-calendar.fa-lg
+                  span= persian_date @reward.expires_at
+                p= @reward.instruction
+          .row
+            .col-sm-12
+              .extension
+                .arrow
+                .wrap
+                  .row
+                    .col-sm-6.center
+                      .label
+                        |  تعداد کل بازدید  
+                        i.fa.fa-question-circle data-toggle="popover" data-content="تعداد کل دفعاتی که تبلیغ کوپن شما به مخاطبین شما نشان داده شده است." data-trigger='hover' data-placement='left'
+                      .point = @total_impressions
+                    .col-sm-6.center
+                      .label 
+                        | تعداد ابراز علاقه  
+                        i.fa.fa-question-circle data-toggle="popover" data-content="تعداد کل کاربرانی که نسبت به کوپن تبلیغاتی شما علاقه نشان داده اند و آن را در کیف پول خود قرارداده اند." data-trigger='hover' data-placement='left'
+                      .point = @total_collected
+        .shortcut
+          a.btn.btn-sm href=edit_panel_reward_path(@reward) ویرایش کوپن
+    -unless @venue.nil?
+      .box.bordered
+        .content
+          .wrap
+            .row
+              .col-sm-4
+                .venue-image
+                  img.framed src=@venue.image(:small)
+                  h3= @venue.name
+                h5
+                  i.text-icon.fa.fa-phone.fa-lg
+                  span= @venue.phone
+                p
+                  i.text-icon.fa.fa-map-marker.fa-lg
+                  span= @venue.address
+              .col-sm-8
+          .row
+            .col-sm-12
+              .extension
+                .arrow
+                .wrap
+                  .row
+                    .col-sm-6.center
+                      .label
+                        |  تعداد کل چک این 
+                        i.fa.fa-question-circle data-toggle="popover" data-content="تعداد کل مشتریانی که در کسب و کار شما بوده اند و آن را به عنوان پاتوق به دیگران توصیه کرده اند." data-trigger='hover' data-placement='left'
+                      .point = @total_checkins
+                    .col-sm-6.center
+                      .label 
+                        | تعداد هواداران 
+                        i.fa.fa-question-circle data-toggle="popover" data-content="تعداد کل کاربرانی که شما را به عنوان پاتوق دوست دارند." data-trigger='hover' data-placement='left'
+                      .point = @venue.likes
+        .shortcut
+          a.btn.btn-sm href=edit_panel_venue_path(@venue) ویرایش پاتوق
+  .col-sm-3
+    .box.blue.tip
+      .icon
+        i.fa.fa-usd
+      .content
+        .point= number_to_currency current_business.credit
+        .label اعتبار
+      .shortcut
+        a.btn.btn-sm افزایش اعتبار
+    .box.green.tip
+      .icon
+        i.fa.fa-users
+      .content
+        .point= @total_impressions
+        .label بازدید کننده
+      .shortcut
+        a.btn.btn-sm افزایش بازدید
+    .box.red.tip
+      .icon
+        i.fa.fa-heart
+      .content
+        .point= @total_likes
+        .label طرفدار
+      .shortcut
+        a.btn.btn-sm آمار طرفداران
+    .box.purple.tip
+      .icon
+        i.fa.fa-map-marker
+      .content
+        .point= @total_checkins
+        .label چک این
+      .shortcut
+        a.btn.btn-sm آمار چک این
