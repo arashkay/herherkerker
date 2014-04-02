@@ -43,7 +43,7 @@ class MessagesController < ApplicationController
   def today
     @extras = []
     @rewards = []
-    if @device.last_check < Time.now-HHKK::MOBILE::INTERVAL.hours
+    if @device.last_date < Time.now-HHKK::MOBILE::INTERVAL.hours
       @rewards = @device.unlockable( params[:last_reward_id].to_i )
       if params[:version]!="1.0.8"
       end
@@ -101,12 +101,16 @@ class MessagesController < ApplicationController
       @message = Message.find  params[:id]
       @message.increment! :likes
       Device.increment_counter( :like_count, @message.device_id ) unless @message.device_id.blank?
+    rescue
     end
     render :json => true
   end
 
   def dislike
-    Message.decrement_counter :likes, params[:id]
+    begin
+      Message.decrement_counter :likes, params[:id]
+    rescue
+    end
     render :json => false
   end
 
