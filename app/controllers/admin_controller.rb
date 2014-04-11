@@ -23,7 +23,7 @@ class AdminController < ApplicationController
   def dashboard
     @rewards = Reward.order('ordering DESC').all
     @questions = Question.all
-    @venues = Venue.order('id DESC').all
+    @venues = Venue.order('id DESC').limit(20).all
   end
 
 end

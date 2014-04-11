@@ -28,6 +28,7 @@ class DevicesController < ApplicationController
     @device.calculate_badges
     @device.version = params[:version] || '2.0.0'
     @device.last_date = Time.now
+    @device.last_joke = HHKK::MOBILE::STARTING_JOKE if @device.last_joke == 0
     @device.save
     render json: { likes: (@device.nil? ? 0 : @device.like_count), badges: @device.badges }
   end

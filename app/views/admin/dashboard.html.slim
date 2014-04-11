@@ -112,7 +112,7 @@ ul.nav.nav-tabs
           input name='address' type='hidden' value=venue.address
           .col-sm-2
             .image
-              input type='file' name='file' data-url=attach_venue_path(venue) data-uploader='true' data-callback='hhkk.venues.attached'
+              input type='file' name='file' data-url=attach_panel_venue_path(venue) data-uploader='true' data-callback='hhkk.venues.attached'
               img src=venue.image.url(:thumb)
           .col-sm-4
             .name= venue.name
@@ -122,7 +122,7 @@ ul.nav.nav-tabs
             .address= venue.address
           .actions
             .btn-group
-              a.btn.btn-primary.fn-change data-url=venue_path(venue) تغییر
+              a.btn.btn-primary.fn-change data-url=panel_venue_path(venue) تغییر
   #rewards-tab.tab-pane
     .action-bar
       a.btn data-target='#new_reward' data-toggle='modal'

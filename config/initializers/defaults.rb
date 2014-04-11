@@ -43,6 +43,7 @@ module HHKK
   module MOBILE
     LIMIT     = HHKK::CONFIGS['mobile']['jokes_limit']
     INTERVAL  = HHKK::CONFIGS['mobile']['ads_interval']
+    STARTING_JOKE = HHKK::CONFIGS['mobile']['starting_joke']
   end
 
   module PROFILING
