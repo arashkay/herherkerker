@@ -35,6 +35,9 @@ Herherkerker::Application.routes.draw do
     member do
       post :unlock
     end
+    collection do
+      post :unlock
+    end
   end
 
   resources :venues, only: [:index] do
@@ -42,6 +45,7 @@ Herherkerker::Application.routes.draw do
       match :suggest
       get :actions
       get :checkins
+      post :checkin
     end
     member do
       post :checkin
